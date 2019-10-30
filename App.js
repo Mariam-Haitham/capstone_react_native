@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-
+import store from "./redux";
+import { Provider } from "react-redux";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
+import AppContainer from "./Navigation/";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,9 +28,9 @@ export default class App extends React.Component {
       return <AppLoading />;
     }
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
     );
   }
 }
