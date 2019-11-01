@@ -10,13 +10,23 @@ import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 
 //actions
 import { connect } from "react-redux";
-import { login, logout } from "../redux/actions";
+import { login, logout, checkForExpiredToken } from "../redux/actions";
 
 class RegistertionForms extends Component {
   state = {
     username: "",
     password: ""
   };
+  handleChange = keyValue => {
+    this.setState(keyValue);
+  };
+  componentDidMount = () => {
+    this.props.checkForToken();
+  };
+  handlelogin = () => {
+    this.props.login(this.state, this.props.navigation);
+  };
+
   render() {
     const { username, password } = this.state;
     return (
@@ -28,7 +38,7 @@ class RegistertionForms extends Component {
               <View style={styles.rect3}>
                 <EvilIconsIcon name="user" style={styles.icon2} />
                 <TextInput
-                  placeholder="Username"
+                  placeholder="Email"
                   placeholderTextColor="rgba(255,255,255,1)"
                   secureTextEntry={false}
                   style={styles.textInput2}
@@ -51,12 +61,7 @@ class RegistertionForms extends Component {
               </View>
             </View>
             <View style={styles.rect3ColumnFiller} />
-            <TouchableOpacity
-              onPress={() =>
-                this.props.login(this.state, this.props.navigation)
-              }
-              style={styles.button}
-            >
+            <TouchableOpacity onPress={this.handlelogin} style={styles.button}>
               <Text style={styles.text2}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -65,7 +70,7 @@ class RegistertionForms extends Component {
         <View style={styles.rect4}>
           <View style={styles.button2Filler} />
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Timeline")}
+            onPress={() => this.props.navigation.navigate("ProfileScreen")}
             style={styles.Continue}
             style={styles.button2}
           >
@@ -199,7 +204,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     login: (userData, navigation) => dispatch(login(userData, navigation)),
-    signup: (userData, navigation) => dispatch(signup(userData, navigation))
+    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
+    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
   };
 };
 export default connect(

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signup, logout } from "../redux/actions";
+import { signup, logout, checkForExpiredToken } from "../redux/actions";
 import {
   StyleSheet,
   View,
@@ -14,7 +14,17 @@ import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommun
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 
 class Signup extends Component {
+  state = {
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: ""
+  };
+  componentDidMount = () => {
+    this.props.checkForToken();
+  };
   render() {
+    const { first_name, last_name, email, password } = this.state;
     return (
       <View style={styles.root}>
         <View style={styles.Background}>
@@ -22,52 +32,88 @@ class Signup extends Component {
             style={styles.rect2}
             source={require("../assets/Gradient_LZGIVfZ.png")}
           >
-            <View style={styles.icon8Column}>
-              <MaterialCommunityIconsIcon
-                name="account-circle"
-                style={styles.icon8}
-              />
-              <Text style={styles.text3}>CREATE ACCOUNT</Text>
+            <View style={styles.text3StackColumn}>
+              <View style={styles.text3Stack}>
+                <Text style={styles.text3}>CREATE ACCOUNT</Text>
+                <MaterialCommunityIconsIcon
+                  name="account-circle"
+                  style={styles.icon9}
+                />
+              </View>
               <View style={styles.Form}>
-                <View style={styles.NameColumn}>
-                  <View style={styles.Name}>
-                    <EvilIconsIcon name="user" style={styles.icon5} />
+                <View style={styles.Name}>
+                  <EvilIconsIcon name="user" style={styles.icon5} />
+                  <View style={styles.NameInputStack}>
                     <TextInput
-                      placeholder="Name"
+                      placeholder="First Name"
                       placeholderTextColor="rgba(255,255,255,1)"
                       secureTextEntry={false}
+                      autoCapitalize="false"
                       style={styles.NameInput}
+                      value={first_name}
+                      onChangeText={first_name =>
+                        this.setState({ first_name: first_name })
+                      }
                     />
-                  </View>
-                  <View style={styles.Email}>
-                    <EvilIconsIcon name="envelope" style={styles.icon6} />
-                    <TextInput
-                      placeholder="Email"
-                      placeholderTextColor="rgba(255,255,255,1)"
-                      secureTextEntry={false}
-                      style={styles.EmailInput}
-                    />
+                    <View style={styles.rect4} />
                   </View>
                 </View>
-                <View style={styles.NameColumnFiller} />
-                <View style={styles.Password}>
-                  <EvilIconsIcon name="lock" style={styles.icon7} />
+                <View style={styles.rect3}>
+                  <View style={styles.icon8Row}>
+                    <EvilIconsIcon name="user" style={styles.icon8} />
+                    <Text style={styles.text5} />
+                  </View>
                   <TextInput
-                    placeholder="Password"
+                    placeholder="Last Name"
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    secureTextEntry={false}
+                    autoCapitalize="false"
+                    style={styles.textInput}
+                    value={last_name}
+                    onChangeText={last_name =>
+                      this.setState({ last_name: last_name })
+                    }
+                  />
+                </View>
+                <View style={styles.rect5}>
+                  <EvilIconsIcon name="envelope" style={styles.icon10} />
+                  <TextInput
+                    placeholder="Email"
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    secureTextEntry={false}
+                    style={styles.textInput2}
+                    value={email}
+                    onChangeText={email => this.setState({ email: email })}
+                  />
+                </View>
+                <View style={styles.Email}>
+                  <EvilIconsIcon name="lock" style={styles.icon6} />
+                  <TextInput
+                    placeholder="password"
                     placeholderTextColor="rgba(255,255,255,1)"
                     secureTextEntry={true}
-                    style={styles.PasswordInput}
+                    autoCapitalize="false"
+                    style={styles.EmailInput}
+                    value={password}
+                    onChangeText={password =>
+                      this.setState({ password: password })
+                    }
                   />
                 </View>
               </View>
             </View>
-            <View style={styles.icon8ColumnFiller} />
-            <View style={styles.ContinueColumn}>
-              <TouchableOpacity style={styles.Continue}>
-                <Text style={styles.text2}>Continue</Text>
-              </TouchableOpacity>
-              <Text style={styles.text4}>Terms &amp; Conditions</Text>
-            </View>
+            <View style={styles.text3StackColumnFiller} />
+            <TouchableOpacity
+              style={styles.Continue}
+              onPress={() =>
+                this.props.signup(
+                  { ...this.state, username: this.state.email },
+                  this.props.navigation
+                )
+              }
+            >
+              <Text style={styles.text2}>Sign Up</Text>
+            </TouchableOpacity>
           </ImageBackground>
         </View>
         <StatusBar
@@ -83,7 +129,7 @@ class Signup extends Component {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: "rgb(255,255,255)"
+    backgroundColor: "rgba(73,225,207,1)"
   },
   Background: {
     flex: 1
@@ -92,29 +138,40 @@ const styles = StyleSheet.create({
     opacity: 0.69,
     flex: 1
   },
-  icon8: {
-    color: "grey",
-    fontSize: 40,
-    height: 40,
-    width: 40,
-    marginLeft: 119
-  },
   text3: {
+    top: 66,
+    left: 0,
     color: "rgba(255,255,255,1)",
-    fontSize: 24,
-    marginTop: 25,
-    alignSelf: "center"
+    position: "absolute",
+    fontSize: 24
+  },
+  icon9: {
+    top: 0,
+    left: 87,
+    position: "absolute",
+    color: "rgba(27,25,25,1)",
+    fontSize: 40,
+    width: 90,
+    height: 90
+  },
+  text3Stack: {
+    width: 215,
+    height: 90,
+    marginLeft: 23
   },
   Form: {
-    height: 230,
-    marginTop: 116
+    width: 278,
+    height: 345,
+    marginTop: 49
   },
   Name: {
+    width: 278,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
     borderRadius: 5,
-    flexDirection: "row"
+    flexDirection: "row",
+    alignSelf: "center"
   },
   icon5: {
     color: "rgba(255,255,255,1)",
@@ -125,21 +182,102 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   NameInput: {
+    left: 0,
+    height: 30,
+    color: "rgba(255,255,255,1)",
+    position: "absolute",
+    right: 0,
+    fontSize: 14,
+    top: 0
+  },
+  rect4: {
+    top: 15,
+    left: 28,
+    width: 1,
+    height: 1,
+    backgroundColor: "rgba(230, 230, 230,1)",
+    position: "absolute"
+  },
+  NameInputStack: {
+    height: 30,
+    flex: 1,
+    marginRight: 14,
+    marginLeft: 16,
+    marginTop: 14
+  },
+  rect3: {
+    width: 277,
+    height: 59,
+    backgroundColor: "rgba(255,255,255,0.25)",
+    opacity: 1,
+    borderRadius: 5,
+    flexDirection: "row",
+    marginTop: 42,
+    marginLeft: 1
+  },
+  icon8: {
+    color: "rgba(255,255,255,1)",
+    fontSize: 33,
+    width: 33,
+    height: 33
+  },
+  text5: {
+    color: "#121212",
+    // fontFamily: "roboto-regular",
+    marginLeft: 6,
+    marginTop: 2
+  },
+  icon8Row: {
+    height: 33,
+    flexDirection: "row",
+    marginLeft: 15,
+    marginTop: 13
+  },
+  textInput: {
+    height: 30,
+    color: "rgba(255,255,255,1)",
+    fontSize: 14,
+    flex: 1,
+    marginRight: 17,
+    marginLeft: 7,
+    alignSelf: "center"
+  },
+  rect5: {
+    width: 277,
+    height: 59,
+    backgroundColor: "rgba(255,255,255,0.25)",
+    opacity: 1,
+    borderRadius: 5,
+    flexDirection: "row",
+    marginTop: 33,
+    marginLeft: 1
+  },
+  icon10: {
+    color: "rgba(255,255,255,1)",
+    fontSize: 33,
+    width: 33,
+    height: 33,
+    marginLeft: 15,
+    alignSelf: "center"
+  },
+  textInput2: {
     height: 30,
     color: "rgba(255,255,255,1)",
     fontSize: 14,
     flex: 1,
     marginRight: 17,
     marginLeft: 13,
-    marginTop: 14
+    alignSelf: "center"
   },
   Email: {
+    width: 278,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
     borderRadius: 5,
     flexDirection: "row",
-    marginTop: 27
+    marginTop: 35,
+    alignSelf: "center"
   },
   icon6: {
     color: "rgba(255,255,255,1)",
@@ -155,40 +293,16 @@ const styles = StyleSheet.create({
     marginLeft: 13,
     marginTop: 14
   },
-  NameColumn: {},
-  NameColumnFiller: {
-    flex: 1
+  text3StackColumn: {
+    width: 278,
+    marginTop: 94,
+    marginLeft: 57
   },
-  Password: {
-    height: 59,
-    backgroundColor: "rgba(255,255,255,0.25)",
-    opacity: 1,
-    borderRadius: 5,
-    flexDirection: "row"
-  },
-  icon7: {
-    color: "rgba(255,255,255,1)",
-    fontSize: 33,
-    marginLeft: 15,
-    marginTop: 13
-  },
-  PasswordInput: {
-    height: 30,
-    color: "rgba(255,255,255,1)",
-    flex: 1,
-    marginRight: 17,
-    marginLeft: 13,
-    marginTop: 14
-  },
-  icon8Column: {
-    marginTop: 95,
-    marginLeft: 41,
-    marginRight: 41
-  },
-  icon8ColumnFiller: {
+  text3StackColumnFiller: {
     flex: 1
   },
   Continue: {
+    width: 293,
     height: 55,
     backgroundColor: "rgba(247,247,247,0)",
     opacity: 1,
@@ -196,31 +310,23 @@ const styles = StyleSheet.create({
     borderColor: "rgba(255,255,255,1)",
     borderWidth: 1,
     justifyContent: "center",
-    marginBottom: 60
+    marginBottom: 138,
+    alignSelf: "center"
   },
   text2: {
     width: 66,
     color: "rgba(255,255,255,1)",
     alignSelf: "center"
-  },
-  text4: {
-    color: "rgba(255,255,255,0.5)",
-    alignSelf: "center"
-  },
-  ContinueColumn: {
-    marginBottom: 31,
-    marginLeft: 41,
-    marginRight: 41
   }
 });
-
 const mapStateToProps = state => ({
   user: state.authState.user
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    signup: (userData, navigation) => dispatch(signup(userData, navigation))
+    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
+    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
   };
 };
 export default connect(

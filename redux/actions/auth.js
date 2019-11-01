@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
-
+import axios from "axios";
 import instance from "./instance";
 
 import { SET_CURRENT_USER } from "./actionTypes";
@@ -48,7 +48,8 @@ export const login = (userData, navigation) => {
       navigation.navigate("ProfileScreen");
       dispatch(setCurrentUser(decodedUser));
     } catch (error) {
-      console.error(error);
+      dispatch(setErrors("Input is Invalid"));
+      console.error(error.response.data);
     }
   };
 };
@@ -57,9 +58,11 @@ export const signup = (userData, navigation) => {
   return async dispatch => {
     try {
       await instance.post("signup/", userData);
+      navigation.navigate("ProfileScreen");
       dispatch(login(userData, navigation));
     } catch (error) {
-      console.error(error);
+      dispatch(setErrors("Input is Invalid"));
+      console.error(error.response.data);
     }
   };
 };
