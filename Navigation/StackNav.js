@@ -5,7 +5,7 @@ import RegisterationForms from "../components/RegistrationForms";
 import Profile from "../components/UserProfile";
 import Signup from "../components/Signup";
 import ChildProfile from "../components//ChildProfile";
-import Home from "../components/Home";
+import ListOfHomes from "../components/ListOfHomes";
 
 const StackNav = createStackNavigator(
   {
@@ -13,7 +13,7 @@ const StackNav = createStackNavigator(
     ProfileScreen: Profile,
     SignupScreen: Signup,
     ChildProfileScreen: ChildProfile,
-    HomeScreen: Home
+    ListOfHomesScreen: ListOfHomes
   },
   {
     initialRouteName: "RegisterScreen",

@@ -45,7 +45,7 @@ export const login = (userData, navigation) => {
       let user = response.data;
       let decodedUser = jwt_decode(user.access);
       setAuthToken(user.access);
-      navigation.navigate("ProfileScreen");
+      navigation.navigate("ListOfHomesScreen");
       dispatch(setCurrentUser(decodedUser));
     } catch (error) {
       dispatch(setErrors("Input is Invalid"));
@@ -58,7 +58,7 @@ export const signup = (userData, navigation) => {
   return async dispatch => {
     try {
       await instance.post("signup/", userData);
-      navigation.navigate("ProfileScreen");
+      navigation.navigate("HomeScreen");
       dispatch(login(userData, navigation));
     } catch (error) {
       dispatch(setErrors("Input is Invalid"));
@@ -69,6 +69,6 @@ export const signup = (userData, navigation) => {
 
 export const logout = navigation => {
   setAuthToken();
-  navigation.navigate("RegisterScreen");
+  navigation.navigate("SignupScreen");
   return setCurrentUser();
 };

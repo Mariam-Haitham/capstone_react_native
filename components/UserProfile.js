@@ -51,7 +51,7 @@ class Profile extends Component {
                 // onClick={() => this.props.logout(this.props.navigation)}
                 onPress={() => this.props.navigation.navigate("HomeScreen")}
               >
-                <Text>Logout</Text>
+                <Text>Home</Text>
               </Button>
             </CardItem>
           </Card>
