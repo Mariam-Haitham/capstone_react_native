@@ -69,6 +69,6 @@ export const signup = (userData, navigation) => {
 
 export const logout = navigation => {
   setAuthToken();
-  navigation.navigate("SignupScreen");
+  navigation.navigate("RegisterScreen");
   return setCurrentUser();
 };

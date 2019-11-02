@@ -1,15 +1,10 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { ScrollView, View } from "react-native";
-import { NavigationActions, withNavigation } from "react-navigation";
+import { connect } from "react-redux";
+import { View } from "react-native";
+import { withNavigation } from "react-navigation";
 import { Button, Text, Item, Content, Icon, List, ListItem } from "native-base";
+import { logout } from "../redux/actions";
 class SideBar extends Component {
-  //   navigateToScreen = route => () => {
-  //     const navigateAction = NavigationActions.navigate({
-  //       routeName: route
-  //     });
-  //     this.props.navigation.dispatch(navigateAction);
-  //   };
   render() {
     return (
       <>
@@ -20,18 +15,27 @@ class SideBar extends Component {
                 transparent
                 onPress={() => this.props.navigation.push("ListOfHomesScreen")}
               >
-                <Icon name="back" type="Entypo" />
-                <Text> List of Homes </Text>
+                <Icon name="home-assistant" type="MaterialCommunityIcons" />
+                <Text> Homes </Text>
               </Button>
             </Item>
 
             <Item>
               <Button
                 transparent
-                onPress={() => this.props.navigation.push("UserProfileScreen")}
+                onPress={() => this.props.navigation.push("ProfileScreen")}
               >
-                <Icon name="user-edit" type="FontAwesome5" />
+                <Icon name="user" type="EvilIcons" />
                 <Text>User Profile</Text>
+              </Button>
+            </Item>
+            <Item>
+              <Button
+                transparent
+                onPress={() => this.props.logout(this.props.navigation)}
+              >
+                <Icon name="logout" type="AntDesign" />
+                <Text>Logout</Text>
               </Button>
             </Item>
           </View>
@@ -40,9 +44,13 @@ class SideBar extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  logout: navigation => dispatch(logout(navigation))
+});
 
-// SideBar.propTypes = {
-//   navigation: PropTypes.object
-// };
-
-export default withNavigation(SideBar);
+export default withNavigation(
+  connect(
+    null,
+    mapDispatchToProps
+  )(SideBar)
+);

@@ -26,9 +26,7 @@ export default class DrawerMenu extends Component {
         captureGestures="open"
         side="left"
       >
-        <Button onPress={this.openDrawer}>
-          <Text>I am here! </Text>
-        </Button>
+        <Button onPress={this.openDrawer}></Button>
       </Drawer>
     );
   }
