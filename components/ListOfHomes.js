@@ -1,51 +1,69 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
-
-import {
-  Container,
-  Content,
-  Card,
-  CardItem,
-  Header,
-  Left,
-  Right,
-  Text,
-  Body,
-  Button,
-  Thumbnail,
-  List,
-  Icon,
-  Title,
-  ListItem
-} from "native-base";
+// import { ImageBackground, View, Image } from "react-native";
+import SideBar from "../Navigation/SideBar";
+import { Text, Content, Button, Drawer, Icon } from "native-base";
 
 class ListOfHomes extends Component {
+  state = {
+    drawerIsOpen: false
+  };
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "Profile",
+
+      headerLeft: (
+        <Button
+          transparent
+          onPress={() => navigation.getParam("handleDrawer")()}
+        >
+          {navigation.getParam("isOpen") ? (
+            <Icon name="close" type="AntDesign" />
+          ) : (
+            <Icon name="menu" type="Feather" />
+          )}
+        </Button>
+      )
+    };
+  };
+
+  handleDrawer = async () => {
+    if (this.state.drawerIsOpen) {
+      this.drawer._root.close();
+    } else {
+      this.drawer._root.open();
+    }
+    await this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+    this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({
+      handleDrawer: this.handleDrawer,
+      isOpen: this.state.drawerIsOpen
+    });
+  }
   render() {
     return (
-      <Content padder>
-        <View>
-          <Text>Home Page</Text>
-        </View>
-      </Content>
+      <>
+        <Drawer
+          ref={ref => {
+            this.drawer = ref;
+          }}
+          content={<SideBar navigator={this.navigator} />}
+          onClose={() => this.closeDrawer()}
+          panOpenMask={0.6}
+          openDrawerOffset={0.4}
+          onClose={this.closeDrawer}
+          onOpen={this.openDrawer}
+          captureGestures="open"
+        >
+          <Text>Hi</Text>
+        </Drawer>
+      </>
     );
   }
 }
 
 export default ListOfHomes;
-
-ListOfHomes.navigationOptions = ({ navigation }) => ({
-  header: (
-    <Header>
-      <Left>
-        <Button transparent onPress={() => navigation.navigate("DrawerOpen")}>
-          <Icon name="menu" />
-        </Button>
-      </Left>
-      <Body>
-        <Title>List Of Homes</Title>
-      </Body>
-      <Right />
-    </Header>
-  )
-});

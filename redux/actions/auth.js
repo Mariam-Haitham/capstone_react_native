@@ -58,7 +58,7 @@ export const signup = (userData, navigation) => {
   return async dispatch => {
     try {
       await instance.post("signup/", userData);
-      navigation.navigate("HomeScreen");
+      navigation.navigate("ListOfHomesScreen");
       dispatch(login(userData, navigation));
     } catch (error) {
       dispatch(setErrors("Input is Invalid"));
@@ -69,6 +69,6 @@ export const signup = (userData, navigation) => {
 
 export const logout = navigation => {
   setAuthToken();
-  navigation.navigate("SignupScreen");
+  navigation.navigate("RegisterScreen");
   return setCurrentUser();
 };
