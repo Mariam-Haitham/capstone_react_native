@@ -14,10 +14,7 @@ import {
   ListItem
 } from "native-base";
 
-//actions
-import { logout } from "../redux/actions";
-
-class Profile extends Component {
+class ChildProfile extends Component {
   // componentDidMount = async () => {
   //   if (this.props.user) await this.props.fetchProfile();
   // };
@@ -31,27 +28,22 @@ class Profile extends Component {
         <Content>
           <Card>
             <CardItem header>
-              <Text>User Profile </Text>
+              <Text>Child's Profile</Text>
               {/* <Thumbnail
                 source={profileInfo.image}
-                style={{ borderRadius: "50%", width: "120px", height: "100px" }}
+                style={{ borderRadius: "50%", width: 120, height: 100 }}
               /> */}
             </CardItem>
             <CardItem>
               <Body>
-                <Text>Full Name: </Text>
-                <Text>Email:</Text>
-                <Text>Phone Number #1: </Text>
-                <Text>Phone Number #2: </Text>
-                <Text>Bio: </Text>
+                <Text>Name:</Text>
+                <Text>Date of Birth:</Text>
+                <Text>Age: </Text>
+                <Text>Medical History: </Text>
+                <Text>Allergies: </Text>
               </Body>
-              <Button
-                bordered
-                danger
-                // onClick={() => this.props.logout(this.props.navigation)}
-                onPress={() => this.props.navigation.navigate("HomeScreen")}
-              >
-                <Text>Home</Text>
+              <Button bordered danger>
+                <Text>Edit</Text>
               </Button>
             </CardItem>
           </Card>
@@ -67,8 +59,4 @@ class Profile extends Component {
 //   loading: state.rootProfile.loading
 // });
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(mapDispatchToProps)(Profile);
+export default ChildProfile;
