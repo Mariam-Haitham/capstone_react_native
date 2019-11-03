@@ -6,4 +6,4 @@ export { fetchFeed } from "./feed";
 
 export { fetchChildProfile } from "./childProfile";
 
-export { fetchHomes } from "./homes";
+export { fetchHomes, fetchHomeDetail } from "./homes";
