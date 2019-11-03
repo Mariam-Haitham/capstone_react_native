@@ -10,7 +10,7 @@ import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 
 //actions
 import { connect } from "react-redux";
-import { login, logout, checkForExpiredToken } from "../redux/actions";
+import { login, logout } from "../redux/actions";
 
 class RegistertionForms extends Component {
   state = {
@@ -20,14 +20,14 @@ class RegistertionForms extends Component {
   handleChange = keyValue => {
     this.setState(keyValue);
   };
-  componentDidMount = () => {
-    this.props.checkForToken();
-  };
+  componentDidMount = () => {};
   handlelogin = () => {
     this.props.login(this.state, this.props.navigation);
   };
 
   render() {
+    if (this.props.user)
+      return this.props.navigation.replace("ListOfHomesScreen");
     const { username, password } = this.state;
     return (
       <View style={styles.container}>
@@ -204,8 +204,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     login: (userData, navigation) => dispatch(login(userData, navigation)),
-    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
-    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
+    signup: (userData, navigation) => dispatch(signup(userData, navigation))
   };
 };
 export default connect(

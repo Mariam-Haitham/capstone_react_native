@@ -25,6 +25,7 @@ export const checkForExpiredToken = () => {
 
 const setAuthToken = async token => {
   if (token) {
+    console.log("Im in setting auth");
     await AsyncStorage.setItem("token", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
