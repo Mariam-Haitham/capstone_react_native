@@ -1,34 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { StyleSheet } from "react-native";
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  List,
-  ListItem,
-  Text,
-  Button,
-  Drawer,
-  Icon,
-  Left
-} from "native-base";
-//actions
-import { fetchHomes } from "../redux/actions";
-
+// import { ImageBackground, View, Image } from "react-native";
+import { Text, Button, Drawer, Icon } from "native-base";
+// Navigation
+import { withNavigation } from "react-navigation";
 //components
 import SideBar from "../Navigation/SideBar";
-import HomesDetail from "./HomesDetail";
 
-class ListOfHomes extends Component {
+class HomesDetail extends Component {
   state = {
     drawerIsOpen: false
   };
 
   static navigationOptions = ({ navigation }) => {
     return {
-      title: "List of Homes",
+      title: "Home",
 
       headerLeft: (
         <Button
@@ -62,10 +47,11 @@ class ListOfHomes extends Component {
     });
   }
   render() {
-    const ListOfHomes = this.props.homes.map(home => (
-      <HomesDetail home={home} key={home.id} />
-    ));
-
+    const { home } = this.props;
+    const { navigation } = this.props;
+    const handlePress = () => {
+      navigation.navigate("HomeDetailScreen", { homeID: home.id });
+    };
     return (
       <>
         <Drawer
@@ -80,33 +66,21 @@ class ListOfHomes extends Component {
           onOpen={this.openDrawer}
           captureGestures="open"
         >
-          <Content>
-            <List>{ListOfHomes}</List>
-          </Content>
+          <Text>Homes Detail</Text>
+          <ListItem button onPress={handlePress}>
+            <Card>
+              <CardItem>
+                <Left>
+                  <Text>{home.name}</Text>
+                </Left>
+              </CardItem>
+              e
+            </Card>
+          </ListItem>
         </Drawer>
       </>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    homes: state.homesReducer
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    login: (userData, navigation) => dispatch(login(userData, navigation)),
-    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
-    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
-  };
-};
-
-export default connect(mapStateToProps)(ListOfHomes);
-
-ListOfHomes.navigationOptions = () => {
-  return {
-    title: "Home List",
-    headLeft: null
-  };
-};
+export default withNavigation(HomesDetail);
