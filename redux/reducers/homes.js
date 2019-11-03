@@ -5,7 +5,7 @@ const initialState = {
   loading: true
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+const HomeReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_HOMES:
       return {
@@ -17,4 +17,4 @@ const reducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-export default reducer;
+export default HomeReducer;
