@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 // import { ImageBackground, View, Image } from "react-native";
 import SideBar from "../Navigation/SideBar";
 import { Text, Content, Button, Drawer, Icon } from "native-base";
-//actions
-import { fetchHomes } from "../redux/actions";
-class ListOfHomes extends Component {
+
+class Home extends Component {
   state = {
     drawerIsOpen: false
   };
 
   static navigationOptions = ({ navigation }) => {
     return {
-      title: "List of Homes",
+      title: "Home",
 
       headerLeft: (
         <Button
@@ -60,24 +59,11 @@ class ListOfHomes extends Component {
           onOpen={this.openDrawer}
           captureGestures="open"
         >
-          <Text>List of homes</Text>
+          <Text>Home</Text>
         </Drawer>
       </>
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    homes: state.homes.homes
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchHomes: () => dispatch(fetchHomes())
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListOfHomes);
+export default Home;

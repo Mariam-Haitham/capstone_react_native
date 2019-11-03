@@ -8,7 +8,7 @@ class SideBar extends Component {
   render() {
     return (
       <>
-        <Content style={{ backgroundColor: "#16171f", opacity: 0.95 }}>
+        <Content style={{ backgroundColor: "white", opacity: 0.95 }}>
           <View>
             <Item>
               <Button
@@ -27,6 +27,15 @@ class SideBar extends Component {
               >
                 <Icon name="user" type="EvilIcons" />
                 <Text>User Profile</Text>
+              </Button>
+            </Item>
+            <Item>
+              <Button
+                transparent
+                onPress={() => this.props.navigation.push("FeedScreen")}
+              >
+                <Icon name="playlist-edit" type="MaterialCommunityIcons" />
+                <Text>Feed</Text>
               </Button>
             </Item>
             <Item>
