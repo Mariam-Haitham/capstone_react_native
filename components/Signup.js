@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signup, logout, checkForExpiredToken } from "../redux/actions";
+import { signup, logout } from "../redux/actions";
 import {
   StyleSheet,
   View,
@@ -20,9 +20,7 @@ class Signup extends Component {
     email: "",
     password: ""
   };
-  componentDidMount = () => {
-    this.props.checkForToken();
-  };
+  componentDidMount = () => {};
   render() {
     const { first_name, last_name, email, password } = this.state;
     return (
@@ -325,8 +323,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
-    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
+    signup: (userData, navigation) => dispatch(signup(userData, navigation))
   };
 };
 export default connect(

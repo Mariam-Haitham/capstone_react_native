@@ -1,12 +1,12 @@
 import { FETCH_HOMES } from "./actionTypes";
-// import instance from "./instance";
-import axios from "axios";
+import instance from "./instance";
 
 export const fetchHomes = () => {
   return async dispatch => {
     try {
-      let response = await axios.get("http://127.0.0.1:8000//homes/", userData);
+      let response = await instance.get("homes/");
       const homes = response.data;
+      console.log("Home in action", homes);
       dispatch({ type: FETCH_HOMES, payload: homes });
     } catch (error) {
       console.error(error);

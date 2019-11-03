@@ -20,6 +20,7 @@ import { fetchHomes } from "../redux/actions";
 //components
 import SideBar from "../Navigation/SideBar";
 import HomesDetail from "./HomesDetail";
+import Loading from "./Loading";
 
 class ListOfHomes extends Component {
   state = {
@@ -55,15 +56,20 @@ class ListOfHomes extends Component {
     this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     this.props.navigation.setParams({
       handleDrawer: this.handleDrawer,
       isOpen: this.state.drawerIsOpen
     });
-  }
+    if (this.props.user) {
+      await this.props.fetchHomes();
+    }
+  };
   render() {
+    if (this.props.loading) return <Loading />;
+
     const ListOfHomes = this.props.homes.map(home => (
-      <HomesDetail home={home} key={home.id} />
+      <HomesDetail home={home} key={home.name} />
     ));
 
     return (
@@ -91,18 +97,19 @@ class ListOfHomes extends Component {
 
 const mapStateToProps = state => {
   return {
-    homes: state.homesReducer
+    homes: state.homesReducer.homes,
+    user: state.authState.user,
+    loading: state.homesReducer.loading
   };
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    login: (userData, navigation) => dispatch(login(userData, navigation)),
-    signup: (userData, navigation) => dispatch(signup(userData, navigation)),
-    checkForToken: navigation => dispatch(checkForExpiredToken(navigation))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  fetchHomes: () => dispatch(fetchHomes())
+});
 
-export default connect(mapStateToProps)(ListOfHomes);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListOfHomes);
 
 ListOfHomes.navigationOptions = () => {
   return {

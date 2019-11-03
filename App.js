@@ -6,6 +6,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import AppContainer from "./Navigation/";
+import Loading from "./components/Loading";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,8 +25,9 @@ export default class App extends React.Component {
     this.setState({ isReady: true });
   }
   render() {
+    console.disableYellowBox = true;
     if (!this.state.isReady) {
-      return <AppLoading />;
+      return <Loading />;
     }
     return (
       <Provider store={store}>
