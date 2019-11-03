@@ -6,7 +6,7 @@ import { withNavigation } from "react-navigation";
 //components
 import SideBar from "../Navigation/SideBar";
 
-class HomesDetail extends Component {
+class HomesCard extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Home"
@@ -24,17 +24,13 @@ class HomesDetail extends Component {
     return (
       <View>
         <ListItem button onPress={handlePress}>
-          {/* <Card> */}
-          {/* <CardItem> */}
           <Left>
             <Text>{home.name}</Text>
           </Left>
-          {/* </CardItem> */}
-          {/* </Card> */}
         </ListItem>
       </View>
     );
   }
 }
 
-export default withNavigation(HomesDetail);
+export default withNavigation(HomesCard);

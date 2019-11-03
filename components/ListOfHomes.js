@@ -19,7 +19,7 @@ import { fetchHomes } from "../redux/actions";
 
 //components
 import SideBar from "../Navigation/SideBar";
-import HomesDetail from "./HomesDetail";
+import HomesCard from "./HomesCard";
 import Loading from "./Loading";
 
 class ListOfHomes extends Component {
@@ -69,7 +69,7 @@ class ListOfHomes extends Component {
     if (this.props.loading) return <Loading />;
 
     const ListOfHomes = this.props.homes.map(home => (
-      <HomesDetail home={home} key={home.name} />
+      <HomesCard home={home} key={home.name} />
     ));
 
     return (
