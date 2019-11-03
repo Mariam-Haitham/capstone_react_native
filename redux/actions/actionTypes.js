@@ -7,3 +7,5 @@ export const FETCH_FEED = "FETCH_FEED";
 export const FETCH_CHILD_PROFILE = "FETCH_CHILD_PROFILE";
 
 export const FETCH_HOMES = "FETCH_HOMES";
+
+export const FETCH_HOME_DETAIL = "FETCH_HOME_DETAIL";
