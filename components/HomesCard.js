@@ -7,25 +7,28 @@ import { withNavigation } from "react-navigation";
 import SideBar from "../Navigation/SideBar";
 
 class HomesCard extends Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = () => {
     return {
       title: "Home"
     };
   };
-
-  // componentDidMount() {}
+  handlePress = () => {
+    const { home } = this.props;
+    this.props.navigation.navigate("HomeDetailScreen", {
+      homeID: home.id
+    });
+  };
   render() {
     const { home } = this.props;
-    const { navigation } = this.props;
-    const handlePress = () => {
-      navigation.navigate("HomeDetailScreen", { homeID: home.id });
-    };
-    console.log("Home", home);
+    // console.log("Home", home);
+    // console.log("Home", home.id);
     return (
       <View>
-        <ListItem button onPress={handlePress}>
+        <ListItem>
           <Left>
-            <Text>{home.name}</Text>
+            <Text button onPress={() => this.handlePress()}>
+              {home.name}
+            </Text>
           </Left>
         </ListItem>
       </View>

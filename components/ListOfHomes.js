@@ -69,7 +69,7 @@ class ListOfHomes extends Component {
     if (this.props.loading) return <Loading />;
 
     const ListOfHomes = this.props.homes.map(home => (
-      <HomesCard home={home} key={home.name} />
+      <HomesCard home={home} key={home.id} />
     ));
 
     return (
