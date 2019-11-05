@@ -1,4 +1,4 @@
-import { FETCH_HOMES, FETCH_HOME_DETAIL } from "./actionTypes";
+import { FETCH_HOMES, FETCH_HOME_DETAIL, SET_HOME } from "./actionTypes";
 import instance from "./instance";
 
 export const fetchHomes = () => {
@@ -11,5 +11,11 @@ export const fetchHomes = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+};
+
+export const setHome = homeID => {
+  return async dispatch => {
+    dispatch({ type: SET_HOME, payload: homeID });
   };
 };

@@ -8,12 +8,13 @@ import {
   CardItem,
   Text,
   Body,
-  Button
+  Image,
+  Button,
+  Thumbnail
 } from "native-base";
 //components
 import Loading from "./Loading";
-//actions
-import { logout } from "../redux/actions";
+
 const ChildDetail = ({ child }) => {
   // if (!child) return <HomeDetail />;
   console.log("CHILD CHILD", child);
@@ -26,25 +27,18 @@ const ChildDetail = ({ child }) => {
           <CardItem header></CardItem>
           <CardItem>
             <Body>
+              <Thumbnail source={{ uri: child.image }} />
               <Text>Baby’s Name: {child.name}</Text>
+              <Text>Age: {child.age}</Text>
+              <Text>Date Of Birth: {child.dob}</Text>
               <Text>medical history {child.medical_history}</Text>
               <Text>
-                {" "}
-                Allergies:{" "}
+                Allergies:
                 {child.allergies.map(allergy => (
                   <Text>{allergy.name}</Text>
                 ))}
               </Text>
             </Body>
-          </CardItem>
-          <CardItem footer>
-            <Button
-              bordered
-              danger
-              onClick={() => this.props.logout(this.props.navigation)}
-            >
-              <Text>Logout</Text>
-            </Button>
           </CardItem>
         </Card>
       </Content>
@@ -62,10 +56,4 @@ const mapStateToProps = (state, OwnProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  logout: navigation => dispatch(logout(navigation))
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ChildDetail);
+export default connect(mapStateToProps)(ChildDetail);

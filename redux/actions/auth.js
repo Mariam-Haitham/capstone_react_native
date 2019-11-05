@@ -14,7 +14,7 @@ export const checkForExpiredToken = () => {
       const user = jwt_decode(token);
       console.log((user.exp - currentTime) / 60);
       if (user.exp >= currentTime) {
-        setAuthToken(token);
+        await setAuthToken(token);
         dispatch(setCurrentUser(user));
       } else {
         dispatch(logout());
