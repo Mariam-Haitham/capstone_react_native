@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import {
   Container,
   Header,
@@ -9,86 +8,64 @@ import {
   CardItem,
   Text,
   Body,
-  Button,
-  Thumbnail,
-  List,
-  ListItem
+  Button
 } from "native-base";
-
 //components
-// import Loading from "./Loading";
-// import Default from "../default.jpg";
-
+import Loading from "./Loading";
 //actions
-import { fetchChildProfile, logout } from "../redux/actions";
+import { logout } from "../redux/actions";
+const ChildDetail = ({ child }) => {
+  // if (!child) return <HomeDetail />;
+  console.log("CHILD CHILD", child);
 
-class ChildProfile extends Component {
-  componentDidMount = async () => {
-    if (this.props.user) await this.props.fetchChildProfile();
+  // if (this.props.loading) return <Loading />;
+  return (
+    <Container>
+      <Content>
+        <Card>
+          <CardItem header></CardItem>
+          <CardItem>
+            <Body>
+              <Text>Baby’s Name: {child.name}</Text>
+              <Text>medical history {child.medical_history}</Text>
+              <Text>
+                {" "}
+                Allergies:{" "}
+                {child.allergies.map(allergy => (
+                  <Text>{allergy.name}</Text>
+                ))}
+              </Text>
+            </Body>
+          </CardItem>
+          <CardItem footer>
+            <Button
+              bordered
+              danger
+              onClick={() => this.props.logout(this.props.navigation)}
+            >
+              <Text>Logout</Text>
+            </Button>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
+  );
+};
+const mapStateToProps = (state, OwnProps) => {
+  const childId = OwnProps.navigation.getParam("childId");
+  const homeId = OwnProps.navigation.getParam("homeID");
+  const child = state.homesReducer.homes
+    .find(home => +homeId === home.id)
+    .children.find(child => child.id === +childId);
+  return {
+    child
   };
-
-  render() {
-    if (!this.props.user) return this.props.navigation.navigate("SignupScreen");
-
-    // if (this.props.loading) return <Loading />;
-
-    const userInfo = this.props.user;
-
-    // let image = profileInfo.image;
-    // if (!image) image = Default;
-
-    return (
-      <Container>
-        <Content>
-          <Card>
-            <CardItem header>
-              {/* <Thumbnail
-                source={image}
-                style={{ borderRadius: "50%", width: "120px", height: "100px" }}
-              /> */}
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Text>Baby's Name: {user.name}</Text>
-                <Text>medical history {user.medical_history}</Text>
-                <Text> allergies: {user.allergies}</Text>
-              </Body>
-            </CardItem>
-            <CardItem footer>
-              {/* <Button
-                bordered
-                onClick={() =>
-                  this.props.navigation.navigate("EditProfileScreen")
-                }
-              >
-                <Text>Edit Profile</Text>
-              </Button> */}
-              <Button
-                bordered
-                danger
-                onClick={() => this.props.logout(this.props.navigation)}
-              >
-                <Text>Logout</Text>
-              </Button>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  user: state.authState.user,
-  loading: state.rootProfile.loading
-});
+};
 
 const mapDispatchToProps = dispatch => ({
-  fetchChildProfile: () => dispatch(fetchChildProfile()),
   logout: navigation => dispatch(logout(navigation))
 });
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ChildProfile);
+)(ChildDetail);

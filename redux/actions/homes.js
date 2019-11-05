@@ -13,11 +13,3 @@ export const fetchHomes = () => {
     }
   };
 };
-
-export const fetchHomeDetail = homeID => {
-  return async dispatch => {
-    const res = await instance.get(`homes/${homeID}`);
-    const home = res.data;
-    dispatch({ type: FETCH_HOME_DETAIL, payload: home });
-  };
-};

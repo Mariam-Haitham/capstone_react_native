@@ -1,4 +1,4 @@
-import { FETCH_HOMES } from "../actions/actionTypes";
+import { FETCH_HOMES, FETCH_HOME_DETAIL } from "../actions/actionTypes";
 
 const initialState = {
   homes: [],
@@ -13,6 +13,12 @@ const HomeReducer = (state = initialState, { type, payload }) => {
         homes: payload,
         loading: false
       };
+    // case FETCH_HOME_DETAIL:
+    //   return {
+    //     ...state,
+    //     home: payload.home,
+    //     loading: false
+    //   };
     default:
       return state;
   }

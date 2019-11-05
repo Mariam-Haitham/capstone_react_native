@@ -4,20 +4,20 @@ import { createStackNavigator } from "react-navigation-stack";
 import RegisterationForms from "../components/RegistrationForms";
 import Profile from "../components/UserProfile";
 import Signup from "../components/Signup";
-import ChildProfile from "../components//ChildProfile";
+import ChildDetail from "../components//ChildDetail";
 import ListOfHomes from "../components/ListOfHomes";
 import Feed from "../components/Feed";
-import HomesCard from "../components/HomesCard";
+import HomeDetail from "../components/HomeDetail";
 
 const StackNav = createStackNavigator(
   {
     RegisterScreen: RegisterationForms,
     ProfileScreen: Profile,
     SignupScreen: Signup,
-    ChildProfileScreen: ChildProfile,
+    ChildDetailScreen: ChildDetail,
     ListOfHomesScreen: ListOfHomes,
     FeedScreen: Feed,
-    HomeDetailScreen: HomesCard
+    HomeDetailScreen: HomeDetail
   },
   {
     initialRouteName: "RegisterScreen",
