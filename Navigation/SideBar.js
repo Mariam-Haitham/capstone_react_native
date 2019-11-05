@@ -6,6 +6,7 @@ import { Button, Text, Item, Content, Icon, List, ListItem } from "native-base";
 import { logout } from "../redux/actions";
 class SideBar extends Component {
   render() {
+    let homeID = this.props.home;
     return (
       <>
         <Content style={{ backgroundColor: "white", opacity: 0.95 }}>
@@ -29,15 +30,19 @@ class SideBar extends Component {
                 <Text>User Profile</Text>
               </Button>
             </Item>
-            <Item>
-              <Button
-                transparent
-                onPress={() => this.props.navigation.push("FeedScreen")}
-              >
-                <Icon name="playlist-edit" type="MaterialCommunityIcons" />
-                <Text>Feed</Text>
-              </Button>
-            </Item>
+            {!!this.props.home && (
+              <Item>
+                <Button
+                  transparent
+                  onPress={() =>
+                    this.props.navigation.push("FeedScreen", { homeID: homeID })
+                  }
+                >
+                  <Icon name="playlist-edit" type="MaterialCommunityIcons" />
+                  <Text>Feed</Text>
+                </Button>
+              </Item>
+            )}
             <Item>
               <Button
                 transparent
@@ -53,13 +58,16 @@ class SideBar extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  home: state.homesReducer.home
+});
 const mapDispatchToProps = dispatch => ({
   logout: navigation => dispatch(logout(navigation))
 });
 
 export default withNavigation(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(SideBar)
 );
