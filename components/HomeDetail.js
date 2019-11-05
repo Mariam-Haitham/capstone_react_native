@@ -19,31 +19,28 @@ import {
   CardItem,
   Header
 } from "native-base";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 class HomeDetail extends Component {
   componentDidMount() {
     const homeId = this.props.navigation.getParam("homeID");
     const userHome = this.props.homes.find(home => homeId === home.id);
   }
-  // childparents = () => {
-  //   const homeId = this.props.navigation.getParam("homeID");
-  //   const userHome = this.props.homes.find(home => homeId === home.id);
-  //   const parents = userHome.parents;
-
   render() {
-    console.log("HERE", this.props.home);
+    // console.log("HERE", this.props.home);
     const homeId = this.props.navigation.getParam("homeID");
     const userHome = this.props.homes.find(home => homeId === home.id);
-    console.log("UUUUU", userHome);
+    // console.log("UUUUU", userHome);
     const parents = userHome.parents;
     const careTakers = userHome.caretakers;
     const children = userHome.children;
-    console.log("PPPPP", parents);
+    // console.log("PPPPP", parents);
     let childParents = [];
     let childCaretakers = [];
     let listOfChildren = [];
+
     if (parents) {
-      console.log("pareent", parents);
+      // console.log("pareent", parents);
       childParents = parents.map(parent => {
         return (
           <View style={styles.container}>
@@ -59,7 +56,7 @@ class HomeDetail extends Component {
     }
 
     if (careTakers) {
-      console.log("careTakers", careTakers);
+      // console.log("careTakers", careTakers);
       childCaretakers = careTakers.map(caretakers => {
         return (
           <View style={styles.container}>
@@ -74,25 +71,32 @@ class HomeDetail extends Component {
       });
     }
 
+    if (!userHome) return <Text>Loading</Text>; //add loading component here!
+    const handlePress = child => {
+      console.log("I'm here");
+      this.props.navigation.navigate("ChildDetailScreen", {
+        childId: child.id,
+        homeID: homeId
+      });
+    };
     if (children) {
-      console.log("children", children);
+      // console.log("children", children);
       listOfChildren = children.map(child => {
         return (
           <View style={styles.container}>
-            <View style={styles.Content}>
+            <TouchableOpacity
+              style={styles.Content}
+              button
+              onPress={() => handlePress(child)}
+            >
               <Text style={styles.text6}>Child:</Text>
               <Text style={styles.text7}>Name: {child.name}</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         );
       });
     }
 
-    if (!userHome) return <Text>Loading</Text>; //add loading component here!
-    const handlePress = () => {
-      props.navigation.navigate("ChildDetailScreen", { homeID: home.id });
-    };
-    console.log("HOMEEEE", userHome);
     return (
       <Content>
         <List>
@@ -104,7 +108,7 @@ class HomeDetail extends Component {
             <Icon name="users" type="Feather" />
             {childCaretakers}
           </CardItem>
-          <CardItem button onPress={handlePress}>
+          <CardItem>
             <Icon name="baby-buggy" type="MaterialCommunityIcons" />
             {listOfChildren}
           </CardItem>
