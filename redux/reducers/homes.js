@@ -1,3 +1,4 @@
+//actions
 import { FETCH_HOMES, ADD_HOME, SET_HOME } from "../actions/actionTypes";
 
 const initialState = {
@@ -27,12 +28,6 @@ const HomeReducer = (state = initialState, { type, payload }) => {
         home: payload,
         loading: false
       };
-    // case FETCH_HOME_DETAIL:
-    //   return {
-    //     ...state,
-    //     home: payload.home,
-    //     loading: false
-    //   };
     default:
       return state;
   }

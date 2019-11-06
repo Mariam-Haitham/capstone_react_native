@@ -3,6 +3,7 @@ import { AsyncStorage } from "react-native";
 
 import instance from "./instance";
 
+//actions
 import { SET_CURRENT_USER } from "./actionTypes";
 
 export const checkForExpiredToken = () => {
