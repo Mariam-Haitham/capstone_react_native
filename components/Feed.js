@@ -189,8 +189,8 @@ class Feed extends Component {
 }
 const mapStateToProps = state => {
   return {
-    feed: state.feedReducer.feed,
-    loading: state.feedReducer.loading
+    feed: state.rootFeed.feed,
+    loading: state.rootFeed.loading
   };
 };
 

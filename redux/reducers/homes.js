@@ -1,6 +1,5 @@
 import { FETCH_HOMES, ADD_HOME, SET_HOME } from "../actions/actionTypes";
 
-
 const initialState = {
   homes: [],
   loading: true,

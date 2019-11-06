@@ -18,9 +18,6 @@ import Loading from "./Loading";
 const ChildDetail = ({ child }) => {
   // if (!child) return <HomeDetail />;
   console.log("CHILD CHILD", child);
-
-
-const ChildDetail = ({ child }) => {
   return (
     <Container>
       <Content>
@@ -59,4 +56,3 @@ const mapStateToProps = (state, OwnProps) => {
 };
 
 export default connect(mapStateToProps)(ChildDetail);
-

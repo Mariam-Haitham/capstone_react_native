@@ -1,5 +1,4 @@
-
-import { FETCH_HOMES, FETCH_HOME_DETAIL, SET_HOME } from "./actionTypes";
+import { FETCH_HOMES, ADD_HOME, SET_HOME } from "./actionTypes";
 
 import instance from "./instance";
 
@@ -15,7 +14,6 @@ export const fetchHomes = () => {
   };
 };
 
-
 export const addHome = home => {
   return async dispatch => {
     try {
@@ -29,10 +27,11 @@ export const addHome = home => {
       console.error(error);
       dispatch(setErrors("Invalid input!!"));
     }
-    
+  };
+};
+
 export const setHome = homeID => {
   return async dispatch => {
     dispatch({ type: SET_HOME, payload: homeID });
-
   };
 };
