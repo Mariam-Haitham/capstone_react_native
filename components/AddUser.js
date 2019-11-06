@@ -45,10 +45,28 @@ class AddUser extends Component {
             </View>
             <View style={styles.rect3ColumnFiller} />
             <TouchableOpacity
-              onPress={() => this.handleInvite()}
+              onPress={() =>
+                this.props.sendInvite(
+                  this.props.navigation.getParam("homeID"),
+                  this.state,
+                  "parent"
+                )
+              }
               style={styles.button}
             >
-              <Text style={styles.text2}>Send Invite</Text>
+              <Text style={styles.text2}>Invite Parent</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.sendInvite(
+                  this.props.navigation.getParam("homeID"),
+                  this.state,
+                  "caretaker"
+                )
+              }
+              style={styles.button}
+            >
+              <Text style={styles.text2}>Invite Caretaker</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -170,7 +188,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => {
   return {
-    sendInvite: (email, homeID) => dispatch(sendInvite(email, homeID))
+    sendInvite: (email, homeID, type) =>
+      dispatch(sendInvite(email, homeID, type))
   };
 };
 export default connect(

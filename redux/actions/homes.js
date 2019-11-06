@@ -25,7 +25,6 @@ export const addHome = home => {
       });
     } catch (error) {
       console.error(error);
-      dispatch(setErrors("Invalid input!!"));
     }
   };
 };

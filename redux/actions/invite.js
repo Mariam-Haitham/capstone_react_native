@@ -3,10 +3,10 @@ import { SEND_INVITE } from "./actionTypes";
 
 import instance from "./instance";
 
-export const sendInvite = (homeID, email) => {
+export const sendInvite = (homeID, email, type) => {
   return async dispatch => {
     try {
-      await instance.post(`invite/${homeID}/`, email);
+      await instance.post(`invite/${homeID}/${type}/`, email);
       dispatch({
         type: SEND_INVITE
       });

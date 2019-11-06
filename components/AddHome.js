@@ -20,6 +20,7 @@ class AddHome extends Component {
   SubmitAdd = () => {
     // event.preventDefault();
     this.props.addHome(this.state);
+    this.props.navigation.navigate("ListOfHomesScreen");
   };
 
   componentDidMount = () => {};
@@ -45,14 +46,14 @@ class AddHome extends Component {
                 />
               </View>
             </View>
-            <View style={styles.rect3ColumnFiller} />
-            <TouchableOpacity
-              onPress={() => this.SubmitAdd()}
-              style={styles.button}
-            >
-              <Text style={styles.text2}>Add Home</Text>
-            </TouchableOpacity>
           </View>
+          <View style={styles.rect3ColumnFiller} />
+          <TouchableOpacity
+            onPress={() => this.SubmitAdd()}
+            style={styles.button}
+          >
+            <Text style={styles.text2}>Add Home</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

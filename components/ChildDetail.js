@@ -16,8 +16,6 @@ import {
 import Loading from "./Loading";
 
 const ChildDetail = ({ child }) => {
-  // if (!child) return <HomeDetail />;
-  console.log("CHILD CHILD", child);
   return (
     <Container>
       <Content>
