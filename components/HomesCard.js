@@ -5,6 +5,9 @@ import { Text, ListItem, Card, CardItem, Left, View } from "native-base";
 import { withNavigation } from "react-navigation";
 //components
 import SideBar from "../Navigation/SideBar";
+//actions
+import { setHome } from "../redux/actions";
+import { connect } from "react-redux";
 
 class HomesCard extends Component {
   static navigationOptions = () => {
@@ -14,13 +17,13 @@ class HomesCard extends Component {
   };
   handlePress = () => {
     const { home } = this.props;
+    this.props.setHome(home.id);
     this.props.navigation.navigate("HomeDetailScreen", {
       homeID: home.id
     });
   };
   render() {
     const { home } = this.props;
-
     return (
       <View>
         <ListItem>
@@ -34,5 +37,12 @@ class HomesCard extends Component {
     );
   }
 }
-
-export default withNavigation(HomesCard);
+const mapDispatchToProps = dispatch => ({
+  setHome: homeID => dispatch(setHome(homeID))
+});
+export default withNavigation(
+  connect(
+    null,
+    mapDispatchToProps
+  )(HomesCard)
+);

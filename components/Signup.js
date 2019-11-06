@@ -20,7 +20,7 @@ class Signup extends Component {
     email: "",
     password: ""
   };
-  componentDidMount = () => {};
+
   render() {
     const { first_name, last_name, email, password } = this.state;
     return (
