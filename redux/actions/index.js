@@ -6,4 +6,6 @@ export { fetchFeed } from "./feed";
 
 export { fetchChildProfile } from "./childProfile";
 
+export { sendInvite } from "./invite";
+
 export { fetchHomes, fetchHomeDetail, setHome } from "./homes";

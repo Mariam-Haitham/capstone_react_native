@@ -1,52 +1,35 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, View } from "react-native";
-//components
+import React, { Component } from "react";
 
-// NativeBase Components
-import {
-  Text,
-  Button,
-  Left,
-  Body,
-  Right,
-  List,
-  ListItem,
-  Content,
-  Icon,
-  Container,
-  Card,
-  CardItem,
-  Header
-} from "native-base";
+import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text, Button, List, Content, Icon, CardItem } from "native-base";
+
+//components
+import Loading from "./Loading";
 
 class HomeDetail extends Component {
-  componentDidMount() {
-    const homeId = this.props.navigation.getParam("homeID");
-    const userHome = this.props.homes.find(home => homeId === home.id);
-  }
   render() {
-    // console.log("HERE", this.props.home);
     const homeId = this.props.navigation.getParam("homeID");
     const userHome = this.props.homes.find(home => homeId === home.id);
-    // console.log("UUUUU", userHome);
+
+    if (!userHome) return <Loading />;
+
     const parents = userHome.parents;
-    const careTakers = userHome.caretakers;
     const children = userHome.children;
-    // console.log("PPPPP", parents);
+    const careTakers = userHome.caretakers;
+
     let childParents = [];
-    let childCaretakers = [];
     let listOfChildren = [];
+    let childCaretakers = [];
 
     if (parents) {
-      // console.log("pareent", parents);
       childParents = parents.map(parent => {
         return (
-          <View style={styles.container}>
+          <View style={styles.container} key={parent.id}>
             <View style={styles.Content}>
               <Text style={styles.text6}>
-                Parent: {parent.first_name} {parent.last_name}
+                Name: {parent.first_name} {parent.last_name}
               </Text>
               <Text style={styles.text7}>Email:{parent.email}</Text>
             </View>
@@ -56,34 +39,24 @@ class HomeDetail extends Component {
     }
 
     if (careTakers) {
-      // console.log("careTakers", careTakers);
-      childCaretakers = careTakers.map(caretakers => {
+      childCaretakers = careTakers.map(caretaker => {
         return (
-          <View style={styles.container}>
+          <View style={styles.container} key={caretaker.id}>
             <View style={styles.Content}>
               <Text style={styles.text6}>
-                careTaker: {caretakers.first_name} {caretakers.last_name}
+                Name: {caretaker.first_name} {caretaker.last_name}
               </Text>
-              <Text style={styles.text7}>Email:{caretakers.email}</Text>
+              <Text style={styles.text7}>Email:{caretaker.email}</Text>
             </View>
           </View>
         );
       });
     }
 
-    if (!userHome) return <Text>Loading</Text>; //add loading component here!
-    const handlePress = child => {
-      console.log("I'm here");
-      this.props.navigation.navigate("ChildDetailScreen", {
-        childId: child.id,
-        homeID: homeId
-      });
-    };
     if (children) {
-      // console.log("children", children);
       listOfChildren = children.map(child => {
         return (
-          <View style={styles.container}>
+          <View style={styles.container} key={child.id}>
             <TouchableOpacity
               style={styles.Content}
               button
@@ -97,29 +70,45 @@ class HomeDetail extends Component {
       });
     }
 
+    const handlePress = child => {
+      this.props.navigation.navigate("ChildDetailScreen", {
+        childId: child.id,
+        homeID: homeId
+      });
+    };
+
     return (
-      <Content>
-        <List>
-          <CardItem>
-            <Icon name="ios-person" />
-            {childParents}
-          </CardItem>
-          <CardItem>
+      <>
+        <Content>
+          <List>
+            <CardItem>
+              <Icon name="ios-person" />
+              {childParents}
+            </CardItem>
             <Icon name="users" type="Feather" />
             {childCaretakers}
-          </CardItem>
-          <CardItem>
-            <Icon name="baby-buggy" type="MaterialCommunityIcons" />
-            {listOfChildren}
-          </CardItem>
-        </List>
-      </Content>
+            <CardItem>
+              <Icon name="baby-buggy" type="MaterialCommunityIcons" />
+              {listOfChildren}
+            </CardItem>
+            <Button
+              bordered
+              success
+              onPress={() =>
+                this.props.navigation.navigate("AddScreen", { homeID: homeId })
+              }
+            >
+              <Text>Add Caretaker</Text>
+            </Button>
+          </List>
+        </Content>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  homes: state.homesReducer.homes
+  homes: state.rootHome.homes
 });
 
 const styles = StyleSheet.create({
@@ -150,13 +139,11 @@ const styles = StyleSheet.create({
   text7: {
     color: "black",
     fontSize: 14,
-
     marginTop: 13
   },
   text8: {
     color: "black",
     fontSize: 14,
-
     marginTop: 13
   }
 });

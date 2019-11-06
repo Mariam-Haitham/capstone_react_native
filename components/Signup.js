@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
-  user: state.authState.user
+  user: state.rootAuth.user
 });
 
 const mapDispatchToProps = dispatch => {

@@ -1,26 +1,16 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet } from "react-native";
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  List,
-  ListItem,
-  Text,
-  Button,
-  Drawer,
-  Icon,
-  Left
-} from "native-base";
+import React, { Component } from "react";
+
+import { Content, List, Button, Drawer, Icon, Text } from "native-base";
+
 //actions
 import { fetchHomes } from "../redux/actions";
 
 //components
-import SideBar from "../Navigation/SideBar";
-import HomesCard from "./HomesCard";
 import Loading from "./Loading";
+import HomesCard from "./HomesCard";
+import SideBar from "../Navigation/SideBar";
+import AddHome from "./AddHome";
 
 class ListOfHomes extends Component {
   state = {
@@ -52,7 +42,7 @@ class ListOfHomes extends Component {
     } else {
       this.drawer._root.open();
     }
-    await this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+    this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
     this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
   };
 
@@ -61,10 +51,12 @@ class ListOfHomes extends Component {
       handleDrawer: this.handleDrawer,
       isOpen: this.state.drawerIsOpen
     });
+
     if (this.props.user) {
       await this.props.fetchHomes();
     }
   };
+
   render() {
     if (this.props.loading) return <Loading />;
 
@@ -89,6 +81,11 @@ class ListOfHomes extends Component {
           <Content>
             <List>{ListOfHomes}</List>
           </Content>
+          <Button
+            onPress={() => this.props.navigation.navigate("AddHomeScreen")}
+          >
+            <Text>Add Home</Text>
+          </Button>
         </Drawer>
       </>
     );
@@ -97,9 +94,9 @@ class ListOfHomes extends Component {
 
 const mapStateToProps = state => {
   return {
-    homes: state.homesReducer.homes,
-    user: state.authState.user,
-    loading: state.homesReducer.loading
+    homes: state.rootHome.homes,
+    user: state.rootAuth.user,
+    loading: state.rootHome.loading
   };
 };
 const mapDispatchToProps = dispatch => ({

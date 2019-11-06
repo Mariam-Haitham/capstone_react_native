@@ -61,12 +61,6 @@ class Profile extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   user: state.authState.user,
-//   profile: state.rootProfile.profile,
-//   loading: state.rootProfile.loading
-// });
-
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
