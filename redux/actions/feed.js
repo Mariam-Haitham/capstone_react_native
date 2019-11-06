@@ -2,7 +2,6 @@ import { FETCH_FEED } from "./actionTypes";
 import instance from "./instance";
 
 export const fetchFeed = homeID => {
-  console.log("!!!!!!!@@@@@@@@@@!!!!!!!", homeID);
   return async dispatch => {
     try {
       const response = await instance.get(`homes/${homeID}/`);

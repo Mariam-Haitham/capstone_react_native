@@ -59,7 +59,7 @@ class SideBar extends Component {
   }
 }
 const mapStateToProps = state => ({
-  home: state.homesReducer.home
+  home: state.rootHome.home
 });
 const mapDispatchToProps = dispatch => ({
   logout: navigation => dispatch(logout(navigation))

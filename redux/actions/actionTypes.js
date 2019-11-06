@@ -9,14 +9,14 @@ export const FETCH_CHILD_PROFILE = "FETCH_CHILD_PROFILE";
 
 //home actions
 export const ADD_HOME = "ADD_HOME";
+
 export const FETCH_HOMES = "FETCH_HOMES";
+
+export const SET_HOME = "SET_HOME";
 
 //invite actions
 export const SEND_INVITE = "SEND_INVITE";
 
-export const FETCH_HOME_DETAIL = "FETCH_HOME_DETAIL";
-
 export const FETCH_POST = "FETCH_POST";
 
-export const SET_HOME = "SET_HOME";
-
+export const FETCH_FEED = "FETCH_FEED";
