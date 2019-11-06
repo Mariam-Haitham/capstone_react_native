@@ -4,11 +4,11 @@ import { combineReducers } from "redux";
 import profileReducer from "./userprofile";
 import authReducer from "./auth";
 import childProfileReducer from "./childProfile";
-import HomeReducer from "./homes";
+import homeReducer from "./homes";
 
 export default combineReducers({
   rootProfile: profileReducer,
-  authState: authReducer,
-  childProfile: childProfileReducer,
-  homesReducer: HomeReducer
+  rootAuth: authReducer,
+  rootChildProfile: childProfileReducer,
+  rootHome: homeReducer
 });

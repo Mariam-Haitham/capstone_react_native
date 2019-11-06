@@ -53,10 +53,4 @@ class ChildProfile extends Component {
   }
 }
 
-// const mapStateToProps = state => ({
-//   user: state.authState.user,
-//   profile: state.rootProfile.profile,
-//   loading: state.rootProfile.loading
-// });
-
 export default ChildProfile;

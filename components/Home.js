@@ -32,11 +32,7 @@
 //     );
 //   }
 // }
-// const mapStateToProps = state => {
-//   return {
-//     homes: state.homesReducer.homes
-//   };
-// };
+
 // export default observer(connect(mapStateToProps)(Home));
 
 // Home.navigationOptions = ({ navigation }) => {

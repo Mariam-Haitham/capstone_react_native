@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { AsyncStorage } from "react-native";
-import axios from "axios";
+
 import instance from "./instance";
 
 import { SET_CURRENT_USER } from "./actionTypes";
@@ -12,9 +12,8 @@ export const checkForExpiredToken = () => {
     if (token) {
       const currentTime = Date.now() / 1000;
       const user = jwt_decode(token);
-      console.log((user.exp - currentTime) / 60);
       if (user.exp >= currentTime) {
-        setAuthToken(token);
+        await setAuthToken(token);
         dispatch(setCurrentUser(user));
       } else {
         dispatch(logout());
@@ -25,7 +24,6 @@ export const checkForExpiredToken = () => {
 
 const setAuthToken = async token => {
   if (token) {
-    console.log("Im in setting auth");
     await AsyncStorage.setItem("token", token);
     instance.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
@@ -49,7 +47,6 @@ export const login = (userData, navigation) => {
       navigation.navigate("ListOfHomesScreen");
       dispatch(setCurrentUser(decodedUser));
     } catch (error) {
-      dispatch(setErrors("Input is Invalid"));
       console.error(error.response.data);
     }
   };
@@ -62,7 +59,6 @@ export const signup = (userData, navigation) => {
       navigation.navigate("ListOfHomesScreen");
       dispatch(login(userData, navigation));
     } catch (error) {
-      dispatch(setErrors("Input is Invalid"));
       console.error(error.response.data);
     }
   };

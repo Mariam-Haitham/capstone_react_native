@@ -13,6 +13,5 @@ const enhancer = composeWithDevTools({})(applyMiddleware(...middlewares));
 const store = createStore(reducers, enhancer);
 
 store.dispatch(checkForExpiredToken());
-// store.dispatch(fetchItems());
 
 export default store;

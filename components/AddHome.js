@@ -1,4 +1,6 @@
+import { connect } from "react-redux";
 import React, { Component } from "react";
+
 import {
   StyleSheet,
   View,
@@ -9,85 +11,53 @@ import {
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 
 //actions
-import { connect } from "react-redux";
-import { login, logout } from "../redux/actions";
+import { addHome } from "../redux/actions";
 
-class RegistertionForms extends Component {
+class AddHome extends Component {
   state = {
-    username: "",
-    password: ""
+    name: ""
   };
-  handleChange = keyValue => {
-    this.setState(keyValue);
+  SubmitAdd = () => {
+    // event.preventDefault();
+    this.props.addHome(this.state);
   };
+
   componentDidMount = () => {};
-  handlelogin = () => {
-    this.props.login(this.state, this.props.navigation);
-  };
 
   render() {
-    if (this.props.user)
-      return this.props.navigation.replace("ListOfHomesScreen");
-    const { username, password } = this.state;
+    const { name } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onPress={() => this.SubmitAdd()}>
         <View style={styles.textColumn}>
-          <Text style={styles.text}>BABY BOOK</Text>
+          <Text style={styles.text}>Name</Text>
           <View style={styles.rect}>
             <View style={styles.rect3Column}>
               <View style={styles.rect3}>
                 <EvilIconsIcon name="user" style={styles.icon2} />
                 <TextInput
-                  placeholder="Email"
+                  placeholder="name"
                   placeholderTextColor="rgba(255,255,255,1)"
                   secureTextEntry={false}
                   style={styles.textInput2}
-                  name="username"
-                  value={username}
-                  onChangeText={username => this.setState({ username })}
-                />
-              </View>
-              <View style={styles.rect2}>
-                <EvilIconsIcon name="lock" style={styles.icon} />
-                <TextInput
-                  placeholder="Password"
-                  placeholderTextColor="rgba(255,255,255,1)"
-                  style={styles.textInput}
-                  value={password}
-                  secureTextEntry
-                  name="password"
-                  onChangeText={password => this.setState({ password })}
+                  name="name"
+                  value={name}
+                  onChangeText={name => this.setState({ name })}
                 />
               </View>
             </View>
             <View style={styles.rect3ColumnFiller} />
-            <TouchableOpacity onPress={this.handlelogin} style={styles.button}>
-              <Text style={styles.text2}>Login</Text>
+            <TouchableOpacity
+              onPress={() => this.SubmitAdd()}
+              style={styles.button}
+            >
+              <Text style={styles.text2}>Add Home</Text>
             </TouchableOpacity>
           </View>
-        </View>
-        <View style={styles.textColumnFiller} />
-        <View style={styles.rect4}>
-          <View style={styles.button2Filler} />
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("ProfileScreen")}
-            style={styles.Continue}
-            style={styles.button2}
-          >
-            <View style={styles.text3Filler} />
-            <Text
-              style={styles.text3}
-              onPress={() => this.props.navigation.navigate("SignupScreen")}
-            >
-              Create Account
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -198,16 +168,15 @@ const styles = StyleSheet.create({
   }
 });
 const mapStateToProps = state => ({
-  user: state.rootAuth.user
+  user: state.rootAuth.user,
+  homes: state.rootHome.homes
 });
-
 const mapDispatchToProps = dispatch => {
   return {
-    login: (userData, navigation) => dispatch(login(userData, navigation)),
-    signup: (userData, navigation) => dispatch(signup(userData, navigation))
+    addHome: home => dispatch(addHome(home))
   };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegistertionForms);
+)(AddHome);

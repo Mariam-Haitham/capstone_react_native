@@ -20,8 +20,7 @@ class HomesCard extends Component {
   };
   render() {
     const { home } = this.props;
-    // console.log("Home", home);
-    // console.log("Home", home.id);
+
     return (
       <View>
         <ListItem>

@@ -8,6 +8,8 @@ import ChildDetail from "../components//ChildDetail";
 import ListOfHomes from "../components/ListOfHomes";
 import Feed from "../components/Feed";
 import HomeDetail from "../components/HomeDetail";
+import AddUser from "../components/AddUser";
+import AddHome from "../components/AddHome";
 
 const StackNav = createStackNavigator(
   {
@@ -17,7 +19,9 @@ const StackNav = createStackNavigator(
     ChildDetailScreen: ChildDetail,
     ListOfHomesScreen: ListOfHomes,
     FeedScreen: Feed,
-    HomeDetailScreen: HomeDetail
+    HomeDetailScreen: HomeDetail,
+    AddScreen: AddUser,
+    AddHomeScreen: AddHome
   },
   {
     initialRouteName: "RegisterScreen",

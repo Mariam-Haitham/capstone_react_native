@@ -1,4 +1,5 @@
-import { FETCH_HOMES, FETCH_HOME_DETAIL } from "./actionTypes";
+import { FETCH_HOMES, ADD_HOME } from "./actionTypes";
+
 import instance from "./instance";
 
 export const fetchHomes = () => {
@@ -6,10 +7,25 @@ export const fetchHomes = () => {
     try {
       let response = await instance.get("homes/");
       const homes = response.data;
-      console.log("Home in action", homes);
       dispatch({ type: FETCH_HOMES, payload: homes });
     } catch (error) {
       console.error(error);
+    }
+  };
+};
+
+export const addHome = home => {
+  return async dispatch => {
+    try {
+      const res = await instance.post("homes/add/", home);
+      const newHome = res.data;
+      dispatch({
+        type: ADD_HOME,
+        payload: newHome
+      });
+    } catch (error) {
+      console.error(error);
+      dispatch(setErrors("Invalid input!!"));
     }
   };
 };
