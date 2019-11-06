@@ -9,6 +9,14 @@ import { Text, Button, List, Content, Icon, CardItem } from "native-base";
 import Loading from "./Loading";
 
 class HomeDetail extends Component {
+  // static navigationOptions = ({ navigation }) => {
+  //   const homeId = navigation.getParam("homeID");
+  //   const userHome = this.props.homes.find(home => +homeId == home.id);
+  //   return {
+  //     title: userHome.name
+  //   };
+  // };
+
   render() {
     const homeId = this.props.navigation.getParam("homeID");
     const userHome = this.props.homes.find(home => homeId === home.id);
@@ -80,6 +88,7 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
+          <Text>Name: {userHome.name}</Text>
           <List>
             <CardItem>
               <Icon name="ios-person" />
@@ -99,6 +108,18 @@ class HomeDetail extends Component {
               }
             >
               <Text>Add Caretaker</Text>
+            </Button>
+            <Button
+              bordered
+              success
+              onPress={() =>
+                this.props.navigation.navigate("UpdateHomeScreen", {
+                  homeID: homeId,
+                  name: userHome.name
+                })
+              }
+            >
+              <Text>Update Home</Text>
             </Button>
           </List>
         </Content>
@@ -149,11 +170,3 @@ const styles = StyleSheet.create({
 });
 
 export default connect(mapStateToProps)(HomeDetail);
-
-HomeDetail.navigationOptions = ({ navigation }) => {
-  const homeId = navigation.getParam("homeID");
-  const home = this.props.homes.find(home => homeId === home.id);
-  return {
-    title: home.name
-  };
-};

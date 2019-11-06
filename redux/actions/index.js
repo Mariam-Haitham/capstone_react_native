@@ -9,3 +9,5 @@ export { fetchChildProfile } from "./childProfile";
 export { sendInvite } from "./invite";
 
 export { fetchHomes, addHome, setHome } from "./homes";
+
+export { updateHome } from "./homeDetails";

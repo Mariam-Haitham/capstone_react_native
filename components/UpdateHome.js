@@ -11,23 +11,22 @@ import {
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
 
 //actions
-import { addHome } from "../redux/actions";
+import { updateHome } from "../redux/actions";
 
-class AddHome extends Component {
+class UpdateHome extends Component {
   state = {
-    name: ""
-  };
-  SubmitAdd = () => {
-    event.preventDefault();
-    this.props.addHome(this.state);
+    name: this.props.navigation.getParam("name")
   };
 
-  componentDidMount = () => {};
+  handleSubmit = () => {
+    this.props.updateHome(this.props.navigation.getParam("homeID"), this.state);
+  };
 
   render() {
     const { name } = this.state;
+
     return (
-      <View style={styles.container} onPress={() => this.SubmitAdd()}>
+      <View style={styles.container} onPress={() => this.handleSubmit()}>
         <View style={styles.textColumn}>
           <Text style={styles.text}>Name</Text>
           <View style={styles.rect}>
@@ -47,10 +46,10 @@ class AddHome extends Component {
             </View>
             <View style={styles.rect3ColumnFiller} />
             <TouchableOpacity
-              onPress={() => this.SubmitAdd()}
+              onPress={() => this.handleSubmit()}
               style={styles.button}
             >
-              <Text style={styles.text2}>Add Home</Text>
+              <Text style={styles.text2}>Update Home</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -175,11 +174,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    addHome: home => dispatch(addHome(home))
+    updateHome: (homeID, newName) => dispatch(updateHome(homeID, newName))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddHome);
+)(UpdateHome);

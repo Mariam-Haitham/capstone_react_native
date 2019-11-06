@@ -1,3 +1,4 @@
+//actions
 import { FETCH_HOMES, ADD_HOME, SET_HOME } from "./actionTypes";
 
 import instance from "./instance";
@@ -9,6 +10,7 @@ export const fetchHomes = () => {
       const homes = response.data;
       dispatch({ type: FETCH_HOMES, payload: homes });
     } catch (error) {
+      console.log("fetch homes error");
       console.error(error);
     }
   };
@@ -24,8 +26,8 @@ export const addHome = home => {
         payload: newHome
       });
     } catch (error) {
+      console.log("add home error");
       console.error(error);
-      dispatch(setErrors("Invalid input!!"));
     }
   };
 };

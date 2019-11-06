@@ -13,6 +13,7 @@ import HomeDetail from "../components/HomeDetail";
 
 import AddUser from "../components/AddUser";
 import AddHome from "../components/AddHome";
+import UpdateHome from "../components/UpdateHome";
 
 const StackNav = createStackNavigator(
   {
@@ -24,7 +25,8 @@ const StackNav = createStackNavigator(
     FeedScreen: Feed,
     HomeDetailScreen: HomeDetail,
     AddScreen: AddUser,
-    AddHomeScreen: AddHome
+    AddHomeScreen: AddHome,
+    UpdateHomeScreen: UpdateHome
   },
   {
     initialRouteName: "RegisterScreen",
