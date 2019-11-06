@@ -18,7 +18,7 @@ const HomeReducer = (state = initialState, { type, payload }) => {
       const createdHome = payload;
       return {
         ...state,
-        homes: [createdHome, ...state],
+        homes: [createdHome, ...state.homes],
         loading: false
       };
     case SET_HOME:

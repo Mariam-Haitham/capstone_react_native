@@ -28,6 +28,7 @@ class HomeDetail extends Component {
         return (
           <View style={styles.container} key={parent.id}>
             <View style={styles.Content}>
+              <Text style={styles.text6}>Parent</Text>
               <Text style={styles.text6}>
                 Name: {parent.first_name} {parent.last_name}
               </Text>
@@ -43,6 +44,7 @@ class HomeDetail extends Component {
         return (
           <View style={styles.container} key={caretaker.id}>
             <View style={styles.Content}>
+              <Text style={styles.text6}>CareTaker</Text>
               <Text style={styles.text6}>
                 Name: {caretaker.first_name} {caretaker.last_name}
               </Text>
@@ -98,7 +100,7 @@ class HomeDetail extends Component {
                 this.props.navigation.navigate("AddScreen", { homeID: homeId })
               }
             >
-              <Text>Add Caretaker</Text>
+              <Text>Invite</Text>
             </Button>
           </List>
         </Content>
