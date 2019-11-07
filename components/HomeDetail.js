@@ -21,6 +21,8 @@ class HomeDetail extends Component {
     const homeId = this.props.navigation.getParam("homeID");
     const userHome = this.props.homes.find(home => homeId === home.id);
 
+    userId = this.props.user.user_id;
+
     if (!userHome) return <Loading />;
 
     const parents = userHome.parents;
@@ -102,27 +104,34 @@ class HomeDetail extends Component {
               <Icon name="baby-buggy" type="MaterialCommunityIcons" />
               {listOfChildren}
             </CardItem>
-            <Button
-              bordered
-              success
-              onPress={() =>
-                this.props.navigation.navigate("AddScreen", { homeID: homeId })
-              }
-            >
-              <Text>Invite</Text>
-            </Button>
-            <Button
-              bordered
-              success
-              onPress={() =>
-                this.props.navigation.navigate("UpdateHomeScreen", {
-                  homeID: homeId,
-                  name: userHome.name
-                })
-              }
-            >
-              <Text>Update Home</Text>
-            </Button>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <>
+                <Button
+                  bordered
+                  success
+                  onPress={() =>
+                    this.props.navigation.navigate("AddScreen", {
+                      homeID: homeId
+                    })
+                  }
+                >
+                  <Text>Invite</Text>
+                </Button>
+                <Button
+                  bordered
+                  success
+                  onPress={() =>
+                    this.props.navigation.navigate("UpdateHomeScreen", {
+                      homeID: homeId,
+                      name: userHome.name
+                    })
+                  }
+                >
+                  <Text>Update Home</Text>
+                </Button>
+              </>
+            ) : null}
           </List>
         </Content>
       </>
@@ -131,6 +140,7 @@ class HomeDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.rootAuth.user,
   homes: state.rootHome.homes
 });
 
