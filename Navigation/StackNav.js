@@ -2,18 +2,20 @@ import { createStackNavigator } from "react-navigation-stack";
 
 //components
 
-import RegisterationForms from "../components/RegistrationForms";
-import Profile from "../components/UserProfile";
 import Signup from "../components/Signup";
+import Profile from "../components/UserProfile";
+import RegisterationForms from "../components/RegistrationForms";
+
+import AddHome from "../components/AddHome";
+import HomeDetail from "../components/HomeDetail";
+import UpdateHome from "../components/UpdateHome";
+import ListOfHomes from "../components/ListOfHomes";
+
+import Feed from "../components/Feed";
 
 import ChildDetail from "../components//ChildDetail";
-import ListOfHomes from "../components/ListOfHomes";
-import Feed from "../components/Feed";
-import HomeDetail from "../components/HomeDetail";
 
 import AddUser from "../components/AddUser";
-import AddHome from "../components/AddHome";
-import UpdateHome from "../components/UpdateHome";
 
 const StackNav = createStackNavigator(
   {

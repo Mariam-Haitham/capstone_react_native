@@ -18,7 +18,6 @@ class AddHome extends Component {
     name: ""
   };
   SubmitAdd = () => {
-    event.preventDefault();
     this.props.addHome(this.state);
     this.props.navigation.navigate("ListOfHomesScreen");
   };

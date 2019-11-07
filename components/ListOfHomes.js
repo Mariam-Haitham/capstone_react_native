@@ -1,7 +1,15 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
 
-import { Content, List, Button, Drawer, Icon, Text } from "native-base";
+import {
+  Content,
+  List,
+  Button,
+  Drawer,
+  Icon,
+  Text,
+  ListItem
+} from "native-base";
 
 //actions
 import { fetchHomes } from "../redux/actions";
@@ -10,7 +18,6 @@ import { fetchHomes } from "../redux/actions";
 import Loading from "./Loading";
 import HomesCard from "./HomesCard";
 import SideBar from "../Navigation/SideBar";
-import AddHome from "./AddHome";
 
 class ListOfHomes extends Component {
   state = {
@@ -60,9 +67,17 @@ class ListOfHomes extends Component {
   render() {
     if (this.props.loading) return <Loading />;
 
-    const ListOfHomes = this.props.homes.map(home => (
-      <HomesCard home={home} key={home.id} />
-    ));
+    const ParentOf = this.props.homes.map(home => {
+      const user_id = this.props.user.user_id;
+      if (home.parents.filter(parent => +parent.id === user_id).length > 0)
+        return <HomesCard home={home} key={home.id} />;
+    });
+
+    const CareTakerOf = this.props.homes.map(home => {
+      const user_id = this.props.user.user_id;
+      if (home.caretakers.filter(parent => +parent.id === user_id).length > 0)
+        return <HomesCard home={home} key={home.id} />;
+    });
 
     return (
       <>
@@ -79,7 +94,14 @@ class ListOfHomes extends Component {
           captureGestures="open"
         >
           <Content>
-            <List>{ListOfHomes}</List>
+            <ListItem itemDivider>
+              <Text>You are a parent of: </Text>
+            </ListItem>
+            <List>{ParentOf}</List>
+            <ListItem itemDivider>
+              <Text>You are a caretaker of: </Text>
+            </ListItem>
+            <List>{CareTakerOf}</List>
           </Content>
           <Button
             onPress={() => this.props.navigation.navigate("AddHomeScreen")}
@@ -99,6 +121,7 @@ const mapStateToProps = state => {
     loading: state.rootHome.loading
   };
 };
+
 const mapDispatchToProps = dispatch => ({
   fetchHomes: () => dispatch(fetchHomes())
 });

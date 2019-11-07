@@ -1,9 +1,13 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
+import React, { Component } from "react";
+
 import { View } from "react-native";
 import { withNavigation } from "react-navigation";
-import { Button, Text, Item, Content, Icon, List, ListItem } from "native-base";
+import { Button, Text, Item, Content, Icon } from "native-base";
+
+//actions
 import { logout } from "../redux/actions";
+
 class SideBar extends Component {
   render() {
     let homeID = this.props.home;
