@@ -8,6 +8,7 @@ import ChildDetail from "../components//ChildDetail";
 import ListOfHomes from "../components/ListOfHomes";
 import Feed from "../components/Feed";
 import HomeDetail from "../components/HomeDetail";
+import ChildForm from "../components/ChildForm";
 
 const StackNav = createStackNavigator(
   {
@@ -17,6 +18,7 @@ const StackNav = createStackNavigator(
     ChildDetailScreen: ChildDetail,
     ListOfHomesScreen: ListOfHomes,
     FeedScreen: Feed,
+    ChildFormScreen: ChildForm,
     HomeDetailScreen: HomeDetail
   },
   {

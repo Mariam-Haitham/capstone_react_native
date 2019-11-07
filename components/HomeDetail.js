@@ -112,6 +112,21 @@ class HomeDetail extends Component {
             <Icon name="baby-buggy" type="MaterialCommunityIcons" />
             {listOfChildren}
           </CardItem>
+          <CardItem>
+            <Right>
+              <View style={styles.adding}>
+                <TouchableOpacity
+                  onPress={() =>
+                    this.props.navigation.navigate("ChildFormScreen", {
+                      homeId: homeId
+                    })
+                  }
+                >
+                  <Icon name="ios-add-circle" type="Ionicons"></Icon>
+                </TouchableOpacity>
+              </View>
+            </Right>
+          </CardItem>
         </List>
       </Content>
     );
@@ -124,8 +139,8 @@ const mapStateToProps = state => ({
 
 const styles = StyleSheet.create({
   container: {
-    width: 360,
-    height: 110,
+    // width: 360,
+    // height: 110,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around"
@@ -158,6 +173,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
 
     marginTop: 13
+  },
+  adding: {
+    marginTop: -60,
+    marginRight: -80
   }
 });
 
