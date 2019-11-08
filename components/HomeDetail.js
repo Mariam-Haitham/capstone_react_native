@@ -94,16 +94,15 @@ class HomeDetail extends Component {
         <Content>
           <Text>Name: {userHome.name}</Text>
           <List>
-            <CardItem>
-              <Icon name="ios-person" />
-              {childParents}
-            </CardItem>
+            <Icon name="ios-person" />
+            {childParents}
+
             <Icon name="users" type="Feather" />
             {childCaretakers}
-            <CardItem>
-              <Icon name="baby-buggy" type="MaterialCommunityIcons" />
-              {listOfChildren}
-            </CardItem>
+
+            <Icon name="baby-buggy" type="MaterialCommunityIcons" />
+            {listOfChildren}
+
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
               <>
