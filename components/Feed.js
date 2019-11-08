@@ -1,10 +1,9 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ImageBackground, View, Image } from "react-native";
+import React, { Component } from "react";
+
 import SideBar from "../Navigation/SideBar";
 import {
   Container,
-  Header,
   Content,
   Drawer,
   Card,
@@ -12,10 +11,7 @@ import {
   Thumbnail,
   Text,
   Button,
-  Icon,
-  Left,
-  Body,
-  Right
+  Icon
 } from "native-base";
 
 //actions
@@ -23,12 +19,14 @@ import { fetchFeed } from "../redux/actions";
 
 //components
 import Loading from "./Loading";
+import PostBox from "./PostBox";
 
 class Feed extends Component {
   state = {
     drawerIsOpen: false,
     drawerIsOpen: false
   };
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: "Feed",
@@ -47,27 +45,24 @@ class Feed extends Component {
       )
     };
   };
+
   handleDrawer = async () => {
     if (this.state.drawerIsOpen) {
       this.drawer._root.close();
     } else {
       this.drawer._root.open();
     }
-    await this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
+    this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
     this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
   };
+
   componentDidMount = async () => {
     this.props.navigation.setParams({
       handleDrawer: this.handleDrawer,
       isOpen: this.state.drawerIsOpen
     });
-  };
-  componentDidMount = async () => {
-    this.props.navigation.setParams({
-      handleDrawer: this.handleDrawer,
-      isOpen: this.state.drawerIsOpen
-    });
-    this.props.fetchFeed(this.props.navigation.getParam("homeID"));
+
+    await this.props.fetchFeed(this.props.navigation.getParam("homeID"));
   };
 
   // componentDidUpdate(prevProps) {
@@ -88,64 +83,27 @@ class Feed extends Component {
     clearInterval(this.interval);
   }
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: "Feed",
-
-      headerLeft: (
-        <Button
-          transparent
-          onPress={() => navigation.getParam("handleDrawer")()}
-        >
-          {navigation.getParam("isOpen") ? (
-            <Icon name="close" type="AntDesign" />
-          ) : (
-            <Icon name="menu" type="Feather" />
-          )}
-        </Button>
-      )
-    };
-  };
-
-  handleDrawer = async () => {
-    if (this.state.drawerIsOpen) {
-      this.drawer._root.close();
-    } else {
-      this.drawer._root.open();
-    }
-    await this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
-    this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
-  };
-
   render() {
-    console.log("POSTTTTTTTTTTTTT", this.props.navigation.getParam("homeID"));
     if (this.props.loading) {
       return <Loading />;
     }
 
-    console.log("POSTTTTTTTTTTTTT", this.props.feed);
     let babyposts = [];
 
-    //mappppppppppppppppppp
+    //mappp
     babyposts = this.props.feed.map(posts => {
       return (
         <Container>
           <Content>
             <Card>
-              <CardItem>
-                <Thumbnail
-                  source={{ uri: posts.image }}
-                  style={{ height: 200, width: null, flex: 1 }}
-                />
-              </CardItem>
-              <CardItem>
-                <Text> {posts.message}</Text>
-              </CardItem>
+              <Thumbnail source={{ uri: posts.image }} />
+              <Text> {posts.message}</Text>
             </Card>
           </Content>
         </Container>
       );
     });
+
     if (this.props.loading) {
       return <Loading />;
     }
@@ -164,8 +122,8 @@ class Feed extends Component {
           onOpen={this.openDrawer}
           captureGestures="open"
         >
-          {/* <Text>Feed</Text> */}
           {babyposts}
+          <PostBox />
         </Drawer>
 
         {/* <Container>

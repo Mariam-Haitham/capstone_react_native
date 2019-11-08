@@ -1,4 +1,4 @@
-import { FETCH_FEED } from "../actions/actionTypes";
+import { FETCH_FEED, POST_POST } from "../actions/actionTypes";
 
 const initialState = {
   feed: [],
@@ -13,6 +13,8 @@ const feedReducer = (state = initialState, { type, payload }) => {
         feed: payload,
         loading: false
       };
+    case POST_POST:
+      return state;
     default:
       return state;
   }
