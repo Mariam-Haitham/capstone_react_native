@@ -97,7 +97,7 @@ class ListOfHomes extends Component {
             <ListItem itemDivider>
               <Text>You are a parent of: </Text>
             </ListItem>
-            <List>{ParentOf}</List>
+            {ParentOf}
             <ListItem itemDivider>
               <Text>You are a caretaker of: </Text>
             </ListItem>
