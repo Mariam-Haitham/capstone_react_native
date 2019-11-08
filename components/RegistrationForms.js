@@ -30,9 +30,9 @@ class RegistertionForms extends Component {
       return this.props.navigation.replace("ListOfHomesScreen");
     const { username, password } = this.state;
     return (
-      <View style={styles.container}>
+      <View>
         <View style={styles.textColumn}>
-          <Text style={styles.text}>BABY BOOK</Text>
+          <Text style={styles.text}>Peek A Baby</Text>
           <View style={styles.rect}>
             <View style={styles.rect3Column}>
               <View style={styles.rect3}>
@@ -89,14 +89,12 @@ class RegistertionForms extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "rgba(20,146,146,1)"
-  },
   text: {
-    color: "black",
-    fontSize: 24,
-    marginLeft: 84
+    color: "rgba(181,177,178,1)",
+    fontSize: 30,
+    marginLeft: 70,
+    fontFamily: "Courier",
+    fontWeight: "bold"
   },
   rect: {
     width: 303,

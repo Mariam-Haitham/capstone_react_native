@@ -1,5 +1,5 @@
 //actions
-import { FETCH_FEED, POST_FEED } from "./actionTypes";
+import { FETCH_FEED, POST_FEED, SET_IMAGE } from "./actionTypes";
 
 import instance from "./instance";
 
@@ -25,5 +25,11 @@ export const postToFeed = (postData, homeID) => {
       console.log("posting feed error");
       console.error(error.response.data);
     }
+  };
+};
+
+export const setImage = image => {
+  return async dispatch => {
+    dispatch({ type: SET_IMAGE, payload: image });
   };
 };

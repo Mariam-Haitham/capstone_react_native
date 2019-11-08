@@ -68,13 +68,13 @@ class ListOfHomes extends Component {
     if (this.props.loading) return <Loading />;
 
     const ParentOf = this.props.homes.map(home => {
-      const user_id = this.props.user.user_id;
+      const user_id = this.props.user;
       if (home.parents.filter(parent => +parent.id === user_id).length > 0)
         return <HomesCard home={home} key={home.id} />;
     });
 
     const CareTakerOf = this.props.homes.map(home => {
-      const user_id = this.props.user.user_id;
+      const user_id = this.props.user;
       if (home.caretakers.filter(parent => +parent.id === user_id).length > 0)
         return <HomesCard home={home} key={home.id} />;
     });

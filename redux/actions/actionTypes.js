@@ -19,3 +19,4 @@ export const SEND_INVITE = "SEND_INVITE";
 //post & feed actions
 export const FETCH_FEED = "FETCH_FEED";
 export const POST_FEED = "POST_FEED";
+export const SET_IMAGE = "SET_IMAGE";

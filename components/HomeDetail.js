@@ -69,6 +69,7 @@ class HomeDetail extends Component {
       listOfChildren = children.map(child => {
         return (
           <View style={styles.container} key={child.id}>
+            {console.log("!!!!!!!!!!!!!!!!!", this.props)}
             <TouchableOpacity
               style={styles.Content}
               button

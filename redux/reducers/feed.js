@@ -1,8 +1,9 @@
-import { FETCH_FEED, POST_POST } from "../actions/actionTypes";
+import { FETCH_FEED, POST_POST, SET_IMAGE } from "../actions/actionTypes";
 
 const initialState = {
   feed: [],
-  loading: true
+  loading: true,
+  image: ""
 };
 
 const feedReducer = (state = initialState, { type, payload }) => {
@@ -15,6 +16,12 @@ const feedReducer = (state = initialState, { type, payload }) => {
       };
     case POST_POST:
       return state;
+    case SET_IMAGE:
+      return {
+        ...state,
+        image: payload,
+        loading: false
+      };
     default:
       return state;
   }
