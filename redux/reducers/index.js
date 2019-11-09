@@ -4,15 +4,15 @@ import { combineReducers } from "redux";
 import authReducer from "./auth";
 import feedReducer from "./feed";
 import homeReducer from "./homes";
+import allergyReducer from "./allergy";
 import profileReducer from "./userprofile";
 import homeDetailReducer from "./homeDetails";
-import childProfileReducer from "./childProfile";
 
 export default combineReducers({
   rootAuth: authReducer,
   rootHome: homeReducer,
   rootFeed: feedReducer,
+  rootAllergy: allergyReducer,
   rootProfile: profileReducer,
-  rootHomeDetai: homeDetailReducer,
-  rootChildProfile: childProfileReducer
+  rootHomeDetai: homeDetailReducer
 });

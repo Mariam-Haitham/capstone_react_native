@@ -5,7 +5,7 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const FETCH_PROFILE = "FETCH_PROFILE";
 
 //child actions
-export const FETCH_CHILD_PROFILE = "FETCH_CHILD_PROFILE";
+export const ADD_CHILD = "ADD_CHILD";
 
 //home actions
 export const ADD_HOME = "ADD_HOME";
@@ -17,5 +17,9 @@ export const UPDATE_HOME = "UPDATE_HOME";
 export const SEND_INVITE = "SEND_INVITE";
 
 //post & feed actions
-export const FETCH_FEED = "FETCH_FEED";
 export const POST_FEED = "POST_FEED";
+export const FETCH_FEED = "FETCH_FEED";
+
+//allergy actions
+export const SET_ALLERGY = "SET_ALLERGY";
+export const FETCH_ALLERGY = "FETCH_ALLERGY";
