@@ -18,8 +18,12 @@ export const SEND_INVITE = "SEND_INVITE";
 
 //post & feed actions
 export const POST_FEED = "POST_FEED";
+
+export const SET_IMAGE = "SET_IMAGE";
+
 export const FETCH_FEED = "FETCH_FEED";
 
 //allergy actions
 export const SET_ALLERGY = "SET_ALLERGY";
 export const FETCH_ALLERGY = "FETCH_ALLERGY";
+

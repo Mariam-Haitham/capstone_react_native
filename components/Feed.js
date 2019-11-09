@@ -13,6 +13,7 @@ import {
   Button,
   Icon
 } from "native-base";
+import { Image } from "react-native";
 
 //actions
 import { fetchFeed } from "../redux/actions";
@@ -23,7 +24,6 @@ import PostBox from "./PostBox";
 
 class Feed extends Component {
   state = {
-    drawerIsOpen: false,
     drawerIsOpen: false
   };
 
@@ -93,14 +93,19 @@ class Feed extends Component {
     //mappp
     babyposts = this.props.feed.map(posts => {
       return (
-        <Container>
-          <Content>
-            <Card>
-              <Thumbnail source={{ uri: posts.image }} />
+        <Content>
+          <Card>
+            <CardItem>
+              <Image
+                source={{ uri: posts.image }}
+                style={{ height: 150, width: null, flex: 1 }}
+              />
+            </CardItem>
+            <CardItem>
               <Text> {posts.message}</Text>
-            </Card>
-          </Content>
-        </Container>
+            </CardItem>
+          </Card>
+        </Content>
       );
     });
 
@@ -123,7 +128,7 @@ class Feed extends Component {
           captureGestures="open"
         >
           {babyposts}
-          <PostBox />
+          <PostBox navigation={this.props.navigation} />
         </Drawer>
 
         {/* <Container>

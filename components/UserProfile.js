@@ -8,34 +8,17 @@ import {
   CardItem,
   Text,
   Body,
-  Button,
-  Thumbnail,
-  List,
-  ListItem
+  Button
 } from "native-base";
 
-//actions
-import { logout } from "../redux/actions";
-
 class Profile extends Component {
-  // componentDidMount = async () => {
-  //   if (this.props.user) await this.props.fetchProfile();
-  // };
-
   render() {
-    // const userInfo = this.props.user;
-    // const profileInfo = this.props.profile;
-
     return (
       <Container>
         <Content>
           <Card>
             <CardItem header>
               <Text>User Profile </Text>
-              {/* <Thumbnail
-                source={profileInfo.image}
-                style={{ borderRadius: "50%", width: "120px", height: "100px" }}
-              /> */}
             </CardItem>
             <CardItem>
               <Body>
@@ -48,7 +31,6 @@ class Profile extends Component {
               <Button
                 bordered
                 danger
-                // onClick={() => this.props.logout(this.props.navigation)}
                 onPress={() => this.props.navigation.navigate("HomeScreen")}
               >
                 <Text>Home</Text>
@@ -61,8 +43,4 @@ class Profile extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(mapDispatchToProps)(Profile);
+export default Profile;

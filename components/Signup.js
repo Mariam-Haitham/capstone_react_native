@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signup, logout } from "../redux/actions";
+import { signup } from "../redux/actions";
 import {
   StyleSheet,
   View,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
+import { LinearGradient } from "expo-linear-gradient";
 
 class Signup extends Component {
   state = {
@@ -24,12 +25,15 @@ class Signup extends Component {
   render() {
     const { first_name, last_name, email, password } = this.state;
     return (
-      <View style={styles.root}>
-        <View style={styles.Background}>
-          <ImageBackground
-            style={styles.rect2}
-            source={require("../assets/Gradient_LZGIVfZ.png")}
-          >
+      <View>
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <View>
             <View style={styles.text3StackColumn}>
               <View style={styles.text3Stack}>
                 <Text style={styles.text3}>CREATE ACCOUNT</Text>
@@ -47,26 +51,24 @@ class Signup extends Component {
                       placeholderTextColor="rgba(255,255,255,1)"
                       secureTextEntry={false}
                       autoCapitalize="false"
-                      style={styles.NameInput}
                       value={first_name}
+                      style={{ marginTop: 5 }}
                       onChangeText={first_name =>
                         this.setState({ first_name: first_name })
                       }
                     />
-                    <View style={styles.rect4} />
                   </View>
                 </View>
                 <View style={styles.rect3}>
                   <View style={styles.icon8Row}>
                     <EvilIconsIcon name="user" style={styles.icon8} />
-                    <Text style={styles.text5} />
                   </View>
                   <TextInput
                     placeholder="Last Name"
                     placeholderTextColor="rgba(255,255,255,1)"
                     secureTextEntry={false}
+                    style={{ marginLeft: 20 }}
                     autoCapitalize="false"
-                    style={styles.textInput}
                     value={last_name}
                     onChangeText={last_name =>
                       this.setState({ last_name: last_name })
@@ -79,7 +81,7 @@ class Signup extends Component {
                     placeholder="Email"
                     placeholderTextColor="rgba(255,255,255,1)"
                     secureTextEntry={false}
-                    style={styles.textInput2}
+                    style={{ marginLeft: 20 }}
                     value={email}
                     onChangeText={email => this.setState({ email: email })}
                   />
@@ -91,7 +93,7 @@ class Signup extends Component {
                     placeholderTextColor="rgba(255,255,255,1)"
                     secureTextEntry={true}
                     autoCapitalize="false"
-                    style={styles.EmailInput}
+                    style={{ marginLeft: 20 }}
                     value={password}
                     onChangeText={password =>
                       this.setState({ password: password })
@@ -112,26 +114,19 @@ class Signup extends Component {
             >
               <Text style={styles.text2}>Sign Up</Text>
             </TouchableOpacity>
-          </ImageBackground>
-        </View>
-        <StatusBar
-          barStyle="light-content"
-          hidden={false}
-          backgroundColor="rgba(0,0,0,0)"
-        />
+          </View>
+          <StatusBar
+            barStyle="light-content"
+            hidden={false}
+            backgroundColor="rgba(0,0,0,0)"
+          />
+        </LinearGradient>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: "rgba(73,225,207,1)"
-  },
-  Background: {
-    flex: 1
-  },
   rect2: {
     opacity: 0.69,
     flex: 1
@@ -139,40 +134,46 @@ const styles = StyleSheet.create({
   text3: {
     top: 66,
     left: 0,
-    color: "rgba(255,255,255,1)",
-    position: "absolute",
-    fontSize: 24
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 25,
+    alignSelf: "center"
   },
   icon9: {
     top: 0,
     left: 87,
     position: "absolute",
-    color: "rgba(27,25,25,1)",
+    color: "black",
     fontSize: 40,
+    marginLeft: 10,
     width: 90,
     height: 90
   },
   text3Stack: {
-    width: 215,
+    width: 250,
     height: 90,
-    marginLeft: 23
+    marginLeft: 35
   },
   Form: {
     width: 278,
     height: 345,
-    marginTop: 49
+    marginTop: 60
+
+    // marginLeft: 15
   },
   Name: {
-    width: 278,
+    width: 300,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
     flexDirection: "row",
+    marginTop: 20,
+    marginLeft: 25,
     alignSelf: "center"
   },
   icon5: {
-    color: "rgba(255,255,255,1)",
+    color: "black",
     fontSize: 33,
     width: 33,
     height: 33,
@@ -199,22 +200,21 @@ const styles = StyleSheet.create({
   NameInputStack: {
     height: 30,
     flex: 1,
-    marginRight: 14,
+    marginRight: 30,
     marginLeft: 16,
     marginTop: 14
   },
   rect3: {
-    width: 277,
+    width: 300,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
     flexDirection: "row",
-    marginTop: 42,
-    marginLeft: 1
+    marginTop: 17
   },
   icon8: {
-    color: "rgba(255,255,255,1)",
+    color: "black",
     fontSize: 33,
     width: 33,
     height: 33
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
   text5: {
     color: "#121212",
     // fontFamily: "roboto-regular",
-    marginLeft: 6,
+    marginRight: 26,
     marginTop: 2
   },
   icon8Row: {
@@ -236,22 +236,21 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,1)",
     fontSize: 14,
     flex: 1,
-    marginRight: 17,
+    marginRight: 40,
     marginLeft: 7,
     alignSelf: "center"
   },
   rect5: {
-    width: 277,
+    width: 300,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
     flexDirection: "row",
-    marginTop: 33,
-    marginLeft: 1
+    marginTop: 17
   },
   icon10: {
-    color: "rgba(255,255,255,1)",
+    color: "black",
     fontSize: 33,
     width: 33,
     height: 33,
@@ -268,17 +267,18 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   Email: {
-    width: 278,
+    width: 300,
     height: 59,
     backgroundColor: "rgba(255,255,255,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
     flexDirection: "row",
-    marginTop: 35,
+    marginTop: 17,
+    marginLeft: 15,
     alignSelf: "center"
   },
   icon6: {
-    color: "rgba(255,255,255,1)",
+    color: "black",
     fontSize: 33,
     marginLeft: 15,
     alignSelf: "center"
@@ -287,12 +287,12 @@ const styles = StyleSheet.create({
     height: 30,
     color: "rgba(255,255,255,1)",
     flex: 1,
-    marginRight: 17,
+    marginRight: 57,
     marginLeft: 13,
     marginTop: 14
   },
   text3StackColumn: {
-    width: 278,
+    width: 300,
     marginTop: 94,
     marginLeft: 57
   },
@@ -300,20 +300,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   Continue: {
-    width: 293,
+    width: 200,
     height: 55,
-    backgroundColor: "rgba(247,247,247,0)",
+    backgroundColor: "#7C7692",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 20,
     borderColor: "rgba(255,255,255,1)",
     borderWidth: 1,
     justifyContent: "center",
-    marginBottom: 138,
+    marginTop: 30,
+    marginRight: 390,
     alignSelf: "center"
   },
   text2: {
     width: 66,
-    color: "rgba(255,255,255,1)",
+    color: "white",
     alignSelf: "center"
   }
 });

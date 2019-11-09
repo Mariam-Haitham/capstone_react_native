@@ -2,7 +2,7 @@ export { fetchProfile } from "./userprofile";
 
 export { login, signup, logout, checkForExpiredToken } from "./auth";
 
-export { fetchFeed, postToFeed } from "./feed";
+export { fetchFeed, postToFeed, setImage } from "./feed";
 
 export { sendInvite } from "./invite";
 

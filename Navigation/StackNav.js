@@ -17,6 +17,7 @@ import ChildDetail from "../components//ChildDetail";
 import ChildForm from "../components/ChildForm";
 
 import AddUser from "../components/AddUser";
+import CameraRollPicker from "../components/CameraRollPicker";
 
 const StackNav = createStackNavigator(
   {
@@ -30,7 +31,9 @@ const StackNav = createStackNavigator(
     AddScreen: AddUser,
     AddHomeScreen: AddHome,
     UpdateHomeScreen: UpdateHome,
+    CameraRollScreen: CameraRollPicker,
     ChildFormScreen: ChildForm
+
   },
   {
     initialRouteName: "RegisterScreen",
@@ -38,7 +41,7 @@ const StackNav = createStackNavigator(
     defaultNavigationOptions: {
       headerTintColor: "white",
       headerStyle: {
-        backgroundColor: "rgba(20,146,146,1)",
+        backgroundColor: "#6D6780",
         fontWeight: "bold"
       }
     }

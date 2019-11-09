@@ -65,8 +65,7 @@ export const signup = (userData, navigation) => {
   };
 };
 
-export const logout = navigation => {
+export const logout = () => {
   setAuthToken();
-  navigation.navigate("RegisterScreen");
   return setCurrentUser();
 };
