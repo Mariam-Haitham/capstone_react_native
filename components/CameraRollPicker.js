@@ -49,12 +49,12 @@ class CameraRollPicker extends React.Component {
       base64: true
     });
 
-    console.log(result);
+    console.log("!!!!!!!!########", result);
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }
-    this.props.setImage(this.state.image);
+    this.props.setImage(result.base64);
   };
 
   createFormData = (image, body) => {
@@ -63,8 +63,7 @@ class CameraRollPicker extends React.Component {
     data.append("image", {
       name: image.fileName,
       type: image.type,
-      uri:
-        Platform.OS === "android" ? image.uri : image.uri.replace("file:/", "")
+      uri: Platform.OS === "android" ? image : image.replace("file://", "")
     });
 
     Object.keys(body).forEach(key => {

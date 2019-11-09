@@ -18,6 +18,7 @@ import { fetchHomes } from "../redux/actions";
 //components
 import Loading from "./Loading";
 import HomesCard from "./HomesCard";
+import IconAddHome from "./IconAddHome";
 import SideBar from "../Navigation/SideBar";
 
 class ListOfHomes extends Component {
@@ -106,15 +107,8 @@ class ListOfHomes extends Component {
             {ParentOf}
             <ListItem itemDivider>
               <Text>You are a caretaker of: </Text>
-
             </ListItem>
             <List>{CareTakerOf}</List>
-            <TouchableOpacity
-              style={[styles.container]}
-              onPress={() => this.props.navigation.navigate("AddHomeScreen")}
-            >
-              <Text style={styles.caption}>Add Home</Text>
-            </TouchableOpacity>
           </Content>
         </Drawer>
       </>
@@ -134,32 +128,6 @@ const mapDispatchToProps = dispatch => ({
   fetchHomes: () => dispatch(fetchHomes())
 });
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "rgba(99,70,124,1)",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingRight: 16,
-    paddingLeft: 16,
-    elevation: 2,
-    minWidth: 88,
-    borderRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 0
-    },
-    shadowColor: "#000",
-    shadowOpacity: 0.35,
-    shadowRadius: 5
-  },
-  caption: {
-    color: "#fff",
-    fontSize: 14,
-    padding: 30
-  }
-});
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps
@@ -168,6 +136,7 @@ export default connect(
 ListOfHomes.navigationOptions = () => {
   return {
     title: "Home List",
-    headLeft: null
+    headLeft: null,
+    headerRight: <IconAddHome />
   };
 };

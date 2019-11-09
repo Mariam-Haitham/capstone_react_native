@@ -16,19 +16,21 @@ export const fetchFeed = homeID => {
   };
 };
 
-export const postToFeed = (postData, homeID) => {
+export const postToFeed = (homeID, postData) => {
+  console.log("RECEIVED!!!!!!RRRR!!!", homeID, "OBJECT!!!!!!!!!!!!!", postData);
   return async dispatch => {
     try {
       await instance.post(`homes/${homeID}/`, postData);
       dispatch({ type: POST_FEED });
     } catch (error) {
-      console.log("posting feed error");
-      console.error(error.response.data);
+      console.log("error posting feed error");
+      console.error(error);
     }
   };
 };
 
 export const setImage = image => {
+  console.log("RECEIVED IMG!!!!!!", image);
   return async dispatch => {
     dispatch({ type: SET_IMAGE, payload: image });
   };
