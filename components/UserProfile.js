@@ -11,9 +11,6 @@ import {
   Button
 } from "native-base";
 
-//actions
-import { logout } from "../redux/actions";
-
 class Profile extends Component {
   render() {
     return (
@@ -46,8 +43,4 @@ class Profile extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
-});
-
-export default connect(mapDispatchToProps)(Profile);
+export default Profile;

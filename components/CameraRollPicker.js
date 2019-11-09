@@ -64,7 +64,7 @@ class CameraRollPicker extends React.Component {
       name: image.fileName,
       type: image.type,
       uri:
-        Platform.OS === "android" ? image.uri : image.uri.replace("file://", "")
+        Platform.OS === "android" ? image.uri : image.uri.replace("file:/", "")
     });
 
     Object.keys(body).forEach(key => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { ImageBackground, View, Image } from "react-native";
-import { Text, ListItem, Card, CardItem, Left, View } from "native-base";
+import { Text, ListItem, Card, CardItem, Left, View, Icon } from "native-base";
 // Navigation
 import { withNavigation } from "react-navigation";
 //components
@@ -25,13 +25,22 @@ class HomesCard extends Component {
   render() {
     const { home } = this.props;
     return (
-      <View>
+      <View style={{ color: "#D8CBE2" }}>
         <ListItem>
-          <Left>
-            <Text button onPress={() => this.handlePress()}>
-              {home.name}
-            </Text>
-          </Left>
+          <CardItem>
+            <Left>
+              <Text
+                button
+                onPress={() => this.handlePress()}
+                style={{
+                  color: "#212121",
+                  fontFamily: "Optima"
+                }}
+              >
+                {home.name}
+              </Text>
+            </Left>
+          </CardItem>
         </ListItem>
       </View>
     );

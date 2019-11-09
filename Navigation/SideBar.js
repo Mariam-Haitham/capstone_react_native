@@ -9,8 +9,14 @@ import { Button, Text, Item, Content, Icon } from "native-base";
 import { logout } from "../redux/actions";
 
 class SideBar extends Component {
+  HandleChange = async () => {
+    this.props.logout();
+    this.props.navigation.push("RegisterScreen");
+  };
+
   render() {
     let homeID = this.props.home;
+
     return (
       <>
         <Content style={{ backgroundColor: "white", opacity: 0.95 }}>
@@ -20,8 +26,12 @@ class SideBar extends Component {
                 transparent
                 onPress={() => this.props.navigation.push("ListOfHomesScreen")}
               >
-                <Icon name="home-assistant" type="MaterialCommunityIcons" />
-                <Text> Homes </Text>
+                <Icon
+                  name="home-assistant"
+                  type="MaterialCommunityIcons"
+                  style={{ color: "black" }}
+                />
+                <Text style={{ color: "black" }}> Homes </Text>
               </Button>
             </Item>
 
@@ -30,8 +40,8 @@ class SideBar extends Component {
                 transparent
                 onPress={() => this.props.navigation.push("ProfileScreen")}
               >
-                <Icon name="user" type="EvilIcons" />
-                <Text>User Profile</Text>
+                <Icon name="user" type="EvilIcons" style={{ color: "black" }} />
+                <Text style={{ color: "black" }}>User Profile</Text>
               </Button>
             </Item>
             {!!this.props.home && (
@@ -42,18 +52,23 @@ class SideBar extends Component {
                     this.props.navigation.push("FeedScreen", { homeID: homeID })
                   }
                 >
-                  <Icon name="playlist-edit" type="MaterialCommunityIcons" />
-                  <Text>Feed</Text>
+                  <Icon
+                    name="playlist-edit"
+                    type="MaterialCommunityIcons"
+                    style={{ color: "black" }}
+                  />
+                  <Text style={{ color: "black" }}>Feed</Text>
                 </Button>
               </Item>
             )}
             <Item>
-              <Button
-                transparent
-                onPress={() => this.props.logout(this.props.navigation)}
-              >
-                <Icon name="logout" type="AntDesign" />
-                <Text>Logout</Text>
+              <Button transparent onPress={() => this.HandleChange()}>
+                <Icon
+                  name="logout"
+                  type="AntDesign"
+                  style={{ color: "black" }}
+                />
+                <Text style={{ color: "black" }}>Logout</Text>
               </Button>
             </Item>
           </View>
@@ -66,7 +81,7 @@ const mapStateToProps = state => ({
   home: state.rootHome.home
 });
 const mapDispatchToProps = dispatch => ({
-  logout: navigation => dispatch(logout(navigation))
+  logout: () => dispatch(logout())
 });
 
 export default withNavigation(

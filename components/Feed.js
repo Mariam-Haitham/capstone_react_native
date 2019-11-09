@@ -24,7 +24,6 @@ import PostBox from "./PostBox";
 
 class Feed extends Component {
   state = {
-    drawerIsOpen: false,
     drawerIsOpen: false
   };
 

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 import {
   Content,
@@ -34,9 +35,9 @@ class ListOfHomes extends Component {
           onPress={() => navigation.getParam("handleDrawer")()}
         >
           {navigation.getParam("isOpen") ? (
-            <Icon name="close" type="AntDesign" />
+            <Icon name="close" type="AntDesign" style={{ color: "black" }} />
           ) : (
-            <Icon name="menu" type="Feather" />
+            <Icon name="menu" type="Feather" style={{ color: "black" }} />
           )}
         </Button>
       )
@@ -44,10 +45,10 @@ class ListOfHomes extends Component {
   };
 
   handleDrawer = async () => {
-    if (this.state.drawerIsOpen) {
-      this.drawer._root.close();
-    } else {
+    if (!!this.state.drawerIsOpen) {
       this.drawer._root.open();
+    } else {
+      this.drawer._root.close();
     }
     this.setState({ drawerIsOpen: !this.state.drawerIsOpen });
     this.props.navigation.setParams({ isOpen: this.state.drawerIsOpen });
@@ -67,18 +68,22 @@ class ListOfHomes extends Component {
   render() {
     if (this.props.loading) return <Loading />;
 
-    const ParentOf = this.props.homes.map(home => {
-      const user_id = this.props.user;
-      if (home.parents.filter(parent => +parent.id === user_id).length > 0)
-        return <HomesCard home={home} key={home.id} />;
-    });
+    let ParentOf = [];
+    let CareTakerOf = [];
 
-    const CareTakerOf = this.props.homes.map(home => {
-      const user_id = this.props.user;
-      if (home.caretakers.filter(parent => +parent.id === user_id).length > 0)
-        return <HomesCard home={home} key={home.id} />;
-    });
+    if (this.props.user) {
+      ParentOf = this.props.homes.map(home => {
+        const user_id = this.props.user.user_id;
+        if (home.parents.filter(parent => +parent.id === user_id).length > 0)
+          return <HomesCard home={home} key={home.id} />;
+      });
 
+      CareTakerOf = this.props.homes.map(home => {
+        const user_id = this.props.user.user_id;
+        if (home.caretakers.filter(parent => +parent.id === user_id).length > 0)
+          return <HomesCard home={home} key={home.id} />;
+      });
+    }
     return (
       <>
         <Drawer
@@ -94,20 +99,21 @@ class ListOfHomes extends Component {
           captureGestures="open"
         >
           <Content>
-            <ListItem itemDivider>
-              <Text>You are a parent of: </Text>
+            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
+              <Text style={{ color: "#212121" }}>You are a parent of: </Text>
             </ListItem>
             <List>{ParentOf}</List>
-            <ListItem itemDivider>
-              <Text>You are a caretaker of: </Text>
+            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
+              <Text style={{ color: "#212121" }}>You are a caretaker of: </Text>
             </ListItem>
             <List>{CareTakerOf}</List>
+            <TouchableOpacity
+              style={[styles.container]}
+              onPress={() => this.props.navigation.navigate("AddHomeScreen")}
+            >
+              <Text style={styles.caption}>Add Home</Text>
+            </TouchableOpacity>
           </Content>
-          <Button
-            onPress={() => this.props.navigation.navigate("AddHomeScreen")}
-          >
-            <Text>Add Home</Text>
-          </Button>
         </Drawer>
       </>
     );
@@ -124,6 +130,32 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchHomes: () => dispatch(fetchHomes())
+});
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "rgba(99,70,124,1)",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingRight: 16,
+    paddingLeft: 16,
+    elevation: 2,
+    minWidth: 88,
+    borderRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
+    shadowColor: "#000",
+    shadowOpacity: 0.35,
+    shadowRadius: 5
+  },
+  caption: {
+    color: "#fff",
+    fontSize: 14,
+    padding: 30
+  }
 });
 
 export default connect(
