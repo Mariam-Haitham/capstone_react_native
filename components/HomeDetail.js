@@ -3,7 +3,15 @@ import React, { Component } from "react";
 
 import { StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Text, Button, List, Content, Icon, CardItem } from "native-base";
+import {
+  Text,
+  Button,
+  Right,
+  List,
+  Content,
+  Icon,
+  CardItem
+} from "native-base";
 
 //components
 import Loading from "./Loading";
@@ -95,19 +103,33 @@ class HomeDetail extends Component {
         <Content>
           <Text>Name: {userHome.name}</Text>
           <List>
-            <CardItem>
-              <Icon name="ios-person" />
-              {childParents}
-            </CardItem>
+            <Icon name="ios-person" />
+            {childParents}
+
             <Icon name="users" type="Feather" />
             {childCaretakers}
-            <CardItem>
-              <Icon name="baby-buggy" type="MaterialCommunityIcons" />
-              {listOfChildren}
-            </CardItem>
+
+            <Icon name="baby-buggy" type="MaterialCommunityIcons" />
+            {listOfChildren}
+
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
               <>
+                <CardItem>
+                  <Right>
+                    <View style={styles.adding}>
+                      <TouchableOpacity
+                        onPress={() =>
+                          this.props.navigation.navigate("ChildFormScreen", {
+                            homeId: homeId
+                          })
+                        }
+                      >
+                        <Icon name="ios-add-circle" type="Ionicons"></Icon>
+                      </TouchableOpacity>
+                    </View>
+                  </Right>
+                </CardItem>
                 <Button
                   bordered
                   success

@@ -14,6 +14,7 @@ import ListOfHomes from "../components/ListOfHomes";
 import Feed from "../components/Feed";
 
 import ChildDetail from "../components//ChildDetail";
+import ChildForm from "../components/ChildForm";
 
 import AddUser from "../components/AddUser";
 import CameraRollPicker from "../components/CameraRollPicker";
@@ -30,7 +31,9 @@ const StackNav = createStackNavigator(
     AddScreen: AddUser,
     AddHomeScreen: AddHome,
     UpdateHomeScreen: UpdateHome,
-    CameraRollScreen: CameraRollPicker
+    CameraRollScreen: CameraRollPicker,
+    ChildFormScreen: ChildForm
+
   },
   {
     initialRouteName: "RegisterScreen",

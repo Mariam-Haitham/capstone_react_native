@@ -31,7 +31,10 @@ const ChildDetail = ({ child }) => {
               <Text>
                 Allergies:
                 {child.allergies.map(allergy => (
-                  <Text>{allergy.name}</Text>
+                  <Text>
+                    {"\n"}
+                    {allergy.name}
+                  </Text>
                 ))}
               </Text>
             </Body>

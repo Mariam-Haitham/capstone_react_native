@@ -102,9 +102,11 @@ class ListOfHomes extends Component {
             <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
               <Text style={{ color: "#212121" }}>You are a parent of: </Text>
             </ListItem>
-            <List>{ParentOf}</List>
-            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
-              <Text style={{ color: "#212121" }}>You are a caretaker of: </Text>
+
+            {ParentOf}
+            <ListItem itemDivider>
+              <Text>You are a caretaker of: </Text>
+
             </ListItem>
             <List>{CareTakerOf}</List>
             <TouchableOpacity
