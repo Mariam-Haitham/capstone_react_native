@@ -10,6 +10,6 @@ export { fetchHomes, addHome, setHome } from "./homes";
 
 export { updateHome } from "./homeDetails";
 
-export { addChild } from "./child";
+export { addChild, setChildren, setChildImage } from "./child";
 
 export { fetchAllergies, setAllergies } from "./allergy";

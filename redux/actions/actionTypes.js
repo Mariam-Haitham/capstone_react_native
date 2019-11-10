@@ -6,6 +6,7 @@ export const FETCH_PROFILE = "FETCH_PROFILE";
 
 //child actions
 export const ADD_CHILD = "ADD_CHILD";
+export const SET_CHILDREN = "SET_CHILDREN";
 
 //home actions
 export const ADD_HOME = "ADD_HOME";
@@ -26,4 +27,3 @@ export const FETCH_FEED = "FETCH_FEED";
 //allergy actions
 export const SET_ALLERGY = "SET_ALLERGY";
 export const FETCH_ALLERGY = "FETCH_ALLERGY";
-

@@ -3,12 +3,10 @@ import React, { Component } from "react";
 
 import SideBar from "../Navigation/SideBar";
 import {
-  Container,
   Content,
   Drawer,
   Card,
   CardItem,
-  Thumbnail,
   Text,
   Button,
   Icon
@@ -20,7 +18,6 @@ import { fetchFeed } from "../redux/actions";
 
 //components
 import Loading from "./Loading";
-import PostBox from "./PostBox";
 
 class Feed extends Component {
   state = {
@@ -65,20 +62,6 @@ class Feed extends Component {
     await this.props.fetchFeed(this.props.navigation.getParam("homeID"));
   };
 
-  // componentDidUpdate(prevProps) {
-  //   if (
-  //     this.props.navigation.getParam("homeID") !=
-  //     prevProps.navigation.getParam("homeID")
-  //   )
-  //     this.props.fetchFeed(this.props.navigation.getParam("homeID"));
-  //   else {
-  //     clearInterval(this.interval);
-  //     this.interval = setInterval(
-  //       () => this.props.fetchFeed(this.props.navigation.getParam("homeID")),
-  //       500
-  //     );
-  //   }
-  // }
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -90,19 +73,18 @@ class Feed extends Component {
 
     let babyposts = [];
 
-    //mappp
-    babyposts = this.props.feed.map(posts => {
+    babyposts = this.props.feed.map(post => {
       return (
         <Content>
           <Card>
             <CardItem>
               <Image
-                source={{ uri: posts.image }}
+                source={{ uri: post.image }}
                 style={{ height: 150, width: null, flex: 1 }}
               />
             </CardItem>
             <CardItem>
-              <Text> {posts.message}</Text>
+              <Text> {post.message}</Text>
             </CardItem>
           </Card>
         </Content>
@@ -128,24 +110,12 @@ class Feed extends Component {
           captureGestures="open"
         >
           {babyposts}
-          <PostBox navigation={this.props.navigation} />
+          <Button
+            onPress={() => this.props.navigation.navigate("PostFeedScreen")}
+          >
+            <Text>New Feed</Text>
+          </Button>
         </Drawer>
-
-        {/* <Container>
-              <Content>
-                <Card>
-                  <CardItem>
-                    <Thumbnail
-                      source={{ uri: post.image }}
-                      style={{ height: 200, width: null, flex: 1 }}
-                    />
-                  </CardItem>
-                  <CardItem>
-                    <Text> {posts.message}</Text>
-                  </CardItem>
-                </Card>
-              </Content>
-            </Container> */}
       </>
     );
   }

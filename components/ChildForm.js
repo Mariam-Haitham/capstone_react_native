@@ -8,6 +8,7 @@ import {
   Dimensions,
   ScrollView
 } from "react-native";
+import { Icon } from "native-base";
 
 const { height: winHeight, width: winWidth } = Dimensions.get("window");
 
@@ -17,8 +18,8 @@ import { addChild } from "../redux/actions";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 //components
-
 import AllergiesSelectList from "./AllergiesSelectList";
+
 class ChildForm extends Component {
   state = {
     name: "",
@@ -33,6 +34,11 @@ class ChildForm extends Component {
   };
 
   SubmitAdd = async homeId => {
+    console.log("I AM HERE");
+    console.log(this.state);
+    await this.setState({
+      image: this.props.image
+    });
     await this.setState({
       allergies: this.props.checkedAllergies
     });
@@ -78,6 +84,13 @@ class ChildForm extends Component {
                     }
                   />
                 </View>
+                <Icon
+                  name="ios-attach"
+                  type="Ionicons"
+                  onPress={() =>
+                    this.props.navigation.navigate("CameraRollScreen")
+                  }
+                />
 
                 <View style={styles.rect2}>
                   <TextInput
@@ -93,7 +106,7 @@ class ChildForm extends Component {
                   onPress={() => this.SubmitAdd(homeId)}
                   style={styles.container2}
                 >
-                  <Text style={styles.text4}>Continue</Text>
+                  <Text style={styles.text4}>Add</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
@@ -240,7 +253,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    checkedAllergies: state.rootAllergy.checkedAllergies
+    checkedAllergies: state.rootAllergy.checkedAllergies,
+    image: state.rootChild.image
   };
 };
 

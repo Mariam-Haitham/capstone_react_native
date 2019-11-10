@@ -3,6 +3,8 @@ import React, { Component } from "react";
 
 import { List, ListItem, Body, CheckBox } from "native-base";
 import { Text } from "react-native";
+
+//actions
 import { setAllergies } from "../redux/actions";
 
 class AllergiesSelectList extends Component {

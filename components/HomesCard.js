@@ -33,8 +33,7 @@ class HomesCard extends Component {
                 button
                 onPress={() => this.handlePress()}
                 style={{
-                  color: "#212121",
-                  fontFamily: "Optima"
+                  color: "#212121"
                 }}
               >
                 {home.name}
