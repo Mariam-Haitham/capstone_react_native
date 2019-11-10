@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React, { Component } from "react";
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 
 import {
@@ -9,14 +9,14 @@ import {
   CardItem,
   Text,
   Body,
-  Image,
-  Button,
   Thumbnail
 } from "native-base";
-//components
-import Loading from "./Loading";
+import { Image, View } from "react-native";
 
 const ChildDetail = ({ child }) => {
+  let image = null;
+  if (child.image) image = child.image.replace("http", "https");
+
   return (
     <Container>
       <LinearGradient
@@ -28,29 +28,40 @@ const ChildDetail = ({ child }) => {
       >
         <Content>
           <Card>
-            <CardItem key={child.id} style={{ backgroundColor: "#EFEAF3" }}>
-              <Body>
-                <Thumbnail
-                  source={{ uri: child.image }}
-                  style={{ width: 90, height: 90 }}
+            <CardItem cardBody>
+              {image ? (
+                <Image
+                  source={{
+                    uri: image
+                  }}
+                  style={{
+                    height: 150,
+                    width: null,
+                    flex: 1
+                  }}
+                  resizeMode="cover"
                 />
-                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+              ) : null}
+            </CardItem>
+            <CardItem key={child.id}>
+              <Body>
+                <Text style={{ marginTop: 20 }}>
                   Baby’s Name: {"   "}
                   {child.name}
                 </Text>
-                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                <Text style={{ marginTop: 20 }}>
                   Age:{"    "}
                   {child.age}
                 </Text>
-                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                <Text style={{ marginTop: 20 }}>
                   Date Of Birth: {"    "}
                   {child.dob}
                 </Text>
-                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                <Text style={{ marginTop: 20 }}>
                   medical history: {"    "}
                   {child.medical_history}
                 </Text>
-                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                <Text style={{ marginTop: 20 }}>
                   Allergies:
                   {child.allergies.map(allergy => (
                     <Text style={{ marginLeft: 400 }}>

@@ -33,7 +33,6 @@ class AddHome extends Component {
           <View style={styles.textColumn}>
             <Text
               style={{
-                fontFamily: "Optima",
                 fontSize: 25,
                 marginLeft: 55,
                 fontWeight: "bold"

@@ -78,6 +78,8 @@ class Feed extends Component {
         <Content>
           <Card>
             <CardItem>
+              {console.log("I AM IN THE FEEDS")}
+              {console.log(post.image)}
               <Image
                 source={{ uri: post.image }}
                 style={{ height: 150, width: null, flex: 1 }}

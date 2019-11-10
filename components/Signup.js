@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
   },
   text5: {
     color: "#121212",
-    // fontFamily: "roboto-regular",
+
     marginRight: 26,
     marginTop: 2
   },
