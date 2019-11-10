@@ -1,31 +1,35 @@
-import React, { Component } from "react";
 import { connect } from "react-redux";
+import React, { Component } from "react";
+
 import { TextInput, View } from "react-native";
 import { Button, Icon, Text } from "native-base";
+
+//actions
 import { postToFeed } from "../redux/actions";
-import CameraRollPicker from "./CameraRollPicker";
-class PostBox extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = { message: "Post to feed" };
-  //   }
+
+//components
+import ChildSelectList from "./ChildSelectList";
+
+class PostFeed extends Component {
   state = {
     message: "Post to feed",
-    children: [1],
+    children: [],
     image: null
   };
+
   render() {
     let homeID = this.props.home;
-    console.log("HOME!!!!!!!!!!!ID!!!!!!!!!!!", homeID);
-    const handlePress = () => {
-      console.log("RECEIVED IMG!!!!!!!@@@@@@@@@@@", this.props.image);
+
+    const handlePress = async () => {
       this.setState({ image: this.props.image });
+      await this.setState({
+        children: this.props.checkedchildren
+      });
       this.props.postToFeed(homeID, {
         message: this.state.message,
         image: this.props.image,
         children: this.state.children
       });
-      console.log("MSGGGGGGGGGGGGGGGGGGGGGG$$$$$$$$$$$  ", this.state);
     };
     return (
       <View>
@@ -39,22 +43,26 @@ class PostBox extends Component {
           type="Ionicons"
           onPress={() => this.props.navigation.navigate("CameraRollScreen")}
         />
+        <ChildSelectList />
         <Button onPress={() => handlePress()}>
           <Text>Post</Text>
         </Button>
-        {console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!", this.state.image)}
       </View>
     );
   }
 }
+
 const mapStateToProps = state => ({
   home: state.rootHome.home,
-  image: state.rootFeed.image
+  image: state.rootFeed.image,
+  checkedchildren: state.rootChild.checkedchildren
 });
+
 const mapDispatchToProps = dispatch => ({
   postToFeed: (postData, homeID) => dispatch(postToFeed(postData, homeID))
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostBox);
+)(PostFeed);

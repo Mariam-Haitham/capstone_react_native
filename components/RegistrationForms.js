@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: "#212121",
     fontSize: 34,
     marginLeft: 80,
-    fontFamily: "Marker Felt",
+
     fontWeight: "bold"
   },
   rect: {
@@ -184,8 +184,7 @@ const styles = StyleSheet.create({
     color: "white",
     marginTop: 15,
     marginLeft: 80,
-    fontSize: 17,
-    fontFamily: "Gill Sans"
+    fontSize: 17
   },
   textColumn: {
     width: 303,

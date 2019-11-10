@@ -1,9 +1,11 @@
 import * as React from "react";
+
 import { Button, Image, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import { setImage } from "../redux/actions";
+import { setImage, setChildImage } from "../redux/actions";
 import { connect } from "react-redux";
 
 class CameraRollPicker extends React.Component {
@@ -49,12 +51,11 @@ class CameraRollPicker extends React.Component {
       base64: true
     });
 
-    console.log("!!!!!!!!########", result);
-
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }
     this.props.setImage(result.base64);
+    this.props.setChildImage(result.base64);
   };
 
   createFormData = (image, body) => {
@@ -72,28 +73,11 @@ class CameraRollPicker extends React.Component {
 
     return data;
   };
-
-  // handleUploadPhoto = () => {
-  //   this.props.navigation.goBack();
-
-  // fetch("http://localhost:3000/api/upload", {
-  //   method: "POST",
-  //   body: createFormData(this.state.image, { userId: "123" })
-  // })
-  //   .then(response => response.json())
-  //   .then(response => {
-  //     console.log("upload succes", response);
-  //     alert("Upload success!");
-  //     this.setState({ image: null });
-  //   })
-  //   .catch(error => {
-  //     console.log("upload error", error);
-  //     alert("Upload failed!");
-  //   });
 }
-// }
+
 const mapDispatchToProps = dispatch => ({
-  setImage: image => dispatch(setImage(image))
+  setImage: image => dispatch(setImage(image)),
+  setChildImagr: image => dispatch(setChildImage(image))
 });
 export default connect(
   null,
