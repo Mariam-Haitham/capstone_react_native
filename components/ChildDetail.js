@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 import {
   Container,
@@ -18,29 +19,51 @@ import Loading from "./Loading";
 const ChildDetail = ({ child }) => {
   return (
     <Container>
-      <Content>
-        <Card>
-          <CardItem header></CardItem>
-          <CardItem key={child.id}>
-            <Body>
-              <Thumbnail source={{ uri: child.image }} />
-              <Text>Baby’s Name: {child.name}</Text>
-              <Text>Age: {child.age}</Text>
-              <Text>Date Of Birth: {child.dob}</Text>
-              <Text>medical history {child.medical_history}</Text>
-              <Text>
-                Allergies:
-                {child.allergies.map(allergy => (
-                  <Text>
-                    {"\n"}
-                    {allergy.name}
-                  </Text>
-                ))}
-              </Text>
-            </Body>
-          </CardItem>
-        </Card>
-      </Content>
+      <LinearGradient
+        colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+        style={{
+          width: 800,
+          height: 850
+        }}
+      >
+        <Content>
+          <Card>
+            <CardItem key={child.id} style={{ backgroundColor: "#EFEAF3" }}>
+              <Body>
+                <Thumbnail
+                  source={{ uri: child.image }}
+                  style={{ width: 90, height: 90 }}
+                />
+                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                  Baby’s Name: {"   "}
+                  {child.name}
+                </Text>
+                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                  Age:{"    "}
+                  {child.age}
+                </Text>
+                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                  Date Of Birth: {"    "}
+                  {child.dob}
+                </Text>
+                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                  medical history: {"    "}
+                  {child.medical_history}
+                </Text>
+                <Text style={{ marginTop: 20, fontFamily: "Optima" }}>
+                  Allergies:
+                  {child.allergies.map(allergy => (
+                    <Text style={{ marginLeft: 400 }}>
+                      {"   , "}
+                      {allergy.name}
+                    </Text>
+                  ))}
+                </Text>
+              </Body>
+            </CardItem>
+          </Card>
+        </Content>
+      </LinearGradient>
     </Container>
   );
 };

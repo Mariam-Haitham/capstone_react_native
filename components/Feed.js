@@ -94,17 +94,12 @@ class Feed extends Component {
     babyposts = this.props.feed.map(posts => {
       return (
         <Content>
-          <Card>
-            <CardItem>
-              <Image
-                source={{ uri: posts.image }}
-                style={{ height: 150, width: null, flex: 1 }}
-              />
-            </CardItem>
-            <CardItem>
-              <Text> {posts.message}</Text>
-            </CardItem>
-          </Card>
+          <Image
+            source={{ uri: posts.image }}
+            style={{ height: 150, width: null, flex: 1 }}
+          />
+
+          <Text> {posts.message}</Text>
         </Content>
       );
     });

@@ -10,11 +10,15 @@ import {
   List,
   Content,
   Icon,
-  CardItem
+  Left,
+  CardItem,
+  ListItem
 } from "native-base";
 
 //components
 import Loading from "./Loading";
+import IconInvite from "./IconInvite";
+import IconUpdateHome from "./IconUpdateHome";
 
 class HomeDetail extends Component {
   // static navigationOptions = ({ navigation }) => {
@@ -44,14 +48,39 @@ class HomeDetail extends Component {
     if (parents) {
       childParents = parents.map(parent => {
         return (
-          <View style={styles.container} key={parent.id}>
-            <View style={styles.Content}>
-              <Text style={styles.text6}>Parent</Text>
-              <Text style={styles.text6}>
-                Name: {parent.first_name} {parent.last_name}
+          <View>
+            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+              <View>
+                <Text
+                  style={{
+                    marginRight: 45,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Name:
+                </Text>
+                <Text
+                  style={{
+                    marginLeft: 20,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
+                  {parent.first_name} {parent.last_name}
+                </Text>
+              </View>
+
+              {/* <Text
+                style={{
+                  fontFamily: "Optima",
+                  marginLeft: 30
+                }}
+              ></Text> */}
+              <Text style={{ marginLeft: 70, fontFamily: "Optima" }}>
+                {parent.email}
               </Text>
-              <Text style={styles.text7}>Email:{parent.email}</Text>
-            </View>
+            </ListItem>
           </View>
         );
       });
@@ -60,14 +89,24 @@ class HomeDetail extends Component {
     if (careTakers) {
       childCaretakers = careTakers.map(caretaker => {
         return (
-          <View style={styles.container} key={caretaker.id}>
-            <View style={styles.Content}>
-              <Text style={styles.text6}>CareTaker</Text>
-              <Text style={styles.text6}>
-                Name: {caretaker.first_name} {caretaker.last_name}
+          <View>
+            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+              <View>
+                <Text style={{ marginRight: 45, fontFamily: "Optima" }}>
+                  Name:
+                </Text>
+                <Text style={{ marginLeft: 20, fontFamily: "Optima" }}>
+                  {caretaker.first_name} {caretaker.last_name}
+                </Text>
+              </View>
+
+              <Text style={{ fontFamily: "Optima", marginLeft: 30 }}>
+                Email:
               </Text>
-              <Text style={styles.text7}>Email:{caretaker.email}</Text>
-            </View>
+              <Text style={{ marginLeft: 10, fontFamily: "Optima" }}>
+                {caretaker.email}
+              </Text>
+            </ListItem>
           </View>
         );
       });
@@ -76,16 +115,31 @@ class HomeDetail extends Component {
     if (children) {
       listOfChildren = children.map(child => {
         return (
-          <View style={styles.container} key={child.id}>
-            {console.log("!!!!!!!!!!!!!!!!!", this.props)}
-            <TouchableOpacity
-              style={styles.Content}
-              button
-              onPress={() => handlePress(child)}
-            >
-              <Text style={styles.text6}>Child:</Text>
-              <Text style={styles.text7}>Name: {child.name}</Text>
-            </TouchableOpacity>
+          <View>
+            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+              <Icon
+                name="face-profile"
+                type="MaterialCommunityIcons"
+                button
+                onPress={() => handlePress(child)}
+                style={{ marginLeft: 20 }}
+              />
+              <View>
+                <TouchableOpacity button onPress={() => handlePress(child)}>
+                  <Text
+                    style={{
+                      fontFamily: "Optima",
+                      fontWeight: "bold",
+                      marginRight: 180,
+                      marginLeft: 20
+                    }}
+                  >
+                    Child: {""}
+                    {child.name}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ListItem>
           </View>
         );
       });
@@ -101,61 +155,96 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
-          <Text>Name: {userHome.name}</Text>
-          <List>
-            <Icon name="ios-person" />
-            {childParents}
+          {/* <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Text
+              style={{
+                marginLeft: 145,
+                fontFamily: "Optima",
+                fontWeight: "bold",
+                color: "#FFFFFF"
+              }}
+            >
+              {userHome.name}
+            </Text>
+          </ListItem> */}
 
-            <Icon name="users" type="Feather" />
-            {childCaretakers}
-
-            <Icon name="baby-buggy" type="MaterialCommunityIcons" />
-            {listOfChildren}
-
+          <ListItem
+            style={{
+              backgroundColor: "#212121"
+            }}
+            itemDivider
+          >
+            <Icon
+              name="ios-person"
+              style={{ marginLeft: 30, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Parents:</Text>
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
-              <>
-                <CardItem>
-                  <Right>
-                    <View style={styles.adding}>
-                      <TouchableOpacity
-                        onPress={() =>
-                          this.props.navigation.navigate("ChildFormScreen", {
-                            homeId: homeId
-                          })
-                        }
-                      >
-                        <Icon name="ios-add-circle" type="Ionicons"></Icon>
-                      </TouchableOpacity>
-                    </View>
-                  </Right>
-                </CardItem>
-                <Button
-                  bordered
-                  success
-                  onPress={() =>
-                    this.props.navigation.navigate("AddScreen", {
-                      homeID: homeId
-                    })
-                  }
-                >
-                  <Text>Invite</Text>
-                </Button>
-                <Button
-                  bordered
-                  success
-                  onPress={() =>
-                    this.props.navigation.navigate("UpdateHomeScreen", {
-                      homeID: homeId,
-                      name: userHome.name
-                    })
-                  }
-                >
-                  <Text>Update Home</Text>
-                </Button>
-              </>
+              <Icon
+                style={{ color: "white", marginRight: 30 }}
+                name="adduser"
+                type="AntDesign"
+                onPress={() => this.props.navigation.navigate("AddScreen")}
+                style={{ marginLeft: 190, color: "white" }}
+              />
             ) : null}
-          </List>
+          </ListItem>
+          {childParents}
+          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Icon
+              name="users"
+              type="Feather"
+              style={{ marginLeft: 30, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <IconInvite />
+            ) : null}
+          </ListItem>
+          {childCaretakers}
+
+          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Icon
+              name="baby-buggy"
+              type="MaterialCommunityIcons"
+              style={{ marginLeft: 30, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>
+              Beloved Children:
+            </Text>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <Icon
+                style={{ color: "white", marginRight: 30 }}
+                name="child"
+                type="FontAwesome"
+                onPress={() =>
+                  this.props.navigation.navigate("ChildFormScreen")
+                }
+                style={{ marginLeft: 120, color: "white" }}
+              />
+            ) : null}
+          </ListItem>
+          {listOfChildren}
+
+          {userHome.parents.filter(parent => +parent.id === userId).length >
+          0 ? (
+            <>
+              <Button
+                success
+                onPress={() =>
+                  this.props.navigation.navigate("UpdateHomeScreen", {
+                    homeID: homeId,
+                    name: userHome.name
+                  })
+                }
+              >
+                <Text style={{ marginLeft: 135 }}>Update Home</Text>
+              </Button>
+            </>
+          ) : null}
         </Content>
       </>
     );
@@ -166,6 +255,16 @@ const mapStateToProps = state => ({
   user: state.rootAuth.user,
   homes: state.rootHome.homes
 });
+// HomeDetail.navigationOptions = ({ navigation }) => {
+//   // const homeId = this.props.navigation.getParam("homeID");
+//   // const userHome = this.props.homes.find(home => homeId === home.id);
+//   // {userHome.parents.filter(parent => +parent.id === userId).length >
+//   //   0 ? (
+//   return {
+//     headerRight: <IconUpdateHome />
+//   };
+// };
+// // ) : null)}}
 
 const styles = StyleSheet.create({
   container: {
