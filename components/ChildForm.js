@@ -129,7 +129,6 @@ class ChildForm extends Component {
                 </ScrollView>
               </View>
               <View style={styles.rect3ColumnFiller} />
-              >>>>>>> 18d37bf4655ade75cfa82b04ba12c27bd60dc90b
             </View>
           </View>
           <View style={styles.textColumnFiller} />

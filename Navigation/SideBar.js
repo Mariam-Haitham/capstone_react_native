@@ -35,7 +35,7 @@ class SideBar extends Component {
               </Button>
             </Item>
 
-            <Item>
+            {/* <Item>
               <Button
                 transparent
                 onPress={() => this.props.navigation.push("ProfileScreen")}
@@ -43,7 +43,7 @@ class SideBar extends Component {
                 <Icon name="user" type="EvilIcons" style={{ color: "black" }} />
                 <Text style={{ color: "black" }}>User Profile</Text>
               </Button>
-            </Item>
+            </Item> */}
             {!!this.props.home && (
               <Item>
                 <Button
