@@ -7,6 +7,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
+import { Container, Header, Content, Button, Icon } from "native-base";
+import { LinearGradient } from "expo-linear-gradient";
 //actions
 import { connect } from "react-redux";
 import { sendInvite } from "../redux/actions";
@@ -19,57 +21,99 @@ class AddUser extends Component {
   };
   componentDidMount = () => {};
   handleInvite = () => {
-    console.log(this.props.navigation.getParam("homeID"));
     this.props.sendInvite(this.props.navigation.getParam("homeID"), this.state);
   };
   render() {
     const { email } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.textColumn}>
-          <Text style={styles.text}>Email</Text>
-          <View style={styles.rect}>
-            <View style={styles.rect3Column}>
-              <View style={styles.rect3}>
-                <EvilIconsIcon name="user" style={styles.icon2} />
-                <TextInput
-                  placeholder="Email"
-                  placeholderTextColor="rgba(255,255,255,1)"
-                  secureTextEntry={false}
-                  style={styles.textInput2}
-                  name="email"
-                  value={email}
-                  onChangeText={email => this.setState({ email })}
-                />
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <View style={styles.textColumn}>
+            <Text
+              style={{
+                fontFamily: "Optima",
+                fontSize: 25,
+                fontWeight: "bold",
+                marginLeft: 30
+              }}
+            >
+              Send An Email Invitation
+            </Text>
+            <View style={styles.rect}>
+              <View style={styles.rect3Column}>
+                <View style={styles.rect3}>
+                  <Icon
+                    name="email-outline"
+                    type="MaterialCommunityIcons"
+                    style={styles.icon2}
+                  />
+                  <TextInput
+                    placeholder="Email"
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    secureTextEntry={false}
+                    name="email"
+                    style={{ marginLeft: 10 }}
+                    value={email}
+                    onChangeText={email => this.setState({ email })}
+                  />
+                </View>
               </View>
+              <View />
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.sendInvite(
+                    this.props.navigation.getParam("homeID"),
+                    this.state,
+                    "parent"
+                  )
+                }
+              >
+                <Button
+                  dark
+                  style={{
+                    width: 160,
+                    borderRadius: 10,
+                    marginLeft: 90,
+                    marginTop: 65
+                  }}
+                >
+                  <Text style={{ color: "white", marginLeft: 35 }}>
+                    Invite Parent
+                  </Text>
+                </Button>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.sendInvite(
+                    this.props.navigation.getParam("homeID"),
+                    this.state,
+                    "caretaker"
+                  )
+                }
+              >
+                <Button
+                  dark
+                  style={{
+                    width: 160,
+                    borderRadius: 10,
+                    marginLeft: 90,
+                    marginTop: 40
+                  }}
+                >
+                  <Text style={{ color: "white", marginLeft: 30 }}>
+                    Invite Caretaker{" "}
+                  </Text>
+                </Button>
+              </TouchableOpacity>
             </View>
-            <View style={styles.rect3ColumnFiller} />
-            <TouchableOpacity
-              onPress={() =>
-                this.props.sendInvite(
-                  this.props.navigation.getParam("homeID"),
-                  this.state,
-                  "parent"
-                )
-              }
-              style={styles.button}
-            >
-              <Text style={styles.text2}>Invite Parent</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.sendInvite(
-                  this.props.navigation.getParam("homeID"),
-                  this.state,
-                  "caretaker"
-                )
-              }
-              style={styles.button}
-            >
-              <Text style={styles.text2}>Invite Caretaker</Text>
-            </TouchableOpacity>
           </View>
-        </View>
+        </LinearGradient>
       </View>
     );
   }
@@ -94,7 +138,7 @@ const styles = StyleSheet.create({
     height: 59,
     backgroundColor: "rgba(251,247,247,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
     flexDirection: "row"
   },
   icon2: {
@@ -136,7 +180,7 @@ const styles = StyleSheet.create({
   },
   rect3Column: {
     width: 278,
-    marginLeft: 12
+    marginLeft: 35
   },
   rect3ColumnFiller: {
     flex: 1

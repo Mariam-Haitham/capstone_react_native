@@ -1,15 +1,10 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
 
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity
-} from "react-native";
+import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import { Container, Header, Content, Button, Text, Icon } from "native-base";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
-
+import { LinearGradient } from "expo-linear-gradient";
 //actions
 import { addHome } from "../redux/actions";
 
@@ -28,32 +23,58 @@ class AddHome extends Component {
     const { name } = this.state;
     return (
       <View style={styles.container} onPress={() => this.SubmitAdd()}>
-        <View style={styles.textColumn}>
-          <Text style={styles.text}>Name</Text>
-          <View style={styles.rect}>
-            <View style={styles.rect3Column}>
-              <View style={styles.rect3}>
-                <EvilIconsIcon name="user" style={styles.icon2} />
-                <TextInput
-                  placeholder="name"
-                  placeholderTextColor="rgba(255,255,255,1)"
-                  secureTextEntry={false}
-                  style={styles.textInput2}
-                  name="name"
-                  value={name}
-                  onChangeText={name => this.setState({ name })}
-                />
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <View style={styles.textColumn}>
+            <Text
+              style={{
+                fontFamily: "Optima",
+                fontSize: 25,
+                marginLeft: 55,
+                fontWeight: "bold"
+              }}
+            >
+              Create A new Home
+            </Text>
+            <View style={styles.rect}>
+              <View style={styles.rect3Column}>
+                <View style={styles.rect3}>
+                  <Icon name="home" type="Octicons" style={styles.icon2} />
+                  <TextInput
+                    placeholder="name"
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    secureTextEntry={false}
+                    style={styles.textInput2}
+                    name="name"
+                    value={name}
+                    onChangeText={name => this.setState({ name })}
+                  />
+                </View>
+                <TouchableOpacity>
+                  <Button
+                    dark
+                    onPress={() => this.SubmitAdd()}
+                    style={{
+                      marginLeft: 80,
+                      width: 150,
+                      marginTop: 65,
+                      marginRight: 90,
+                      borderRadius: 10
+                    }}
+                  >
+                    <Text style={{ marginLeft: 20 }}>Add Home</Text>
+                  </Button>
+                </TouchableOpacity>
               </View>
             </View>
+            <View />
           </View>
-          <View style={styles.rect3ColumnFiller} />
-          <TouchableOpacity
-            onPress={() => this.SubmitAdd()}
-            style={styles.button}
-          >
-            <Text style={styles.text2}>Add Home</Text>
-          </TouchableOpacity>
-        </View>
+        </LinearGradient>
       </View>
     );
   }
@@ -78,7 +99,9 @@ const styles = StyleSheet.create({
     height: 59,
     backgroundColor: "rgba(251,247,247,0.25)",
     opacity: 1,
-    borderRadius: 5,
+    borderRadius: 100,
+    marginLeft: 20,
+    marginTop: 45,
     flexDirection: "row"
   },
   icon2: {
@@ -89,10 +112,10 @@ const styles = StyleSheet.create({
   },
   textInput2: {
     height: 30,
-    color: "black",
+    color: "#D8CBE2",
     flex: 1,
     marginRight: 11,
-    marginLeft: 11,
+    marginLeft: 20,
     marginTop: 14
   },
   rect2: {
@@ -126,11 +149,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   button: {
-    width: 303,
+    width: 150,
     height: 59,
     backgroundColor: "rgba(0,0,0,1)",
-    borderRadius: 5,
-    marginBottom: 53,
+    borderRadius: 20,
+
+    marginLeft: 25,
+
     alignSelf: "center"
   },
   text2: {

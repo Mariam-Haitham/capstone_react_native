@@ -49,8 +49,6 @@ class CameraRollPicker extends React.Component {
       base64: true
     });
 
-    console.log("!!!!!!!!########", result);
-
     if (!result.cancelled) {
       this.setState({ image: result.uri });
     }

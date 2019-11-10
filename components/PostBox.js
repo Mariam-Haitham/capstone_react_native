@@ -16,16 +16,14 @@ class PostBox extends Component {
   };
   render() {
     let homeID = this.props.home;
-    console.log("HOME!!!!!!!!!!!ID!!!!!!!!!!!", homeID);
+
     const handlePress = () => {
-      console.log("RECEIVED IMG!!!!!!!@@@@@@@@@@@", this.props.image);
       this.setState({ image: this.props.image });
       this.props.postToFeed(homeID, {
         message: this.state.message,
         image: this.props.image,
         children: this.state.children
       });
-      console.log("MSGGGGGGGGGGGGGGGGGGGGGG$$$$$$$$$$$  ", this.state);
     };
     return (
       <View>
@@ -42,7 +40,6 @@ class PostBox extends Component {
         <Button onPress={() => handlePress()}>
           <Text>Post</Text>
         </Button>
-        {console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!", this.state.image)}
       </View>
     );
   }
