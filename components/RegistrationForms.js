@@ -71,7 +71,7 @@ class RegistertionForms extends Component {
               </View>
               <View style={styles.rect3ColumnFiller} />
               <TouchableOpacity
-                onPress={this.handlelogin}
+                onPress={() => this.handlelogin()}
                 style={styles.button}
               >
                 <Text style={styles.text2}>Login</Text>

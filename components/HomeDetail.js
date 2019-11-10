@@ -92,18 +92,27 @@ class HomeDetail extends Component {
           <View>
             <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
               <View>
-                <Text style={{ marginRight: 45, fontFamily: "Optima" }}>
+                <Text
+                  style={{
+                    marginRight: 45,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
                   Name:
                 </Text>
-                <Text style={{ marginLeft: 20, fontFamily: "Optima" }}>
+                <Text
+                  style={{
+                    marginLeft: 20,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
                   {caretaker.first_name} {caretaker.last_name}
                 </Text>
               </View>
 
-              <Text style={{ fontFamily: "Optima", marginLeft: 30 }}>
-                Email:
-              </Text>
-              <Text style={{ marginLeft: 10, fontFamily: "Optima" }}>
+              <Text style={{ fontFamily: "Optima", marginLeft: 90 }}>
                 {caretaker.email}
               </Text>
             </ListItem>
@@ -167,7 +176,27 @@ class HomeDetail extends Component {
               {userHome.name}
             </Text>
           </ListItem> */}
-
+          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Icon
+              name="baby-buggy"
+              type="MaterialCommunityIcons"
+              style={{ marginLeft: 50, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Children:</Text>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <Icon
+                style={{ color: "white", marginRight: 30 }}
+                name="child"
+                type="FontAwesome"
+                onPress={() =>
+                  this.props.navigation.navigate("ChildFormScreen")
+                }
+                style={{ marginLeft: 160, color: "white" }}
+              />
+            ) : null}
+          </ListItem>
+          {listOfChildren}
           <ListItem
             style={{
               backgroundColor: "#212121"
@@ -204,30 +233,6 @@ class HomeDetail extends Component {
             ) : null}
           </ListItem>
           {childCaretakers}
-
-          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
-            <Icon
-              name="baby-buggy"
-              type="MaterialCommunityIcons"
-              style={{ marginLeft: 30, color: "#FFFFFF" }}
-            />
-            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>
-              Beloved Children:
-            </Text>
-            {userHome.parents.filter(parent => +parent.id === userId).length >
-            0 ? (
-              <Icon
-                style={{ color: "white", marginRight: 30 }}
-                name="child"
-                type="FontAwesome"
-                onPress={() =>
-                  this.props.navigation.navigate("ChildFormScreen")
-                }
-                style={{ marginLeft: 120, color: "white" }}
-              />
-            ) : null}
-          </ListItem>
-          {listOfChildren}
 
           {userHome.parents.filter(parent => +parent.id === userId).length >
           0 ? (

@@ -1,8 +1,14 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
-
-import { TextInput, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import { Button, Icon, Text } from "native-base";
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput
+} from "react-native";
 
 //actions
 import { postToFeed } from "../redux/actions";
@@ -33,20 +39,40 @@ class PostFeed extends Component {
     };
     return (
       <View>
-        <TextInput
-          style={{ height: 60, borderColor: "gray", borderWidth: 1 }}
-          onChangeText={message => this.setState({ message })}
-          value={this.state.message}
-        />
-        <Icon
-          name="ios-attach"
-          type="Ionicons"
-          onPress={() => this.props.navigation.navigate("CameraRollScreen")}
-        />
-        <ChildSelectList />
-        <Button onPress={() => handlePress()}>
-          <Text>Post</Text>
-        </Button>
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <TextInput
+            style={{
+              height: 60,
+              borderColor: "white",
+              backgroundColor: "white",
+              borderWidth: 1
+            }}
+            onChangeText={message => this.setState({ message })}
+            value={this.state.message}
+          />
+          <Icon
+            name="ios-attach"
+            type="Ionicons"
+            onPress={() => this.props.navigation.navigate("CameraRollScreen")}
+          >
+            <Text style={{ fontFamily: "Optima" }}>Attachement</Text>
+          </Icon>
+
+          <ChildSelectList />
+          <Button
+            success
+            onPress={() => handlePress()}
+            style={{ marginTop: 30, width: 130, marginLeft: 150 }}
+          >
+            <Text style={{ marginLeft: 35 }}>Post</Text>
+          </Button>
+        </LinearGradient>
       </View>
     );
   }
