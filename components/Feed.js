@@ -77,6 +77,7 @@ class Feed extends Component {
 
     babyposts = this.props.feed.map(post => {
       return (
+
         <Card>
           <CardItem>
             <Image
@@ -88,6 +89,7 @@ class Feed extends Component {
             <Text> {post.message}</Text>
           </CardItem>
         </Card>
+
       );
     });
 

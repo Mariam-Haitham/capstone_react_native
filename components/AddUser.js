@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
+
 import { Container, Header, Content, Button, Icon } from "native-base";
 import { LinearGradient } from "expo-linear-gradient";
 //actions
@@ -19,12 +19,10 @@ class AddUser extends Component {
   handleChange = keyValue => {
     this.setState(keyValue);
   };
-  componentDidMount = () => {};
-  handleInvite = () => {
-    this.props.sendInvite(this.props.navigation.getParam("homeID"), this.state);
-  };
+
   render() {
     const { email } = this.state;
+
     return (
       <View style={styles.container}>
         <LinearGradient
@@ -37,7 +35,6 @@ class AddUser extends Component {
           <View style={styles.textColumn}>
             <Text
               style={{
-                fontFamily: "Optima",
                 fontSize: 25,
                 fontWeight: "bold",
                 marginLeft: 30
@@ -65,15 +62,7 @@ class AddUser extends Component {
                 </View>
               </View>
               <View />
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.sendInvite(
-                    this.props.navigation.getParam("homeID"),
-                    this.state,
-                    "parent"
-                  )
-                }
-              >
+              <TouchableOpacity>
                 <Button
                   dark
                   style={{
@@ -82,21 +71,20 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 65
                   }}
+                  onPress={() =>
+                    this.props.sendInvite(
+                      this.props.navigation.getParam("homeID"),
+                      this.state,
+                      "parent"
+                    )
+                  }
                 >
                   <Text style={{ color: "white", marginLeft: 35 }}>
                     Invite Parent
                   </Text>
                 </Button>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() =>
-                  this.props.sendInvite(
-                    this.props.navigation.getParam("homeID"),
-                    this.state,
-                    "caretaker"
-                  )
-                }
-              >
+              <TouchableOpacity>
                 <Button
                   dark
                   style={{
@@ -105,9 +93,16 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 40
                   }}
+                  onPress={() =>
+                    this.props.sendInvite(
+                      this.props.navigation.getParam("homeID"),
+                      this.state,
+                      "caretaker"
+                    )
+                  }
                 >
                   <Text style={{ color: "white", marginLeft: 30 }}>
-                    Invite Caretaker{" "}
+                    Invite Caretaker
                   </Text>
                 </Button>
               </TouchableOpacity>
@@ -232,8 +227,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => {
   return {
-    sendInvite: (email, homeID, type) =>
-      dispatch(sendInvite(email, homeID, type))
+    sendInvite: (homeID, email, type) =>
+      dispatch(sendInvite(homeID, email, type))
   };
 };
 export default connect(

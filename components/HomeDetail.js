@@ -54,7 +54,7 @@ class HomeDetail extends Component {
                 <Text
                   style={{
                     marginRight: 45,
-                    fontFamily: "Optima",
+
                     fontWeight: "bold"
                   }}
                 >
@@ -63,7 +63,7 @@ class HomeDetail extends Component {
                 <Text
                   style={{
                     marginLeft: 20,
-                    fontFamily: "Optima",
+
                     fontWeight: "bold"
                   }}
                 >
@@ -73,13 +73,11 @@ class HomeDetail extends Component {
 
               {/* <Text
                 style={{
-                  fontFamily: "Optima",
+                  
                   marginLeft: 30
                 }}
               ></Text> */}
-              <Text style={{ marginLeft: 70, fontFamily: "Optima" }}>
-                {parent.email}
-              </Text>
+              <Text style={{ marginLeft: 70 }}>{parent.email}</Text>
             </ListItem>
           </View>
         );
@@ -92,6 +90,7 @@ class HomeDetail extends Component {
           <View>
             <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
               <View>
+
                 <Text
                   style={{
                     marginRight: 45,
@@ -108,13 +107,16 @@ class HomeDetail extends Component {
                     fontWeight: "bold"
                   }}
                 >
+
                   {caretaker.first_name} {caretaker.last_name}
                 </Text>
               </View>
 
+
               <Text style={{ fontFamily: "Optima", marginLeft: 90 }}>
                 {caretaker.email}
               </Text>
+
             </ListItem>
           </View>
         );
@@ -137,7 +139,6 @@ class HomeDetail extends Component {
                 <TouchableOpacity button onPress={() => handlePress(child)}>
                   <Text
                     style={{
-                      fontFamily: "Optima",
                       fontWeight: "bold",
                       marginRight: 180,
                       marginLeft: 20
@@ -164,6 +165,7 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
+
           {/* <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
             <Text
               style={{
@@ -197,6 +199,7 @@ class HomeDetail extends Component {
             ) : null}
           </ListItem>
           {listOfChildren}
+
           <ListItem
             style={{
               backgroundColor: "#212121"
@@ -229,7 +232,7 @@ class HomeDetail extends Component {
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
-              <IconInvite />
+              <IconInvite homeID={homeId} />
             ) : null}
           </ListItem>
           {childCaretakers}

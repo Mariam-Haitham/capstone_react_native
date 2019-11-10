@@ -65,7 +65,6 @@ class ChildForm extends Component {
           <View style={styles.textColumn}>
             <Text
               style={{
-                fontFamily: "Optima",
                 fontWeight: "bold",
                 marginLeft: 34,
                 fontSize: 35
