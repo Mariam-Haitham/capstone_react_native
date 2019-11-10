@@ -38,7 +38,6 @@ class UpdateHome extends Component {
           <View style={styles.textColumn}>
             <Text
               style={{
-                fontFamily: "Optima",
                 fontWeight: "bold",
                 fontSize: 30,
                 marginLeft: 50

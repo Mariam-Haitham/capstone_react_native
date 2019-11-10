@@ -54,7 +54,7 @@ class HomeDetail extends Component {
                 <Text
                   style={{
                     marginRight: 45,
-                    fontFamily: "Optima",
+
                     fontWeight: "bold"
                   }}
                 >
@@ -63,7 +63,7 @@ class HomeDetail extends Component {
                 <Text
                   style={{
                     marginLeft: 20,
-                    fontFamily: "Optima",
+
                     fontWeight: "bold"
                   }}
                 >
@@ -73,13 +73,11 @@ class HomeDetail extends Component {
 
               {/* <Text
                 style={{
-                  fontFamily: "Optima",
+                  
                   marginLeft: 30
                 }}
               ></Text> */}
-              <Text style={{ marginLeft: 70, fontFamily: "Optima" }}>
-                {parent.email}
-              </Text>
+              <Text style={{ marginLeft: 70 }}>{parent.email}</Text>
             </ListItem>
           </View>
         );
@@ -92,20 +90,14 @@ class HomeDetail extends Component {
           <View>
             <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
               <View>
-                <Text style={{ marginRight: 45, fontFamily: "Optima" }}>
-                  Name:
-                </Text>
-                <Text style={{ marginLeft: 20, fontFamily: "Optima" }}>
+                <Text style={{ marginRight: 45 }}>Name:</Text>
+                <Text style={{ marginLeft: 20 }}>
                   {caretaker.first_name} {caretaker.last_name}
                 </Text>
               </View>
 
-              <Text style={{ fontFamily: "Optima", marginLeft: 30 }}>
-                Email:
-              </Text>
-              <Text style={{ marginLeft: 10, fontFamily: "Optima" }}>
-                {caretaker.email}
-              </Text>
+              <Text style={{ marginLeft: 30 }}>Email:</Text>
+              <Text style={{ marginLeft: 10 }}>{caretaker.email}</Text>
             </ListItem>
           </View>
         );
@@ -128,7 +120,6 @@ class HomeDetail extends Component {
                 <TouchableOpacity button onPress={() => handlePress(child)}>
                   <Text
                     style={{
-                      fontFamily: "Optima",
                       fontWeight: "bold",
                       marginRight: 180,
                       marginLeft: 20
@@ -155,19 +146,6 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
-          {/* <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
-            <Text
-              style={{
-                marginLeft: 145,
-                fontFamily: "Optima",
-                fontWeight: "bold",
-                color: "#FFFFFF"
-              }}
-            >
-              {userHome.name}
-            </Text>
-          </ListItem> */}
-
           <ListItem
             style={{
               backgroundColor: "#212121"
@@ -200,7 +178,7 @@ class HomeDetail extends Component {
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
-              <IconInvite />
+              <IconInvite homeID={homeId} />
             ) : null}
           </ListItem>
           {childCaretakers}
