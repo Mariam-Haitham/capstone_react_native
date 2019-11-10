@@ -41,7 +41,8 @@ class ListOfHomes extends Component {
             <Icon name="menu" type="Feather" style={{ color: "black" }} />
           )}
         </Button>
-      )
+      ),
+      headerRight: <IconAddHome />
     };
   };
 
@@ -105,8 +106,8 @@ class ListOfHomes extends Component {
             </ListItem>
 
             {ParentOf}
-            <ListItem itemDivider>
-              <Text>You are a caretaker of: </Text>
+            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
+              <Text style={{ color: "#212121" }}>You are a caretaker of: </Text>
             </ListItem>
             <List>{CareTakerOf}</List>
           </Content>
@@ -132,11 +133,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ListOfHomes);
-
-ListOfHomes.navigationOptions = () => {
-  return {
-    title: "Home List",
-    headLeft: null,
-    headerRight: <IconAddHome />
-  };
-};

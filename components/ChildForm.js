@@ -8,7 +8,9 @@ import {
   Dimensions,
   ScrollView
 } from "react-native";
+
 import { Icon } from "native-base";
+import { LinearGradient } from "expo-linear-gradient";
 
 const { height: winHeight, width: winWidth } = Dimensions.get("window");
 
@@ -52,72 +54,91 @@ class ChildForm extends Component {
     const { name, image, dob, medical_history, allergies } = this.state;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.textColumn}>
-          <Text style={styles.text}>Add a Child</Text>
-          <View style={styles.rect}>
-            <View style={styles.rect3Column}>
-              <ScrollView style={{ height: winHeight }}>
-                <View style={styles.rect3}>
-                  <TextInput
-                    placeholder="Child Name"
-                    placeholderTextColor="rgba(255,255,255,1)"
-                    secureTextEntry={false}
-                    style={styles.textInput2}
-                    name="name"
-                    value={name}
-                    onChangeText={name => this.setState({ name })}
-                  />
-                </View>
+      <View>
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <View style={styles.textColumn}>
+            <Text
+              style={{
+                fontFamily: "Optima",
+                fontWeight: "bold",
+                marginLeft: 34,
+                fontSize: 35
+              }}
+            >
+              Add a Child
+            </Text>
+            <View style={styles.rect}>
+              <View style={styles.rect3Column}>
+                <ScrollView style={{ height: winHeight }}>
+                  <View style={styles.rect3}>
+                    <TextInput
+                      placeholder="Child Name"
+                      placeholderTextColor="rgba(255,255,255,1)"
+                      secureTextEntry={false}
+                      style={styles.textInput2}
+                      name="name"
+                      value={name}
+                      onChangeText={name => this.setState({ name })}
+                    />
+                  </View>
 
-                <AllergiesSelectList />
+                  <AllergiesSelectList />
 
-                <View style={styles.rect2}>
-                  <TextInput
-                    placeholder="Medical History"
-                    placeholderTextColor="rgba(255,255,255,1)"
-                    style={styles.textInput}
-                    value={medical_history}
-                    name="medical_history"
-                    onChangeText={medical_history =>
-                      this.setState({ medical_history })
+                  <Icon
+                    name="ios-attach"
+                    type="Ionicons"
+                    onPress={() =>
+                      this.props.navigation.navigate("CameraRollScreen")
                     }
                   />
-                </View>
-                <Icon
-                  name="ios-attach"
-                  type="Ionicons"
-                  onPress={() =>
-                    this.props.navigation.navigate("CameraRollScreen")
-                  }
-                />
 
-                <View style={styles.rect2}>
-                  <TextInput
-                    placeholder="Date of birth"
-                    placeholderTextColor="rgba(255,255,255,1)"
-                    style={styles.textInput}
-                    value={dob}
-                    name="dob"
-                    onChangeText={dob => this.setState({ dob })}
-                  />
-                </View>
-                <TouchableOpacity
-                  onPress={() => this.SubmitAdd(homeId)}
-                  style={styles.container2}
-                >
-                  <Text style={styles.text4}>Add</Text>
-                </TouchableOpacity>
-              </ScrollView>
+                  <View style={styles.rect2}>
+                    <TextInput
+                      placeholder="Medical History"
+                      placeholderTextColor="rgba(255,255,255,1)"
+                      style={styles.textInput}
+                      value={medical_history}
+                      name="medical_history"
+                      onChangeText={medical_history =>
+                        this.setState({ medical_history })
+                      }
+                    />
+                  </View>
+
+                  <View style={styles.rect2}>
+                    <TextInput
+                      placeholder="Date of birth"
+                      placeholderTextColor="rgba(255,255,255,1)"
+                      style={styles.textInput}
+                      value={dob}
+                      name="dob"
+                      onChangeText={dob => this.setState({ dob })}
+                    />
+                  </View>
+                  <TouchableOpacity
+                    onPress={() => this.SubmitAdd(homeId)}
+                    style={styles.container2}
+                  >
+                    <Text style={styles.text4}>Continue</Text>
+                  </TouchableOpacity>
+                </ScrollView>
+              </View>
+              <View style={styles.rect3ColumnFiller} />
+              >>>>>>> 18d37bf4655ade75cfa82b04ba12c27bd60dc90b
             </View>
-            <View style={styles.rect3ColumnFiller} />
           </View>
-        </View>
-        <View style={styles.textColumnFiller} />
-        <View style={styles.rect4}>
-          <View style={styles.button2Filler} />
-          <View style={styles.text3Filler} />
-        </View>
+          <View style={styles.textColumnFiller} />
+          <View style={styles.rect4}>
+            <View style={styles.button2Filler} />
+            <View style={styles.text3Filler} />
+          </View>
+        </LinearGradient>
       </View>
     );
   }
@@ -207,8 +228,8 @@ const styles = StyleSheet.create({
   },
   textColumn: {
     width: 303,
-    marginTop: 160,
-    marginLeft: 36
+    marginTop: 90,
+    marginLeft: 75
   },
   textColumnFiller: {
     flex: 1
@@ -235,10 +256,10 @@ const styles = StyleSheet.create({
   container2: {
     width: 118,
     height: 52,
-    backgroundColor: "green",
+    backgroundColor: "black",
     opacity: 1,
     borderRadius: 18,
-    borderColor: "green",
+    borderColor: "black",
     borderWidth: 1,
     justifyContent: "center",
     marginTop: 20,

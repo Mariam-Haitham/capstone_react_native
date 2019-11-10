@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
-
+import { LinearGradient } from "expo-linear-gradient";
 import {
   StyleSheet,
   View,
@@ -9,7 +9,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
-
+import { Icon, Button } from "native-base";
 //actions
 import { updateHome } from "../redux/actions";
 
@@ -20,6 +20,7 @@ class UpdateHome extends Component {
 
   handleSubmit = () => {
     this.props.updateHome(this.props.navigation.getParam("homeID"), this.state);
+    this.props.navigation.goBack();
   };
 
   render() {
@@ -27,32 +28,60 @@ class UpdateHome extends Component {
 
     return (
       <View style={styles.container} onPress={() => this.handleSubmit()}>
-        <View style={styles.textColumn}>
-          <Text style={styles.text}>Name</Text>
-          <View style={styles.rect}>
-            <View style={styles.rect3Column}>
-              <View style={styles.rect3}>
-                <EvilIconsIcon name="user" style={styles.icon2} />
-                <TextInput
-                  placeholder="name"
-                  placeholderTextColor="rgba(255,255,255,1)"
-                  secureTextEntry={false}
-                  style={styles.textInput2}
-                  name="name"
-                  value={name}
-                  onChangeText={name => this.setState({ name })}
-                />
-              </View>
-            </View>
-            <View style={styles.rect3ColumnFiller} />
-            <TouchableOpacity
-              onPress={() => this.handleSubmit()}
-              style={styles.button}
+        <LinearGradient
+          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          style={{
+            width: 800,
+            height: 850
+          }}
+        >
+          <View style={styles.textColumn}>
+            <Text
+              style={{
+                fontFamily: "Optima",
+                fontWeight: "bold",
+                fontSize: 30,
+                marginLeft: 50
+              }}
             >
-              <Text style={styles.text2}>Update Home</Text>
-            </TouchableOpacity>
+              Edit Home Name
+            </Text>
+            <View style={styles.rect}>
+              <View style={styles.rect3Column}>
+                <View style={styles.rect3}>
+                  <Icon name="home" type="Octicons" style={styles.icon2} />
+                  <TextInput
+                    placeholder="name"
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    secureTextEntry={false}
+                    style={styles.textInput2}
+                    name="name"
+                    value={name}
+                    onChangeText={name => this.setState({ name })}
+                  />
+                </View>
+              </View>
+              <TouchableOpacity>
+                <Button
+                  dark
+                  onPress={() => this.handleSubmit()}
+                  style={{
+                    marginLeft: 90,
+                    width: 150,
+                    marginTop: 65,
+                    marginRight: 90,
+                    borderRadius: 10
+                  }}
+                >
+                  <Text style={{ color: "white", marginLeft: 30 }}>
+                    Update Home
+                  </Text>
+                </Button>
+              </TouchableOpacity>
+              <View style={styles.rect3ColumnFiller} />
+            </View>
           </View>
-        </View>
+        </LinearGradient>
       </View>
     );
   }
@@ -76,8 +105,8 @@ const styles = StyleSheet.create({
     width: 278,
     height: 59,
     backgroundColor: "rgba(251,247,247,0.25)",
-    opacity: 1,
-    borderRadius: 5,
+    opacity: 100,
+    borderRadius: 100,
     flexDirection: "row"
   },
   icon2: {
@@ -91,18 +120,10 @@ const styles = StyleSheet.create({
     color: "black",
     flex: 1,
     marginRight: 11,
-    marginLeft: 11,
+    marginLeft: 20,
     marginTop: 14
   },
-  rect2: {
-    width: 278,
-    height: 59,
-    backgroundColor: "rgba(253,251,251,0.25)",
-    opacity: 1,
-    borderRadius: 5,
-    flexDirection: "row",
-    marginTop: 32
-  },
+
   icon: {
     color: "rgba(13,12,12,1)",
     fontSize: 33,
@@ -119,7 +140,8 @@ const styles = StyleSheet.create({
   },
   rect3Column: {
     width: 278,
-    marginLeft: 12
+    marginLeft: 12,
+    marginLeft: 30
   },
   rect3ColumnFiller: {
     flex: 1
