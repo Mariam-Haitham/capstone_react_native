@@ -14,7 +14,6 @@ class IconInvite extends Component {
             homeID: this.props.homeID
           })
         }
-        style={{ marginLeft: 165, color: "white" }}
       />
     );
   }

@@ -1,5 +1,10 @@
 //actions
-import { FETCH_HOMES, ADD_HOME, SET_HOME } from "../actions/actionTypes";
+import {
+  FETCH_HOMES,
+  ADD_HOME,
+  SET_HOME,
+  SEND_INVITE
+} from "../actions/actionTypes";
 
 const initialState = {
   homes: [],
@@ -28,6 +33,14 @@ const HomeReducer = (state = initialState, { type, payload }) => {
         home: payload,
         loading: false
       };
+    // case SEND_INVITE:
+    //   return {
+    //     ...state,
+    //     if(payload.type==="parent"){
+    //       return
+    //     }
+
+    //   };
     default:
       return state;
   }

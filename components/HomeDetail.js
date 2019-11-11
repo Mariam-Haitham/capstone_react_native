@@ -68,12 +68,9 @@ class HomeDetail extends Component {
                 </Text>
               </View>
 
-
-
               <Text style={{ marginLeft: 70, marginBottom: 30 }}>
                 {parent.email}
               </Text>
-
             </ListItem>
           </View>
         );
@@ -182,7 +179,9 @@ class HomeDetail extends Component {
                 name="child"
                 type="FontAwesome"
                 onPress={() =>
-                  this.props.navigation.navigate("ChildFormScreen")
+                  this.props.navigation.navigate("ChildFormScreen", {
+                    homeId: homeId
+                  })
                 }
                 style={{ marginLeft: 160, color: "white" }}
               />
@@ -213,34 +212,6 @@ class HomeDetail extends Component {
           </ListItem>
           {childCaretakers}
 
-
-          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
-            <Icon
-              name="baby-buggy"
-              type="MaterialCommunityIcons"
-              style={{ marginLeft: 30, color: "#FFFFFF" }}
-            />
-            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>
-              Beloved Children:
-            </Text>
-            {userHome.parents.filter(parent => +parent.id === userId).length >
-            0 ? (
-              <Icon
-                style={{ color: "white", marginRight: 30 }}
-                name="child"
-                type="FontAwesome"
-                onPress={() =>
-                  this.props.navigation.navigate("ChildFormScreen", {
-                    homeID: homeId
-                  })
-                }
-                style={{ marginLeft: 120, color: "white" }}
-              />
-            ) : null}
-          </ListItem>
-          {listOfChildren}
-
-
           {userHome.parents.filter(parent => +parent.id === userId).length >
           0 ? (
             <>
@@ -262,7 +233,6 @@ class HomeDetail extends Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   user: state.rootAuth.user,

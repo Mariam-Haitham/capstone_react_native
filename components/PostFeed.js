@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { Button, Icon, Text } from "native-base";
+import { Button, Icon, Text, CardItem } from "native-base";
 import {
   StyleSheet,
   View,
-  Image,
+  ImageBackground,
+  TextInput,
   TouchableOpacity,
-  TextInput
+  StatusBar
 } from "react-native";
-
 //actions
 import { postToFeed } from "../redux/actions";
 
@@ -28,12 +28,9 @@ class PostFeed extends Component {
 
     const handlePress = async () => {
       this.setState({ image: this.props.image });
-      await this.setState(
-        {
-          children: this.props.checkedchildren
-        },
-        this.props.navigation
-      );
+      await this.setState({
+        children: this.props.checkedchildren
+      });
       this.props.postToFeed(homeID, {
         message: this.state.message,
         image: this.props.image,
@@ -42,41 +39,111 @@ class PostFeed extends Component {
     };
     return (
       <View>
-        <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
-          style={{
-            width: 800,
-            height: 850
-          }}
-        >
-          <TextInput
+        <View>
+          <LinearGradient
+            colors={["#6D6780", "#D5C6E0", "#FFFF"]}
             style={{
-              height: 60,
-              borderColor: "white",
-              backgroundColor: "white",
-              borderWidth: 1
+              width: 800,
+              height: 850
             }}
-            onChangeText={message => this.setState({ message })}
-            value={this.state.message}
-          />
-          <Icon
-            name="ios-attach"
-            type="Ionicons"
-            onPress={() => this.props.navigation.navigate("CameraRollScreen")}
           >
-            <Text style={{ fontFamily: "Optima" }}> Attachement</Text>
-          </Icon>
+            <View style={styles.Form}>
+              <View style={styles.UsernameColumn}>
+                <Text
+                  style={{
+                    fontFamily: "Optima",
+                    fontWeight: "bold",
+                    fontSize: 25,
+                    marginBottom: 50,
+                    marginLeft: 55
+                  }}
+                >
+                  Upload A Post
+                </Text>
+                <View style={styles.Username}>
+                  <Icon name="message1" type="AntDesign" style={styles.icon2} />
+                  <TextInput
+                    onChangeText={message => this.setState({ message })}
+                    value={this.state.message}
+                    style={styles.UsernameInput}
+                  />
+                </View>
+                <View style={styles.Password}>
+                  <Text
+                    placeholderTextColor="rgba(255,255,255,1)"
+                    style={styles.PasswordInput}
+                  >
+                    <Icon
+                      name="ios-attach"
+                      type="Ionicons"
+                      onPress={() =>
+                        this.props.navigation.navigate("CameraRollScreen")
+                      }
+                    />
+                    {"  "} Attachement
+                  </Text>
+                </View>
+                <Text style={{ fontFamily: "Optima", fontWeight: "bold" }}>
+                  {" "}
+                  Tag A child
+                </Text>
+                <ChildSelectList />
+              </View>
+              <View style={styles.UsernameColumnFiller} />
+              <Button
+                success
+                onPress={() => handlePress()}
+                style={{ marginTop: 90 }}
+              >
+                <Text style={{ marginLeft: 100 }}>post</Text>
+              </Button>
+            </View>
+          </LinearGradient>
+        </View>
 
-          <ChildSelectList />
-          <Button
-            success
-            onPress={() => handlePress()}
-            style={{ marginTop: 30, width: 130, marginLeft: 150 }}
-          >
-            <Text style={{ marginLeft: 35 }}>Post</Text>
-          </Button>
-        </LinearGradient>
+        <StatusBar
+          animated={false}
+          barStyle="light-content"
+          hidden={false}
+          backgroundColor="rgba(0,0,0,0)"
+        />
       </View>
+      // <View>
+      //   <LinearGradient
+      //     colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+      //     style={{
+      //       width: 800,
+      //       height: 850
+      //     }}
+      //   >
+      //     <TextInput
+      //       style={{
+      //         height: 60,
+      //         borderColor: "white",
+      //         backgroundColor: "white",
+      //         borderWidth: 1
+      //       }}
+      //       onChangeText={message => this.setState({ message })}
+      //       value={this.state.message}
+      //     />
+      //     <Icon
+      //       name="ios-attach"
+      //       type="Ionicons"
+      //       onPress={() => this.props.navigation.navigate("CameraRollScreen")}
+      //     >
+      //       <Text style={{ fontFamily: "Optima" }}> Attachement</Text>
+      //     </Icon>
+
+      //     <ChildSelectList />
+      //     <Button
+      //       success
+      //       onPress={() => handlePress()}
+      //       style={{ marginTop: 30, width: 130, marginLeft: 150 }}
+      //     >
+      //       <Text style={{ marginLeft: 35 }}>Post</Text>
+      //     </Button>
+      //   </LinearGradient>
+      // </View>
     );
   }
 }
@@ -89,6 +156,78 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   postToFeed: (postData, homeID) => dispatch(postToFeed(postData, homeID))
+});
+
+const styles = StyleSheet.create({
+  rect: {
+    opacity: 0.69,
+    flex: 1
+  },
+  rect_imageStyle: {},
+  Form: {
+    width: 278,
+    height: 230,
+    marginTop: 187,
+    marginRight: 400,
+    alignSelf: "center"
+  },
+  Username: {
+    width: 278,
+    height: 59,
+    backgroundColor: "rgba(251,247,247,0.25)",
+    opacity: 1,
+    borderRadius: 5,
+    flexDirection: "row"
+  },
+  icon2: {
+    color: "black",
+    fontSize: 30,
+    marginLeft: 20,
+    marginTop: 15
+  },
+  UsernameInput: {
+    height: 30,
+    color: "black",
+    flex: 1,
+    marginRight: 11,
+    marginLeft: 11,
+    marginTop: 14
+  },
+  Password: {
+    width: 278,
+    height: 59,
+    backgroundColor: "rgba(253,251,251,0.25)",
+    opacity: 1,
+    borderRadius: 5,
+    marginTop: 27
+  },
+  PasswordInput: {
+    height: 30,
+    color: "white",
+    marginTop: 7,
+    marginLeft: 25
+  },
+  UsernameColumn: {
+    width: 278
+  },
+  UsernameColumnFiller: {
+    flex: 1
+  },
+  button: {
+    width: 278,
+    height: 59,
+    marginTop: 45,
+    backgroundColor: "rgba(31,178,204,1)",
+    borderRadius: 5,
+    alignSelf: "center"
+  },
+  text2: {
+    width: 30,
+    height: 14,
+    color: "rgba(255,255,255,1)",
+    marginTop: 23,
+    marginLeft: 120
+  }
 });
 
 export default connect(
