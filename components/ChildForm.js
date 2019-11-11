@@ -85,10 +85,19 @@ class ChildForm extends Component {
                       onChangeText={name => this.setState({ name })}
                     />
                   </View>
-
+                  <View style={styles.rect2}>
+                    <Text style={styles.textInput}>Allergies </Text>
+                  </View>
                   <AllergiesSelectList />
+                  <View style={styles.rect2}>
+                    <Text style={styles.textInput}>Upload Image </Text>
+                  </View>
 
                   <Icon
+                    style={{
+                      marginLeft: 250,
+                      marginTop: -45
+                    }}
                     name="ios-attach"
                     type="Ionicons"
                     onPress={() =>
@@ -173,7 +182,7 @@ const styles = StyleSheet.create({
   },
   textInput2: {
     height: 30,
-    color: "black",
+    color: "white",
     flex: 1,
     marginRight: 11,
     marginLeft: 11,
@@ -196,7 +205,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 30,
-    color: "black",
+    color: "white",
     flex: 1,
     marginRight: 17,
     marginLeft: 8,
