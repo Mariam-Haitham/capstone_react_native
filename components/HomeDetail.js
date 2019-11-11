@@ -59,17 +59,8 @@ class HomeDetail extends Component {
               <View>
                 <Text
                   style={{
-                    marginRight: 45,
-
-                    fontWeight: "bold"
-                  }}
-                >
-                  Name:
-                </Text>
-                <Text
-                  style={{
                     marginLeft: 20,
-
+                    marginBottom: 30,
                     fontWeight: "bold"
                   }}
                 >
@@ -77,7 +68,12 @@ class HomeDetail extends Component {
                 </Text>
               </View>
 
-              <Text style={{ marginLeft: 70 }}>{parent.email}</Text>
+
+
+              <Text style={{ marginLeft: 70, marginBottom: 30 }}>
+                {parent.email}
+              </Text>
+
             </ListItem>
           </View>
         );
@@ -90,33 +86,27 @@ class HomeDetail extends Component {
           <View>
             <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
               <View>
-
-                <Text
-                  style={{
-                    marginRight: 45,
-                    fontFamily: "Optima",
-                    fontWeight: "bold"
-                  }}
-                >
-                  Name:
-                </Text>
                 <Text
                   style={{
                     marginLeft: 20,
                     fontFamily: "Optima",
-                    fontWeight: "bold"
+                    fontWeight: "bold",
+                    marginBottom: 30
                   }}
                 >
-
                   {caretaker.first_name} {caretaker.last_name}
                 </Text>
               </View>
 
-
-              <Text style={{ fontFamily: "Optima", marginLeft: 90 }}>
+              <Text
+                style={{
+                  fontFamily: "Optima",
+                  marginLeft: 90,
+                  marginBottom: 30
+                }}
+              >
                 {caretaker.email}
               </Text>
-
             </ListItem>
           </View>
         );
@@ -165,20 +155,20 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
-
-          {/* <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
             <Text
               style={{
-                marginLeft: 145,
+                marginLeft: 115,
                 fontFamily: "Optima",
                 fontWeight: "bold",
-                color: "#FFFFFF"
+                color: "#FFFFFF",
+                fontSize: 25
               }}
             >
               {userHome.name}
             </Text>
-          </ListItem> */}
-          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+          </ListItem>
+          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
             <Icon
               name="baby-buggy"
               type="MaterialCommunityIcons"
@@ -202,7 +192,7 @@ class HomeDetail extends Component {
 
           <ListItem
             style={{
-              backgroundColor: "#212121"
+              backgroundColor: "#323131"
             }}
             itemDivider
           >
@@ -213,7 +203,7 @@ class HomeDetail extends Component {
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Parents:</Text>
           </ListItem>
           {childParents}
-          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
             <Icon
               name="users"
               type="Feather"
@@ -273,6 +263,7 @@ class HomeDetail extends Component {
   }
 }
 
+
 const mapStateToProps = state => ({
   user: state.rootAuth.user,
   homes: state.rootHome.homes
@@ -316,3 +307,10 @@ const styles = StyleSheet.create({
 });
 
 export default connect(mapStateToProps)(HomeDetail);
+HomeDetail.navigationOptions = ({ navigation }) => {
+  const homeId = navigation.getParam("homeID");
+  const userHome = this.props.homes.find(home => +homeId == home.id);
+  return {
+    title: userHome.name
+  };
+};

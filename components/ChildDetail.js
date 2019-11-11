@@ -29,48 +29,44 @@ const ChildDetail = ({ child }) => {
         <Content>
           <Card>
             <CardItem cardBody>
-              {image ? (
-                <Image
-                  source={{
-                    uri: image
-                  }}
-                  style={{
-                    height: 150,
-                    width: null,
-                    flex: 1
-                  }}
-                  resizeMode="cover"
-                />
-              ) : null}
-            </CardItem>
-            <CardItem key={child.id}>
-              <Body>
-                <Text style={{ marginTop: 20 }}>
-                  Baby’s Name: {"   "}
-                  {child.name}
-                </Text>
-                <Text style={{ marginTop: 20 }}>
-                  Age:{"    "}
-                  {child.age}
-                </Text>
-                <Text style={{ marginTop: 20 }}>
-                  Date Of Birth: {"    "}
-                  {child.dob}
-                </Text>
-                <Text style={{ marginTop: 20 }}>
-                  medical history: {"    "}
-                  {child.medical_history}
-                </Text>
-                <Text style={{ marginTop: 20 }}>
-                  Allergies:
-                  {child.allergies.map(allergy => (
-                    <Text style={{ marginLeft: 400 }}>
-                      {"   , "}
-                      {allergy.name}
-                    </Text>
-                  ))}
-                </Text>
-              </Body>
+              <CardItem key={child.id}>
+                <Body>
+                  <Thumbnail
+                    source={{ uri: child.image }}
+                    style={{
+                      width: 100,
+                      height: 90,
+                      borderRadius: 1,
+                      marginLeft: 250
+                    }}
+                  />
+                  <Text style={{ marginTop: 20 }}>
+                    Baby’s Name: {"   "}
+                    {child.name}
+                  </Text>
+                  <Text style={{ marginTop: 20 }}>
+                    Age:{"    "}
+                    {child.age}
+                  </Text>
+                  <Text style={{ marginTop: 20 }}>
+                    Date Of Birth: {"    "}
+                    {child.dob}
+                  </Text>
+                  <Text style={{ marginTop: 20 }}>
+                    medical history: {"    "}
+                    {child.medical_history}
+                  </Text>
+                  <Text style={{ marginTop: 20 }}>
+                    Allergies:
+                    {child.allergies.map(allergy => (
+                      <Text style={{ marginLeft: 400 }}>
+                        {"   , "}
+                        {allergy.name}
+                      </Text>
+                    ))}
+                  </Text>
+                </Body>
+              </CardItem>
             </CardItem>
           </Card>
         </Content>

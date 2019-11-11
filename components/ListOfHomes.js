@@ -67,6 +67,17 @@ class ListOfHomes extends Component {
     }
   };
 
+  componentDidUpdate() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.props.fetchHomes();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     if (this.props.loading) return <Loading />;
 
@@ -76,13 +87,20 @@ class ListOfHomes extends Component {
     if (this.props.user) {
       ParentOf = this.props.homes.map(home => {
         const user_id = this.props.user.user_id;
-        if (home.parents.filter(parent => +parent.id === user_id).length > 0)
+
+        if (
+          home.parents &&
+          home.parents.filter(parent => +parent.id === user_id).length > 0
+        )
           return <HomesCard home={home} key={home.id} />;
       });
 
       CareTakerOf = this.props.homes.map(home => {
         const user_id = this.props.user.user_id;
-        if (home.caretakers.filter(parent => +parent.id === user_id).length > 0)
+        if (
+          home.caretakers &&
+          home.caretakers.filter(parent => +parent.id === user_id).length > 0
+        )
           return <HomesCard home={home} key={home.id} />;
       });
     }

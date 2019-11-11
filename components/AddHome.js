@@ -12,7 +12,7 @@ class AddHome extends Component {
   state = {
     name: ""
   };
-  SubmitAdd = () => {
+  SubmitAdd = navigation => {
     this.props.addHome(this.state);
     this.props.navigation.navigate("ListOfHomesScreen");
   };
