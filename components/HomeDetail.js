@@ -18,16 +18,22 @@ import {
 //components
 import Loading from "./Loading";
 import IconInvite from "./IconInvite";
-import IconUpdateHome from "./IconUpdateHome";
 
 class HomeDetail extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const homeId = navigation.getParam("homeID");
-  //   const userHome = this.props.homes.find(home => +homeId == home.id);
-  //   return {
-  //     title: userHome.name
-  //   };
-  // };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerRight: <IconInvite homeID={navigation.getParam("homeID")} />
+    };
+  };
+
+  componentDidUpdate() {
+    const homeId = this.props.navigation.getParam("homeID");
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {}, 500);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
 
   render() {
     const homeId = this.props.navigation.getParam("homeID");
@@ -62,15 +68,12 @@ class HomeDetail extends Component {
                 </Text>
               </View>
 
-              {/* <Text
-                style={{
-                  
-                  marginLeft: 30
-                }}
-              ></Text> */}
+
+
               <Text style={{ marginLeft: 70, marginBottom: 30 }}>
                 {parent.email}
               </Text>
+
             </ListItem>
           </View>
         );
@@ -198,16 +201,6 @@ class HomeDetail extends Component {
               style={{ marginLeft: 30, color: "#FFFFFF" }}
             />
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Parents:</Text>
-            {userHome.parents.filter(parent => +parent.id === userId).length >
-            0 ? (
-              <Icon
-                style={{ color: "white", marginRight: 30 }}
-                name="adduser"
-                type="AntDesign"
-                onPress={() => this.props.navigation.navigate("AddScreen")}
-                style={{ marginLeft: 190, color: "white" }}
-              />
-            ) : null}
           </ListItem>
           {childParents}
           <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
@@ -217,12 +210,36 @@ class HomeDetail extends Component {
               style={{ marginLeft: 30, color: "#FFFFFF" }}
             />
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
-            {userHome.parents.filter(parent => +parent.id === userId).length >
-            0 ? (
-              <IconInvite homeID={homeId} />
-            ) : null}
           </ListItem>
           {childCaretakers}
+
+
+          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Icon
+              name="baby-buggy"
+              type="MaterialCommunityIcons"
+              style={{ marginLeft: 30, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>
+              Beloved Children:
+            </Text>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <Icon
+                style={{ color: "white", marginRight: 30 }}
+                name="child"
+                type="FontAwesome"
+                onPress={() =>
+                  this.props.navigation.navigate("ChildFormScreen", {
+                    homeID: homeId
+                  })
+                }
+                style={{ marginLeft: 120, color: "white" }}
+              />
+            ) : null}
+          </ListItem>
+          {listOfChildren}
+
 
           {userHome.parents.filter(parent => +parent.id === userId).length >
           0 ? (
@@ -246,13 +263,6 @@ class HomeDetail extends Component {
   }
 }
 
-// HomeDetail.navigationOptions = ({ navigation }) => {
-//   const homeId = navigation.getParam("homeID");
-//   const userHome = this.props.homes.find(home => +homeId == home.id);
-//   return {
-//     title: userHome.name
-//   };
-// };
 
 const mapStateToProps = state => ({
   user: state.rootAuth.user,
