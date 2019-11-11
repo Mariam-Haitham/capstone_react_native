@@ -28,9 +28,12 @@ class PostFeed extends Component {
 
     const handlePress = async () => {
       this.setState({ image: this.props.image });
-      await this.setState({
-        children: this.props.checkedchildren
-      });
+      await this.setState(
+        {
+          children: this.props.checkedchildren
+        },
+        this.props.navigation
+      );
       this.props.postToFeed(homeID, {
         message: this.state.message,
         image: this.props.image,
@@ -61,7 +64,7 @@ class PostFeed extends Component {
             type="Ionicons"
             onPress={() => this.props.navigation.navigate("CameraRollScreen")}
           >
-            <Text style={{ fontFamily: "Optima" }}>Attachement</Text>
+            <Text style={{ fontFamily: "Optima" }}> Attachement</Text>
           </Icon>
 
           <ChildSelectList />

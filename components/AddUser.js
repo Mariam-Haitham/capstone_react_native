@@ -19,7 +19,40 @@ class AddUser extends Component {
   handleChange = keyValue => {
     this.setState(keyValue);
   };
+  // componentDidMount = async () => {
+  //   if (this.props.user) {
+  //     await this.props.sendInvite(
+  //       this.props.navigation.getParam("homeID"),
+  //       this.state,
+  //       "parent"
+  //     ),
+  //       await this.props.sendInvite(
+  //         this.props.navigation.getParam("homeID"),
+  //         this.state,
+  //         "caretaker"
+  //       );
+  //   }
+  // };
 
+  // componentDidUpdate() {
+  //   clearInterval(this.interval);
+  //   this.interval = setInterval(() => {
+  //     this.props.sendInvite(
+  //       this.props.navigation.getParam("homeID"),
+  //       this.state,
+  //       "parent"
+  //     );
+  //     this.props.sendInvite(
+  //       this.props.navigation.getParam("homeID"),
+  //       this.state,
+  //       "caretaker"
+  //     );
+  //   }, 1000);
+  // }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   render() {
     const { email } = this.state;
 
@@ -35,7 +68,7 @@ class AddUser extends Component {
           <View style={styles.textColumn}>
             <Text
               style={{
-                fontSize: 25,
+                fontSize: 24,
                 fontWeight: "bold",
                 marginLeft: 30
               }}
@@ -71,12 +104,14 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 65
                   }}
-                  onPress={() =>
-                    this.props.sendInvite(
-                      this.props.navigation.getParam("homeID"),
-                      this.state,
-                      "parent"
-                    )
+                  onPress={
+                    (() =>
+                      this.props.sendInvite(
+                        this.props.navigation.getParam("homeID"),
+                        this.state,
+                        "parent"
+                      ),
+                    this.props.navigation.goBack())
                   }
                 >
                   <Text style={{ color: "white", marginLeft: 35 }}>
@@ -93,12 +128,14 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 40
                   }}
-                  onPress={() =>
-                    this.props.sendInvite(
-                      this.props.navigation.getParam("homeID"),
-                      this.state,
-                      "caretaker"
-                    )
+                  onPress={
+                    (() =>
+                      this.props.sendInvite(
+                        this.props.navigation.getParam("homeID"),
+                        this.state,
+                        "caretaker"
+                      ),
+                    this.props.navigation.goBack())
                   }
                 >
                   <Text style={{ color: "white", marginLeft: 30 }}>

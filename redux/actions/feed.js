@@ -21,6 +21,7 @@ export const postToFeed = (homeID, postData) => {
   return async dispatch => {
     try {
       await instance.post(`homes/${homeID}/`, postData);
+
       dispatch({ type: POST_FEED });
     } catch (error) {
       console.log("error posting feed error");

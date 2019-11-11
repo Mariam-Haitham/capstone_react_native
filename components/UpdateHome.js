@@ -22,7 +22,33 @@ class UpdateHome extends Component {
     this.props.updateHome(this.props.navigation.getParam("homeID"), this.state);
     this.props.navigation.goBack();
   };
+  componentDidMount = async () => {
+    this.props.navigation.setParams({
+      handleDrawer: this.handleDrawer,
+      isOpen: this.state.drawerIsOpen
+    });
 
+    if (this.props.user) {
+      await this.props.updateHome(
+        this.props.navigation.getParam("homeID"),
+        this.state
+      );
+    }
+  };
+
+  componentDidUpdate() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.props.updateHome(
+        this.props.navigation.getParam("homeID"),
+        this.state
+      );
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   render() {
     const { name } = this.state;
 

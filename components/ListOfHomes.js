@@ -67,6 +67,17 @@ class ListOfHomes extends Component {
     }
   };
 
+  componentDidUpdate() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.props.fetchHomes();
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   render() {
     if (this.props.loading) return <Loading />;
 
@@ -76,6 +87,7 @@ class ListOfHomes extends Component {
     if (this.props.user) {
       ParentOf = this.props.homes.map(home => {
         const user_id = this.props.user.user_id;
+
         if (
           home.parents &&
           home.parents.filter(parent => +parent.id === user_id).length > 0
