@@ -50,8 +50,13 @@ class AddUser extends Component {
   //   }, 1000);
   // }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+
+  handlePress(homeID, email, role) {
+    this.props.sendInvite(homeID, email, role);
+    this.props.navigation.goBack();
   }
   render() {
     const { email } = this.state;
@@ -104,14 +109,12 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 65
                   }}
-                  onPress={
-                    (() =>
-                      this.props.sendInvite(
-                        this.props.navigation.getParam("homeID"),
-                        this.state,
-                        "parent"
-                      ),
-                    this.props.navigation.goBack())
+                  onPress={() =>
+                    this.handlePress(
+                      this.props.navigation.getParam("homeID"),
+                      this.state,
+                      "parent"
+                    )
                   }
                 >
                   <Text style={{ color: "white", marginLeft: 35 }}>
@@ -128,14 +131,12 @@ class AddUser extends Component {
                     marginLeft: 90,
                     marginTop: 40
                   }}
-                  onPress={
-                    (() =>
-                      this.props.sendInvite(
-                        this.props.navigation.getParam("homeID"),
-                        this.state,
-                        "caretaker"
-                      ),
-                    this.props.navigation.goBack())
+                  onPress={() =>
+                    this.handlePress(
+                      this.props.navigation.getParam("homeID"),
+                      this.state,
+                      "caretaker"
+                    )
                   }
                 >
                   <Text style={{ color: "white", marginLeft: 30 }}>

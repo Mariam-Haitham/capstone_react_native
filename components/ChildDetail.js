@@ -60,7 +60,7 @@ const ChildDetail = ({ child }) => {
                     Allergies:
                     {child.allergies.map(allergy => (
                       <Text style={{ marginLeft: 400 }}>
-                        {"   , "}
+                        {"   . "}
                         {allergy.name}
                       </Text>
                     ))}

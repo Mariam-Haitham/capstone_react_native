@@ -36,6 +36,8 @@ class ChildForm extends Component {
   };
 
   SubmitAdd = async homeId => {
+    console.log("I AM HERE");
+    console.log(this.state);
     await this.setState({
       image: this.props.image
     });
@@ -48,7 +50,7 @@ class ChildForm extends Component {
   };
 
   render() {
-    const homeID = this.props.navigation.getParam("homeID");
+    const homeID = this.props.navigation.getParam("homeId");
 
     const { name, image, dob, medical_history, allergies } = this.state;
 
