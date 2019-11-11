@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   },
   textInput2: {
     height: 30,
-    color: "#D8CBE2",
+    color: "black",
     flex: 1,
     marginRight: 11,
     marginLeft: 20,

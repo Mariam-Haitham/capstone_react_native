@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import React, { Component } from "react";
-
+import { LinearGradient } from "expo-linear-gradient";
 import SideBar from "../Navigation/SideBar";
 import {
   Content,
@@ -11,13 +11,14 @@ import {
   Button,
   Icon
 } from "native-base";
-import { Image } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 
 //actions
 import { fetchFeed } from "../redux/actions";
 
 //components
 import Loading from "./Loading";
+import IconFeed from "./IconFeed";
 
 class Feed extends Component {
   state = {
@@ -34,12 +35,13 @@ class Feed extends Component {
           onPress={() => navigation.getParam("handleDrawer")()}
         >
           {navigation.getParam("isOpen") ? (
-            <Icon name="close" type="AntDesign" />
+            <Icon name="close" type="AntDesign" style={{ color: "black" }} />
           ) : (
-            <Icon name="menu" type="Feather" />
+            <Icon name="menu" type="Feather" style={{ color: "black" }} />
           )}
         </Button>
-      )
+      ),
+      headerRight: <IconFeed />
     };
   };
 
@@ -75,21 +77,19 @@ class Feed extends Component {
 
     babyposts = this.props.feed.map(post => {
       return (
-        <Content>
-          <Card>
-            <CardItem>
-              {console.log("I AM IN THE FEEDS")}
-              {console.log(post.image)}
-              <Image
-                source={{ uri: post.image }}
-                style={{ height: 150, width: null, flex: 1 }}
-              />
-            </CardItem>
-            <CardItem>
-              <Text> {post.message}</Text>
-            </CardItem>
-          </Card>
-        </Content>
+
+        <Card>
+          <CardItem>
+            <Image
+              source={{ uri: post.image }}
+              style={{ height: 340, width: 50, flex: 1, padding: 50 }}
+            />
+          </CardItem>
+          <CardItem>
+            <Text> {post.message}</Text>
+          </CardItem>
+        </Card>
+
       );
     });
 
@@ -111,12 +111,20 @@ class Feed extends Component {
           onOpen={this.openDrawer}
           captureGestures="open"
         >
-          {babyposts}
-          <Button
-            onPress={() => this.props.navigation.navigate("PostFeedScreen")}
+          <LinearGradient
+            colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+            style={{
+              width: 800,
+              height: 850
+            }}
           >
-            <Text>New Feed</Text>
-          </Button>
+            <ScrollView
+              horizontal={false}
+              contentContainerStyle={styles.scrollArea_contentContainerStyle}
+            >
+              {babyposts}
+            </ScrollView>
+          </LinearGradient>
         </Drawer>
       </>
     );
@@ -134,6 +142,16 @@ const mapDispatchToProps = dispatch => {
     fetchFeed: homeID => dispatch(fetchFeed(homeID))
   };
 };
+
+const styles = StyleSheet.create({
+  scrollArea_contentContainerStyle: {
+    width: 375,
+    height: 3316,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    marginLeft: 20
+  }
+});
 
 export default connect(
   mapStateToProps,

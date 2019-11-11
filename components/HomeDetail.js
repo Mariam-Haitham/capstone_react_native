@@ -90,14 +90,33 @@ class HomeDetail extends Component {
           <View>
             <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
               <View>
-                <Text style={{ marginRight: 45 }}>Name:</Text>
-                <Text style={{ marginLeft: 20 }}>
+
+                <Text
+                  style={{
+                    marginRight: 45,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
+                  Name:
+                </Text>
+                <Text
+                  style={{
+                    marginLeft: 20,
+                    fontFamily: "Optima",
+                    fontWeight: "bold"
+                  }}
+                >
+
                   {caretaker.first_name} {caretaker.last_name}
                 </Text>
               </View>
 
-              <Text style={{ marginLeft: 30 }}>Email:</Text>
-              <Text style={{ marginLeft: 10 }}>{caretaker.email}</Text>
+
+              <Text style={{ fontFamily: "Optima", marginLeft: 90 }}>
+                {caretaker.email}
+              </Text>
+
             </ListItem>
           </View>
         );
@@ -146,6 +165,41 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
+
+          {/* <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Text
+              style={{
+                marginLeft: 145,
+                fontFamily: "Optima",
+                fontWeight: "bold",
+                color: "#FFFFFF"
+              }}
+            >
+              {userHome.name}
+            </Text>
+          </ListItem> */}
+          <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
+            <Icon
+              name="baby-buggy"
+              type="MaterialCommunityIcons"
+              style={{ marginLeft: 50, color: "#FFFFFF" }}
+            />
+            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Children:</Text>
+            {userHome.parents.filter(parent => +parent.id === userId).length >
+            0 ? (
+              <Icon
+                style={{ color: "white", marginRight: 30 }}
+                name="child"
+                type="FontAwesome"
+                onPress={() =>
+                  this.props.navigation.navigate("ChildFormScreen")
+                }
+                style={{ marginLeft: 160, color: "white" }}
+              />
+            ) : null}
+          </ListItem>
+          {listOfChildren}
+
           <ListItem
             style={{
               backgroundColor: "#212121"
@@ -168,6 +222,7 @@ class HomeDetail extends Component {
             <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
           </ListItem>
           {childCaretakers}
+
 
           <ListItem style={{ backgroundColor: "#212121" }} itemDivider>
             <Icon
@@ -194,6 +249,7 @@ class HomeDetail extends Component {
             ) : null}
           </ListItem>
           {listOfChildren}
+
 
           {userHome.parents.filter(parent => +parent.id === userId).length >
           0 ? (
