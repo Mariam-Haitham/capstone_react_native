@@ -36,8 +36,6 @@ class ChildForm extends Component {
   };
 
   SubmitAdd = async homeId => {
-    console.log("I AM HERE");
-    console.log(this.state);
     await this.setState({
       image: this.props.image
     });
@@ -46,10 +44,11 @@ class ChildForm extends Component {
     });
 
     this.props.addChild(homeId, this.state);
+    this.props.navigation.goBack();
   };
 
   render() {
-    const homeId = this.props.navigation.getParam("homeId");
+    const homeID = this.props.navigation.getParam("homeID");
 
     const { name, image, dob, medical_history, allergies } = this.state;
 
@@ -121,7 +120,7 @@ class ChildForm extends Component {
                     />
                   </View>
                   <TouchableOpacity
-                    onPress={() => this.SubmitAdd(homeId)}
+                    onPress={() => this.SubmitAdd(homeID)}
                     style={styles.container2}
                   >
                     <Text style={styles.text4}>Continue</Text>
@@ -129,7 +128,6 @@ class ChildForm extends Component {
                 </ScrollView>
               </View>
               <View style={styles.rect3ColumnFiller} />
-              >>>>>>> 18d37bf4655ade75cfa82b04ba12c27bd60dc90b
             </View>
           </View>
           <View style={styles.textColumnFiller} />
