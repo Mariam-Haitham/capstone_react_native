@@ -20,55 +20,90 @@ const ChildDetail = ({ child }) => {
   return (
     <Container>
       <LinearGradient
-        colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+        colors={["#FBEDCA", "#FBEDCA", "#FBEDCA"]}
         style={{
           width: 800,
           height: 850
         }}
       >
         <Content>
-          <Card>
-            <CardItem cardBody>
-              <CardItem key={child.id}>
-                <Body>
-                  <Thumbnail
-                    source={{ uri: child.image }}
-                    style={{
-                      width: 100,
-                      height: 90,
-                      borderRadius: 1,
-                      marginLeft: 250
-                    }}
-                  />
-                  <Text style={{ marginTop: 20 }}>
-                    Baby’s Name: {"   "}
-                    {child.name}
-                  </Text>
-                  <Text style={{ marginTop: 20 }}>
-                    Age:{"    "}
-                    {child.age}
-                  </Text>
-                  <Text style={{ marginTop: 20 }}>
-                    Date Of Birth: {"    "}
-                    {child.dob}
-                  </Text>
-                  <Text style={{ marginTop: 20 }}>
-                    medical history: {"    "}
-                    {child.medical_history}
-                  </Text>
-                  <Text style={{ marginTop: 20 }}>
-                    Allergies:
-                    {child.allergies.map(allergy => (
-                      <Text style={{ marginLeft: 400 }}>
-                        {"   . "}
-                        {allergy.name}
-                      </Text>
-                    ))}
-                  </Text>
-                </Body>
-              </CardItem>
-            </CardItem>
-          </Card>
+          <Thumbnail
+            source={{ uri: child.image }}
+            style={{
+              width: 150,
+              height: 140,
+              marginTop: 30,
+              borderRadius: 1,
+              marginLeft: 30
+            }}
+          />
+          <Text
+            style={{
+              marginTop: 20,
+              marginLeft: 30,
+              fontFamily: "Optima",
+              fontSize: 20
+            }}
+          >
+            Baby’s Name: {"   "}
+            {child.name}
+          </Text>
+          <Text
+            style={{
+              marginTop: 20,
+              marginLeft: 30,
+              fontFamily: "Optima",
+              fontSize: 20
+            }}
+          >
+            Age:{"    "}
+            {child.age}
+          </Text>
+          <Text
+            style={{
+              marginTop: 20,
+              marginLeft: 30,
+              fontFamily: "Optima",
+              fontSize: 20
+            }}
+          >
+            Date Of Birth: {"    "}
+            {child.dob}
+          </Text>
+          <Text
+            style={{
+              marginTop: 20,
+              marginLeft: 30,
+              fontFamily: "Optima",
+              fontSize: 20
+            }}
+          >
+            medical history: {"    "}
+            {child.medical_history}
+          </Text>
+          <Text
+            style={{
+              marginTop: 20,
+              marginLeft: 30,
+              fontFamily: "Optima",
+              fontSize: 20
+            }}
+          >
+            Allergies:
+            {child.allergies.map(allergy => (
+              <Text
+                style={{
+                  marginLeft: 400,
+                  marginLeft: 30,
+                  fontFamily: "Optima",
+                  fontSize: 20
+                }}
+              >
+                {"   . "}
+                {allergy.name}
+              </Text>
+            ))}
+          </Text>
         </Content>
       </LinearGradient>
     </Container>

@@ -36,8 +36,6 @@ class ChildForm extends Component {
   };
 
   SubmitAdd = async homeId => {
-    console.log("I AM HERE");
-    console.log(this.state);
     await this.setState({
       image: this.props.image
     });
@@ -57,7 +55,7 @@ class ChildForm extends Component {
     return (
       <View>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#F7DD93", "#FFFF"]}
           style={{
             width: 800,
             height: 850
@@ -68,7 +66,8 @@ class ChildForm extends Component {
               style={{
                 fontWeight: "bold",
                 marginLeft: 34,
-                fontSize: 35
+                fontSize: 35,
+                marginTop: -50
               }}
             >
               Add a Child
@@ -79,7 +78,7 @@ class ChildForm extends Component {
                   <View style={styles.rect3}>
                     <TextInput
                       placeholder="Child Name"
-                      placeholderTextColor="rgba(255,255,255,1)"
+                      placeholderTextColor="#454441"
                       secureTextEntry={false}
                       style={styles.textInput2}
                       name="name"
@@ -110,8 +109,8 @@ class ChildForm extends Component {
                   <View style={styles.rect2}>
                     <TextInput
                       placeholder="Medical History"
-                      placeholderTextColor="rgba(255,255,255,1)"
-                      style={styles.textInput}
+                      placeholderTextColor="#454441"
+                      style={styles.textInput2}
                       value={medical_history}
                       name="medical_history"
                       onChangeText={medical_history =>
@@ -123,8 +122,8 @@ class ChildForm extends Component {
                   <View style={styles.rect2}>
                     <TextInput
                       placeholder="Date of birth"
-                      placeholderTextColor="rgba(255,255,255,1)"
-                      style={styles.textInput}
+                      placeholderTextColor="#454441"
+                      style={styles.textInput2}
                       value={dob}
                       name="dob"
                       onChangeText={dob => this.setState({ dob })}
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
   rect: {
     width: winWidth,
     height: winHeight,
-    marginTop: 47
+    marginTop: 40
   },
   rect3: {
     width: 278,
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
   },
   textInput2: {
     height: 30,
-    color: "white",
+    color: "black",
     flex: 1,
     marginRight: 11,
     marginLeft: 11,
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 30,
-    color: "white",
+    color: "#454441",
     flex: 1,
     marginRight: 17,
     marginLeft: 8,
@@ -230,7 +229,7 @@ const styles = StyleSheet.create({
   },
   text2: {
     width: 78,
-    color: "white",
+    color: "black",
     marginTop: 23,
     marginLeft: 131
   },

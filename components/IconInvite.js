@@ -6,7 +6,7 @@ class IconInvite extends Component {
   render() {
     return (
       <Icon
-        style={{ color: "white", marginRight: 30 }}
+        style={{ color: "black", marginRight: 30 }}
         name="adduser"
         type="AntDesign"
         onPress={() =>

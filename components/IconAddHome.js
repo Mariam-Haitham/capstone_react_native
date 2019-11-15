@@ -6,7 +6,7 @@ class IconAddHome extends Component {
   render() {
     return (
       <Icon
-        style={{ color: "white", marginRight: 30 }}
+        style={{ color: "black", marginRight: 30 }}
         name="home-plus"
         type="MaterialCommunityIcons"
         onPress={() => this.props.navigation.navigate("AddHomeScreen")}

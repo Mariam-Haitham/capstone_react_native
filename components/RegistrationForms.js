@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TextInput,
+  Image,
   TouchableOpacity
 } from "react-native";
 import EvilIconsIcon from "react-native-vector-icons/EvilIcons";
@@ -12,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 //actions
 import { connect } from "react-redux";
 import { login } from "../redux/actions";
-
+import baby from "../assets/peek.png";
 class RegistertionForms extends Component {
   state = {
     username: "",
@@ -21,26 +22,34 @@ class RegistertionForms extends Component {
   handleChange = keyValue => {
     this.setState(keyValue);
   };
-  componentDidMount = () => {};
+
   handlelogin = () => {
     this.props.login(this.state, this.props.navigation);
   };
 
   render() {
-    if (this.props.user)
+    if (this.props.user) {
       return this.props.navigation.replace("ListOfHomesScreen");
+    }
     const { username, password } = this.state;
     return (
       <View>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#F7DD93", "#FFFF"]}
           style={{
             width: 800,
             height: 850
           }}
         >
           <View style={styles.textColumn}>
-            <Text style={styles.text}>Peek A Baby</Text>
+            <Image
+              source={baby}
+              style={{
+                width: 229,
+                height: 150,
+                marginLeft: 60
+              }}
+            />
 
             <View style={styles.rect}>
               <View style={styles.rect3Column}>
@@ -48,7 +57,7 @@ class RegistertionForms extends Component {
                   <EvilIconsIcon name="user" style={styles.icon2} />
                   <TextInput
                     placeholder="Email"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="darkgrey"
                     secureTextEntry={false}
                     style={styles.textInput2}
                     name="username"
@@ -60,7 +69,7 @@ class RegistertionForms extends Component {
                   <EvilIconsIcon name="lock" style={styles.icon} />
                   <TextInput
                     placeholder="Password"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="darkgey"
                     style={styles.textInput}
                     value={password}
                     secureTextEntry
@@ -173,7 +182,7 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 70,
     height: 59,
-    backgroundColor: "#7C7692",
+    backgroundColor: "black",
     borderRadius: 20,
     marginBottom: 53,
     marginLeft: 40,
@@ -188,7 +197,7 @@ const styles = StyleSheet.create({
   },
   textColumn: {
     width: 303,
-    marginTop: 160,
+    marginTop: 120,
     marginLeft: 36
   },
   textColumnFiller: {

@@ -64,7 +64,7 @@ class AddUser extends Component {
     return (
       <View style={styles.container}>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#FCF1D8", "#FFFF"]}
           style={{
             width: 800,
             height: 850
@@ -90,7 +90,7 @@ class AddUser extends Component {
                   />
                   <TextInput
                     placeholder="Email"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="#454441"
                     secureTextEntry={false}
                     name="email"
                     style={{ marginLeft: 10 }}

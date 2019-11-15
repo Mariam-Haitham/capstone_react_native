@@ -7,6 +7,7 @@ import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
 import AppContainer from "./Navigation/";
 import Loading from "./components/Loading";
+import ListOfHomes from "./components/ListOfHomes";
 
 export default class App extends React.Component {
   constructor(props) {

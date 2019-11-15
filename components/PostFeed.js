@@ -18,7 +18,7 @@ import ChildSelectList from "./ChildSelectList";
 
 class PostFeed extends Component {
   state = {
-    message: "Post to feed",
+    message: "",
     children: [],
     image: null
   };
@@ -36,12 +36,13 @@ class PostFeed extends Component {
         image: this.props.image,
         children: this.state.children
       });
+      this.props.navigation.goBack();
     };
     return (
       <View>
         <View>
           <LinearGradient
-            colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+            colors={["#FED141", "#FCF1D8", "#FFFF"]}
             style={{
               width: 800,
               height: 850
@@ -66,6 +67,8 @@ class PostFeed extends Component {
                     onChangeText={message => this.setState({ message })}
                     value={this.state.message}
                     style={styles.UsernameInput}
+                    placeholder="POST A FEED"
+                    placeholderTextColor="black"
                   />
                 </View>
                 <View style={styles.Password}>
@@ -73,20 +76,23 @@ class PostFeed extends Component {
                     placeholderTextColor="rgba(255,255,255,1)"
                     style={styles.PasswordInput}
                   >
+                    Attachement {"                        "}
                     <Icon
                       name="ios-attach"
                       type="Ionicons"
                       onPress={() =>
                         this.props.navigation.navigate("CameraRollScreen")
                       }
+                      style={{ marginTop: 30 }}
                     />
-                    {"  "} Attachement
                   </Text>
                 </View>
-                <Text style={{ fontFamily: "Optima", fontWeight: "bold" }}>
-                  {" "}
-                  Tag A child
-                </Text>
+                <CardItem style={{ marginTop: 20, backgroundColor: "#FAE7B7" }}>
+                  <Text style={{ fontFamily: "Optima", fontWeight: "bold" }}>
+                    {" "}
+                    Tag A child
+                  </Text>
+                </CardItem>
                 <ChildSelectList />
               </View>
               <View style={styles.UsernameColumnFiller} />
@@ -149,6 +155,7 @@ class PostFeed extends Component {
 }
 
 const mapStateToProps = state => ({
+  user: state.rootAuth.user,
   home: state.rootHome.home,
   image: state.rootFeed.image,
   checkedchildren: state.rootChild.checkedchildren
@@ -181,7 +188,7 @@ const styles = StyleSheet.create({
   },
   icon2: {
     color: "black",
-    fontSize: 30,
+    fontSize: 20,
     marginLeft: 20,
     marginTop: 15
   },
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
   },
   PasswordInput: {
     height: 30,
-    color: "white",
+    color: "black",
     marginTop: 7,
     marginLeft: 25
   },

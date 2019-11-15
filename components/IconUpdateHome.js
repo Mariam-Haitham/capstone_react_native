@@ -6,7 +6,7 @@ class IconUpdateHome extends Component {
   render() {
     return (
       <Icon
-        style={{ color: "white", marginRight: 34 }}
+        style={{ color: "black", marginRight: 34 }}
         name="edit"
         type="AntDesign"
         onPress={() => this.props.navigation.navigate("UpdateHomeScreen")}

@@ -68,14 +68,20 @@ class ListOfHomes extends Component {
   };
 
   componentDidUpdate() {
-    clearInterval(this.interval);
-    this.interval = setInterval(() => {
-      this.props.fetchHomes();
-    }, 1000);
+    if (this.props.user) {
+      clearInterval(this.interval);
+      this.interval = setInterval(() => {
+        if (this.props.user) {
+          this.props.fetchHomes();
+        }
+      }, 1000);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    if (this.props.user) {
+      clearInterval(this.interval);
+    }
   }
 
   render() {
@@ -119,13 +125,17 @@ class ListOfHomes extends Component {
           captureGestures="open"
         >
           <Content>
-            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
-              <Text style={{ color: "#212121" }}>You are a parent of: </Text>
+            <ListItem itemDivider style={{ backgroundColor: "#F7DD93" }}>
+              <Text style={{ color: "#212121", fontSize: 20 }}>
+                You are a parent of:{" "}
+              </Text>
             </ListItem>
 
             {ParentOf}
-            <ListItem itemDivider style={{ backgroundColor: "#D8CBE2" }}>
-              <Text style={{ color: "#212121" }}>You are a caretaker of: </Text>
+            <ListItem itemDivider style={{ backgroundColor: "#F7DD93" }}>
+              <Text style={{ color: "#212121", fontSize: 20 }}>
+                You are a caretaker of:{" "}
+              </Text>
             </ListItem>
             <List>{CareTakerOf}</List>
           </Content>

@@ -10,8 +10,8 @@ import { logout } from "../redux/actions";
 
 class SideBar extends Component {
   HandleChange = async () => {
-    this.props.logout();
-    this.props.navigation.push("RegisterScreen");
+    await this.props.logout();
+    this.props.navigation.replace("RegisterScreen");
   };
 
   render() {

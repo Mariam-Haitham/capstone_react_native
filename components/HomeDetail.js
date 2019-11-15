@@ -55,7 +55,7 @@ class HomeDetail extends Component {
       childParents = parents.map(parent => {
         return (
           <View>
-            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+            <ListItem style={{ backgroundColor: "#FBEDCA" }} itemHeader>
               <View>
                 <Text
                   style={{
@@ -81,7 +81,7 @@ class HomeDetail extends Component {
       childCaretakers = careTakers.map(caretaker => {
         return (
           <View>
-            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+            <ListItem style={{ backgroundColor: "#FBEDCA" }} itemHeader>
               <View>
                 <Text
                   style={{
@@ -114,7 +114,7 @@ class HomeDetail extends Component {
       listOfChildren = children.map(child => {
         return (
           <View>
-            <ListItem style={{ backgroundColor: "#EFEAF3" }} itemHeader>
+            <ListItem style={{ backgroundColor: "#FBEDCA" }} itemHeader>
               <Icon
                 name="face-profile"
                 type="MaterialCommunityIcons"
@@ -152,26 +152,26 @@ class HomeDetail extends Component {
     return (
       <>
         <Content>
-          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
+          <ListItem style={{ backgroundColor: "#F7DD93" }} itemDivider>
             <Text
               style={{
                 marginLeft: 115,
                 fontFamily: "Optima",
                 fontWeight: "bold",
-                color: "#FFFFFF",
+                color: "",
                 fontSize: 25
               }}
             >
               {userHome.name}
             </Text>
           </ListItem>
-          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
+          <ListItem style={{ backgroundColor: "#F7DD93" }} itemDivider>
             <Icon
               name="baby-buggy"
               type="MaterialCommunityIcons"
-              style={{ marginLeft: 50, color: "#FFFFFF" }}
+              style={{ marginLeft: 50, color: "black" }}
             />
-            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Children:</Text>
+            <Text style={{ marginLeft: 20, color: "black" }}>Children:</Text>
             {userHome.parents.filter(parent => +parent.id === userId).length >
             0 ? (
               <Icon
@@ -183,7 +183,7 @@ class HomeDetail extends Component {
                     homeId: homeId
                   })
                 }
-                style={{ marginLeft: 160, color: "white" }}
+                style={{ marginLeft: 160, color: "black" }}
               />
             ) : null}
           </ListItem>
@@ -191,24 +191,24 @@ class HomeDetail extends Component {
 
           <ListItem
             style={{
-              backgroundColor: "#323131"
+              backgroundColor: "#F7DD93"
             }}
             itemDivider
           >
             <Icon
               name="ios-person"
-              style={{ marginLeft: 30, color: "#FFFFFF" }}
+              style={{ marginLeft: 30, color: "black" }}
             />
-            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>Parents:</Text>
+            <Text style={{ marginLeft: 20, color: "black" }}>Parents:</Text>
           </ListItem>
           {childParents}
-          <ListItem style={{ backgroundColor: "#323131" }} itemDivider>
+          <ListItem style={{ backgroundColor: "#F7DD93" }} itemDivider>
             <Icon
               name="users"
               type="Feather"
-              style={{ marginLeft: 30, color: "#FFFFFF" }}
+              style={{ marginLeft: 30, color: "black" }}
             />
-            <Text style={{ marginLeft: 20, color: "#FFFFFF" }}>CareTaker:</Text>
+            <Text style={{ marginLeft: 20, color: "black" }}>CareTaker:</Text>
           </ListItem>
           {childCaretakers}
 

@@ -6,7 +6,7 @@ class IconFeed extends Component {
   render() {
     return (
       <Icon
-        style={{ color: "white", marginRight: 40 }}
+        style={{ color: "black", marginRight: 40 }}
         name="ios-attach"
         type="Ionicons"
         onPress={() => this.props.navigation.navigate("PostFeedScreen")}
