@@ -24,7 +24,7 @@ class AddHome extends Component {
     return (
       <View style={styles.container} onPress={() => this.SubmitAdd()}>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#FAE7B7", "#FBEDCA"]}
           style={{
             width: 800,
             height: 850
@@ -46,7 +46,7 @@ class AddHome extends Component {
                   <Icon name="home" type="Octicons" style={styles.icon2} />
                   <TextInput
                     placeholder="name"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="#454441"
                     secureTextEntry={false}
                     style={styles.textInput2}
                     name="name"

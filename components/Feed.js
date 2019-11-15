@@ -64,6 +64,13 @@ class Feed extends Component {
     await this.props.fetchFeed(this.props.navigation.getParam("homeID"));
   };
 
+  componentDidUpdate() {
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+      this.props.fetchFeed(this.props.navigation.getParam("homeID"));
+    }, 1000);
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -77,7 +84,6 @@ class Feed extends Component {
 
     babyposts = this.props.feed.map(post => {
       return (
-
         <Card>
           <CardItem>
             <Image
@@ -89,7 +95,6 @@ class Feed extends Component {
             <Text> {post.message}</Text>
           </CardItem>
         </Card>
-
       );
     });
 
@@ -112,7 +117,7 @@ class Feed extends Component {
           captureGestures="open"
         >
           <LinearGradient
-            colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+            colors={["#FED141", "#FCF1D8", "#FFFF"]}
             style={{
               width: 800,
               height: 850

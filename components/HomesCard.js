@@ -25,7 +25,7 @@ class HomesCard extends Component {
   render() {
     const { home } = this.props;
     return (
-      <View style={{ color: "#D8CBE2" }}>
+      <View>
         <ListItem>
           <CardItem>
             <Left>
@@ -33,7 +33,8 @@ class HomesCard extends Component {
                 button
                 onPress={() => this.handlePress()}
                 style={{
-                  color: "#212121"
+                  color: "#212121",
+                  fontSize: 20
                 }}
               >
                 {home.name}

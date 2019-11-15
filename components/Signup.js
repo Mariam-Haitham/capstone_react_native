@@ -27,7 +27,7 @@ class Signup extends Component {
     return (
       <View>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#F7DD93", "#FFFF"]}
           style={{
             width: 800,
             height: 850
@@ -48,7 +48,7 @@ class Signup extends Component {
                   <View style={styles.NameInputStack}>
                     <TextInput
                       placeholder="First Name"
-                      placeholderTextColor="rgba(255,255,255,1)"
+                      placeholderTextColor="darkgrey"
                       secureTextEntry={false}
                       autoCapitalize="false"
                       value={first_name}
@@ -65,7 +65,7 @@ class Signup extends Component {
                   </View>
                   <TextInput
                     placeholder="Last Name"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="darkgrey"
                     secureTextEntry={false}
                     style={{ marginLeft: 20 }}
                     autoCapitalize="false"
@@ -79,7 +79,7 @@ class Signup extends Component {
                   <EvilIconsIcon name="envelope" style={styles.icon10} />
                   <TextInput
                     placeholder="Email"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="darkgrey"
                     secureTextEntry={false}
                     style={{ marginLeft: 20 }}
                     value={email}
@@ -90,7 +90,7 @@ class Signup extends Component {
                   <EvilIconsIcon name="lock" style={styles.icon6} />
                   <TextInput
                     placeholder="password"
-                    placeholderTextColor="rgba(255,255,255,1)"
+                    placeholderTextColor="darkgrey"
                     secureTextEntry={true}
                     autoCapitalize="false"
                     style={{ marginLeft: 20 }}
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 30,
-    color: "rgba(255,255,255,1)",
+    color: "darkgrey",
     fontSize: 14,
     flex: 1,
     marginRight: 40,
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   Continue: {
     width: 200,
     height: 55,
-    backgroundColor: "#7C7692",
+    backgroundColor: "black",
     opacity: 1,
     borderRadius: 20,
     borderColor: "rgba(255,255,255,1)",

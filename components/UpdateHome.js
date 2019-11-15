@@ -17,11 +17,6 @@ class UpdateHome extends Component {
   state = {
     name: this.props.navigation.getParam("name")
   };
-
-  handleSubmit = () => {
-    this.props.updateHome(this.props.navigation.getParam("homeID"), this.state);
-    this.props.navigation.goBack();
-  };
   componentDidMount = async () => {
     this.props.navigation.setParams({
       handleDrawer: this.handleDrawer,
@@ -49,13 +44,18 @@ class UpdateHome extends Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+  handleSubmit = () => {
+    this.props.updateHome(this.props.navigation.getParam("homeID"), this.state);
+    this.props.navigation.goBack();
+  };
+
   render() {
     const { name } = this.state;
 
     return (
       <View style={styles.container} onPress={() => this.handleSubmit()}>
         <LinearGradient
-          colors={["#6D6780", "#D5C6E0", "#FFFF"]}
+          colors={["#FED141", "#FCF1D8", "#FCF1D8"]}
           style={{
             width: 800,
             height: 850
